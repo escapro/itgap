@@ -1,0 +1,21 @@
+
+.icon-user:before { content: '\e800'; } /* '' */
+.icon-clock:before { content: '\e801'; } /* '' */
+.icon-heart:before { content: '\e802'; } /* '' */
+.icon-plus:before { content: '\e803'; } /* '' */
+.icon-home:before { content: '\e804'; } /* '' */
+.icon-eye-1:before { content: '\e805'; } /* '' */
+.icon-floppy:before { content: '\e806'; } /* '' */
+.icon-cancel:before { content: '\e807'; } /* '' */
+.icon-search:before { content: '\e815'; } /* '' */
+.icon-picture:before { content: '\e81b'; } /* '' */
+.icon-eye:before { content: '\e81d'; } /* '' */
+.icon-bookmark:before { content: '\e821'; } /* '' */
+.icon-chat:before { content: '\e826'; } /* '' */
+.icon-cog:before { content: '\e830'; } /* '' */
+.icon-left-open:before { content: '\e84a'; } /* '' */
+.icon-right-open:before { content: '\e84b'; } /* '' */
+.icon-floppy-1:before { content: '\e88b'; } /* '' */
+.icon-bell-alt:before { content: '\f0f3'; } /* '' */
+.icon-ellipsis:before { content: '\f141'; } /* '' */
+.icon-share:before { content: '\f1e0'; } /* '' */

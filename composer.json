@@ -1,0 +1,9 @@
+{
+    "name": "user/itgap",
+    "type": "project",
+    "require": {
+        "codex-team/editor.js": "dev-master",
+        "ezyang/htmlpurifier": "^4.11",
+        "filp/whoops": "^2.5"
+    }
+}
