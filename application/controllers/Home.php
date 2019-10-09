@@ -14,6 +14,7 @@ class Home extends CI_Controller {
 	{
 		$this->load->library('ion_auth');
 		$this->data['page_title'] = "itGap — Все о мире IT и много другое";
+		$this->data['page_description'] = $this->site_model->get_description('main');
 
 		$this->data['content_type'] = "block";
 

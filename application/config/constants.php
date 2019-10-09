@@ -1,6 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+// APPLICATION ENVIROMENT MODE
+defined('APP_ENV') OR define('APP_ENV', 'development');
+
 /*
 |--------------------------------------------------------------------------
 | Display Debug backtrace

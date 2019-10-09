@@ -22,6 +22,8 @@ class Post extends CI_Controller {
 		$this->data['post'] = $this->post_model->get_post($tag, $post_name)[0];
 
 		$this->data['page_title'] = $this->data['post']['title']." — itGap";
+		$this->data['page_description'] = $this->data['post']['preview_text'];
+		$this->data['page_image'] = $this->data['post']['image_url'];
 
 		$this->data['head_more'] = 
 		'<link rel="stylesheet" type="text/css" href="/media/highlight/styles/atom-one-dark.css">'.

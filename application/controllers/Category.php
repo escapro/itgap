@@ -23,6 +23,7 @@ class Category extends CI_Controller {
 		$this->data['tags'] = $this->post_model->get_tags($tag);
 
 		$this->data['page_title'] = $this->data['tags']['current_tag'].' — itGap';
+		$this->data['page_description'] = $this->site_model->get_description('main');
 
 		$this->data['categories'] = $this->category_model->get_categories();
 		$this->data['posts'] = $this->post_model->get_posts_by_tag($tag);
