@@ -23,6 +23,10 @@ class Post extends CI_Controller {
 
 		$this->data['page_title'] = $this->data['post']['title']." — itGap";
 
+		$this->data['head_more'] = 
+		'<link rel="stylesheet" type="text/css" href="/media/highlight/styles/atom-one-dark.css">'.
+		'<script type="text/javascript" src="/media/highlight/highlight.pack.js"></script>';
+
 		$this->data['tags'] = $this->post_model->get_tags();
 		$this->data['categories'] = $this->category_model->get_categories();
 		$this->data['popular_posts'] = $this->post_model->get_popular_posts();
@@ -57,6 +61,15 @@ class Post extends CI_Controller {
 		);
 		$this->data['csrf'] = $csrf;
 		
+
+		$d = "";
+		$d .= "postData = {};";
+		$d .= 'postData.postId = "'.$this->data['postId'].'";';
+		$d .= 'postData.previewImage = "";';
+		$d .= 'postData.editorData = "";';
+
+		$this->data['editorData'] = $d;
+		
 		$this->load->view('editor', $this->data);
 	}
 
@@ -73,6 +86,7 @@ class Post extends CI_Controller {
 		'<link rel="stylesheet" type="text/css" href="/media/highlight/styles/atom-one-dark.css">'.
 		'<script type="text/javascript" src="/media/highlight/highlight.pack.js"></script>';
 
+		
 		$this->load->helper('date_helper');
 		$this->data['post']['last_change'] = product_date_format($this->data['post']['last_change'], 'long');
 
@@ -110,12 +124,21 @@ class Post extends CI_Controller {
 		$postData = $this->post_model->get_user_post($this->data['user']->id, $post_id);
 
 		if($postData) {
-			$this->data['editorPostData'] = $postData['data_json'];
+			// $this->data['editorPostData'] = json_encode($postData['data_json']);
 			$this->data['postData'] = $postData;
-			$this->data['previewImage'] =  $postData['preview_image_url'];
+			// $this->data['previewImage'] =  $postData['preview_image_url'];
+
+			$d = "";
+
+			$d .= "postData = {};\n";
+			$d .= 'postData.postId = "'.$post_id.'";'."\n";
+			$d .= 'postData.previewImage = "'.$postData["preview_image_url"].'";'."\n";
+			$d .= "postData.editorData = ".$postData['data_json'].";";
+
+			$this->data['editorData'] = $d;
+
 			$this->load->view('editor', $this->data);
 		}else {
-			echo '2';
 			exit("error 404");
 		}
 	}

@@ -57,12 +57,12 @@ $(document).ready(function () {
         inlineToolbar: true,
         shortcut: 'CMD+SHIFT+O',
         config: {
-          quotePlaceholder: 'Enter a quote',
-          captionPlaceholder: 'Quote\'s author',
+          quotePlaceholder: 'Введите цитату',
+          captionPlaceholder: 'Укажите автора',
         },
       }
     },
-    data: editorPostData,
+    data: postData.editorData,
     onChange: () => {
       saveData('/writing/save');
     }
@@ -83,11 +83,11 @@ $(document).ready(function () {
 
   var editorData = {};
 
-  editorData.id = postId;
+  editorData.id = postData.postId;
   editorData.link = '';
   editorData.tag = '';
   editorData.title = '';
-  editorData.image = previewImage;
+  editorData.image = postData.previewImage;
   editorData.preview = '';
   editorData.editorData = '';
 
@@ -103,7 +103,7 @@ $(document).ready(function () {
 
     if (url !== '') {
       if (editorData !== '') {
-        window.history.pushState({}, "", '/writing/'+postId+'/edit');
+        window.history.pushState({}, "", '/writing/'+postData.postId+'/edit');
       }
     }
 
@@ -215,10 +215,12 @@ $(document).ready(function () {
   })
 
   $(document).on("click", edor.previewBtn, function (e, elem) {
-    window.open(
-      "/post/preview/"+editorData.id,
-      '_blank'
-    );
+    if(editorData.editorData !== '') {
+      window.open(
+        "/post/preview/"+postData.postId,
+        '_blank'
+      );
+    }
   })
 
 });

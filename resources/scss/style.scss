@@ -17,7 +17,7 @@ a {
 
 li, a, button, input, div, article {
 	transition: 0.1s;
-	list-style: none;
+	// list-style: none;
 }
 
 html, body {
@@ -388,6 +388,10 @@ $page-left-side-width: calc(100% - #{$page-right-side-width});
 	background-color: #D0D0D0;
 }
 
+.main-sidebar li {
+	list-style: none;
+}
+
 .sidebar-item {
 	margin-bottom: 20px;
 }
@@ -489,6 +493,7 @@ $page-left-side-width: calc(100% - #{$page-right-side-width});
 
 .post-entry {
 	word-wrap:break-word;
+	list-style: inside;
 }
 
 .post-entry p{
@@ -497,13 +502,8 @@ $page-left-side-width: calc(100% - #{$page-right-side-width});
 	margin-bottom: 10px;
 }
 
-.post-entry h2{
-	font-size: 24px;
-	font-weight: 500;
-}
-
 .post-entry h2, .post-entry h3, .post-entry h4, .post-entry h5 {
-	margin: 20px 0 10px;
+	margin: 20px 0;
 }
 
 .post-entry a{
@@ -527,6 +527,7 @@ $page-left-side-width: calc(100% - #{$page-right-side-width});
 	font-family: monospace;
 	color: #fff;
 	background: none;
+	line-height: 20px;
 }
 
 .post-entry code.inline-code {
@@ -546,15 +547,20 @@ $page-left-side-width: calc(100% - #{$page-right-side-width});
 	margin-bottom: 20px;
 }
 
+.post-entry li {
+	margin-bottom: 10px;
+}
+
 .post-entry .delimiter{
 	text-align: center;
-    font-size: 27px;
-    color: #B2B2B2;
+    font-size: 35px;
+    letter-spacing: 7px;
+    color: #9c9c9c;
     margin: 10px 0;
 }
 
 .codeStyle-dark {
-	background-color: #333;
+	background-color: #2B2B2B;
 	color: #fff;
 	padding: 20px;
 	margin-bottom: 20px;
@@ -562,12 +568,32 @@ $page-left-side-width: calc(100% - #{$page-right-side-width});
 }
 
 .post-entry img{
-	width: 100%;
+	max-width: 100%;
 }
 
-.post-entry figure {
-	display: -webkit-box;
+.post-entry .quote {
+	background-color: #fbfbfb;
+	padding: 10px;
+	border-left: 6px solid #1976D2;
+	margin: 20px 0;
+	font-size: 15px;
+}
+
+.post-entry .quote .quote__content {
+	margin-bottom: 20px;
+}
+
+.post-entry .quote .quote__cite{
+	text-align: end;
+	color: #B2B2B2;
+}
+
+.post-entry .post-full {
 	margin-bottom: 10px;
+    margin: 0 auto;
+    display: flex;
+	justify-content: center;
+	margin: 20px 0;
 }
 
 .post-meta span {
@@ -1084,6 +1110,10 @@ $page-left-side-width: calc(100% - #{$page-right-side-width});
 
 .ico-btn {
 	cursor: pointer;
+}
+
+.post-header h1 {
+	font-size: 28px;
 }
 //begin
 

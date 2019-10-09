@@ -111,9 +111,19 @@ class Writing extends CI_Controller {
 		$postData = $this->post_model->get_user_post($this->data['user']->id, $post_id);
 
 		if($postData) {
-			$this->data['editorPostData'] = json_encode($postData['data_json']);
+			// $this->data['editorPostData'] = json_encode($postData['data_json']);
 			$this->data['postData'] = $postData;
-			$this->data['previewImage'] =  $postData['preview_image_url'];
+			// $this->data['previewImage'] =  $postData['preview_image_url'];
+
+			$d = "";
+
+			$d .= "postData = {};\n";
+			$d .= 'postData.postId = "'.$post_id.'";'."\n";
+			$d .= 'postData.previewImage = "'.$postData["preview_image_url"].'";'."\n";
+			$d .= "postData.editorData = ".$postData['data_json'].";";
+
+			$this->data['editorData'] = $d;
+
 			$this->load->view('editor', $this->data);
 		}else {
 			exit("error 404");
@@ -201,13 +211,16 @@ class Writing extends CI_Controller {
 				if(isset($value['data']['file']['url'])) {
 					$url = $value['data']['file']['url'];
 					$tag = $conf[$type];
+
+					$html .= '<figure class="post-full">';
 					$html .= '<'.$tag.' src="'.$url.'">';
+					$html .= '</figure>';
 				}
 
 			}else if($type == 'code') {
 
 				$html .= '<pre class="codeStyle-dark"><code>';
-				$html .= $this->security->xss_clean(htmlspecialchars($value['data']['code']));
+				$html .= htmlspecialchars($value['data']['code']);
 				$html .= '</code></pre>';
 
 			}else if($type == 'delimiter') {

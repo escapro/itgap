@@ -50,7 +50,7 @@
 					</div>
 				</div>
 				<div class="editor-width editor-preview mb-2">
-					<textarea class="editor-item__bg" name="title" placeholder="Краткое содержание" maxlength="120" default="Краткое содержание"><?=$postData['preview_text'] ?? ''?></textarea>
+					<textarea class="editor-item__bg" name="title" placeholder="Краткое содержание" maxlength="150" default="Краткое содержание"><?=$postData['preview_text'] ?? ''?></textarea>
 				</div>
 				<div class="editor-content">
 					<div id="codex-editor"></div>
@@ -59,9 +59,7 @@
 		</div>
 	</div>
 	<script>
-		let postId = '<?php echo $postId; ?>';
-		let editorPostData = <?php echo $editorPostData ?? json_encode("{}") ?>;
-		if(typeof editorPostData !== 'undefined') editorPostData = JSON.parse(editorPostData);
-		let previewImage = '<?php echo $previewImage ?? '' ?>';
+		let postData;
+		<?php echo $editorData; ?>	
 	</script>
 </main>
