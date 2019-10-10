@@ -211,9 +211,14 @@ class Writing extends CI_Controller {
 				if(isset($value['data']['file']['url'])) {
 					$url = $value['data']['file']['url'];
 					$tag = $conf[$type];
+					$caption =  trim($value['data']['caption']);
 
 					$html .= '<figure class="post-full">';
-					$html .= '<'.$tag.' src="'.$url.'">';
+					$html .= '<'.$tag.' src="'.$url.'"';
+					if($caption !== '') {
+						$html .= ' alt="'.$caption.'"';
+					}
+					$html .= '>';
 					$html .= '</figure>';
 				}
 

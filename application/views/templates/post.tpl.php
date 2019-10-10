@@ -1,7 +1,7 @@
 <main class="content">
 	<article class="block post">
 		<header class="post-header">
-			<h1><?php if(isset($post['title'])) echo $post['title']; ?></h1>
+			<h1><?php if($post['title'] !== '') echo $post['title']; ?></h1>
 			<div class="post-meta">
 				<span class="post-meta__time"><i class="icon icon-clock"></i><?=$post['last_change'];?></span>
 				<div class="right">
@@ -13,7 +13,7 @@
 		<div class="post-content">
 			<?php if($post['image_url'] !== ''): ?>
 			<div class="post-image">
-				<img src="/static/uploads/posts/<?=$post['image_url'];?>">
+				<img src="/static/uploads/posts/<?=$post['image_url'];?>" <?php if($post['title'] !== '') echo 'alt="sdf"'; ?>>
 			</div>
 			<?php endif; ?>
 			<div class="post-entry">
