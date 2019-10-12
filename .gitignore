@@ -1,3 +1,4 @@
+tasks.txt
 /node_modules
 /public/static
-tasks.txt
+/public/sitemap.xml

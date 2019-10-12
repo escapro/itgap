@@ -54,19 +54,46 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = TRUE;
 
 $route['(:any)/(:any)'] = function ($firts, $second) {
-    if ($firts == 'post') {
-        return 'post/'.$second;
-    }else if ($firts == 'user') {
-        return 'user/'.$second;
-    }else if ($firts == 'tag') {
-        return 'category/tag/'.$second;
-    }else if ($firts == 'writing') {
-        return 'writing/'.$second;
-    }else if ($firts == 'upload') {
-        return 'upload/'.$second;
-    }else {
-        return 'post/index/'.$firts.'/'.$second;
+
+    switch ($firts) {
+        case 'post':
+            return 'post/'.$second;
+            break;
+        case 'user':
+            return 'user/'.$second;
+            break;
+        case 'tag':
+            return 'category/tag/'.$second;
+            break;
+        case 'writing':
+            return 'writing/'.$second;
+            break;
+        case 'upload':
+            return 'upload/'.$second;
+            break;
+        case 'sitemap':
+            return 'sitemap/'.$second;
+            break;
+        default:
+            return 'post/index/'.$firts.'/'.$second;
+            break;
     }
+
+    // if ($firts == 'post') {
+    //     return 'post/'.$second;
+    // }else if ($firts == 'user') {
+    //     return 'user/'.$second;
+    // }else if ($firts == 'tag') {
+    //     return 'category/tag/'.$second;
+    // }else if ($firts == 'writing') {
+    //     return 'writing/'.$second;
+    // }else if ($firts == 'upload') {
+    //     return 'upload/'.$second;
+    // }else if ($firts == 'sitemap') {
+    //     return 'sitemap/'.$second;
+    // }else {
+    //     return 'post/index/'.$firts.'/'.$second;
+    // }
 };
 
 $route['writing/(:any)/delete'] = 'writing/delete/$1';

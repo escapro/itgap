@@ -199,6 +199,7 @@ class Post_model extends CI_Model {
 		return $data;
 	}
 
+	// SITEMAP USE
 	public function get_tags ($tag=NULL) {
 
 		$this->db->select("*");
