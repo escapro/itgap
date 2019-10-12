@@ -10,16 +10,17 @@ class Post_model extends CI_Model {
 		parent::__construct();
 	}
 
-	public function get_posts($page=1) {
-
-		$offset = ($page * $this->offsetCount) - $this->offsetCount;		
-
+	// SITEMAP USE
+	public function get_posts($page=1) {	
 		$this->db->select("p.title, t.title as tag, p.preview_text, p.post_id as post_id, p.last_change, p.preview_image_url as image_url, p.post_name, t.tag as tag_url");
 		$this->db->from("posts p");
 		$this->db->join('active_posts a', 'p.id=a.post_id');
 		$this->db->join('tags t', 't.id=p.tag_id');
 		$this->db->order_by("p.last_change", "desc");
-		$this->db->limit($this->offsetCount, $offset);
+		if($page !== 0) {
+			$offset = ($page * $this->offsetCount) - $this->offsetCount;	
+			$this->db->limit($this->offsetCount, $offset);
+		}
 		$query = $this->db->get();
 		$data = $query->result_array();
 		return $data;

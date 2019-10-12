@@ -22,10 +22,7 @@ class Sitemap extends CI_Controller {
 		$xml .= $this->generate_posts();
 		$xml .= '</urlset>';
 
-		$dom = new DOMDocument;
-		$dom->preserveWhiteSpace = FALSE;
-		$dom->loadXML($xml);
-		$dom->save('sitemap.xml');
+		file_put_contents('sitemap.xml', $xml);
 	}
 
 	private function generate_posts(){
@@ -33,7 +30,7 @@ class Sitemap extends CI_Controller {
 		$changefreq = 'daily';
 		$priority = 1;
 
-		$posts = $this->post_model->get_posts();
+		$posts = $this->post_model->get_posts(0);
 		
 		foreach ($posts as $key => $value) {
 			$string .= '<url>';
