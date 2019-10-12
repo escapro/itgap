@@ -283,7 +283,8 @@ $page-left-side-width: calc(100% - #{$page-right-side-width});
 	display: flex;
 	height: 100%;
 	justify-content: flex-start;
-	align-items: center
+	align-items: center;
+	overflow-x: auto;
 }
 
 .navbar__items {
@@ -1309,7 +1310,6 @@ display: flex;
 .tag-navbar {
 	position: relative;
 	display: none;
-	overflow: auto;
 	margin-bottom: 10px;
 }
 
@@ -1319,6 +1319,7 @@ display: flex;
 
 .tag-navbar  .navbar__items a{
 	padding: 10px;
+	white-space: nowrap;
 }
 
 .tag-navbar  .navbar__items {
