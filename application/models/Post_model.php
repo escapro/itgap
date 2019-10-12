@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Post_model extends CI_Model {
 
-	private $offsetCount = 2;
+	private $offsetCount = 15;
 
 	function __construct()
 	{
