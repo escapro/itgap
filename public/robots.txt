@@ -1,2 +1,9 @@
-User-agent: *
-Disallow:
+Host: https://itgap.ru
+
+User-Agent: *
+Disallow: /admin
+Disallow: /user
+Disallow: /user/
+Disallow: /search
+Disallow: /post/new
+Sitemap: https://itgap.ru/sitemap/index.xml
