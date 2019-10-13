@@ -44,7 +44,7 @@
 		<meta property="og:image" content="<?=base_url();?>media/images/logo.png">
 		<meta property="og:image:secure_url" content="<?=base_url();?>media/images/logo.png">
 	<?php endif; ?>
-	<link rel="shortcut icon" href="/favicon/favicon.ico">
+	<link rel="shortcut icon" href="/favicon.ico">
 	<link rel="stylesheet" type="text/css" href="/media/css/style.min.css">
 	<link rel="stylesheet" type="text/css" href="/media/fonts/Iconfonts/css/fontello.css">
 	<script type="text/javascript" src="/media/js/jquery.min.js"></script>
