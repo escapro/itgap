@@ -576,7 +576,7 @@ $page-left-side-width: calc(100% - #{$page-right-side-width});
     display: block;
     max-width: 100%;
     height: auto;
-    margin: 20px 0;
+    margin: 20px auto;
 }
 
 .post-entry .quote {
