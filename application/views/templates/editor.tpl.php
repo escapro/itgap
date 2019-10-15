@@ -4,27 +4,27 @@
 			<form action="#">
 			<div class="editor-error"></div>
 			<div class="editor-with editor-meta_info">
-				<div class="select-tag">
-					<select class="editor-tag__selector">
-						<?php
-							foreach ($tags['tags'] as $key => $value) {
-								echo '<option value="'.$value['id'].'"';
-								if(isset($postData['tag_id'])) {
-									if($postData['tag_id'] == $value['id']) {
-										echo ' selected';
-									}
-								}
-								echo '>'.$value['title'].'</option>';
-							}
-						?>
-					</select>
-				</div>
 				<div class="editor-date">
 					<span><?=$postData['last_change'] ?? ''?></span>
 				</div>
 			</div>
-				<div class="editor-width source-link mb-2"> 
+				<div class="editor-width source-link mb-1"> 
 					<input type="text" placeholder="Ссылка на источник" value="<?=$postData['link'] ?? ''?>">
+				</div>
+				<div class="select-tag mb-2">
+					<select class="editor-tag__selector" name="states[]" multiple="multiple">
+						<?php
+							foreach ($tags['tags'] as $key => $value) {
+								echo '<option value="'.$value['id'].'"';
+								// if(isset($postData['tag_id'])) {
+								// 	if($postData['tag_id'] == $value['id']) {
+								// 		echo ' selected';
+								// 	}
+								// }
+								echo '>'.$value['title'].'</option>';
+							}
+						?>
+					</select>
 				</div>
 				<div class="editor-width editor__title mb-2">
 					<textarea name="title" placeholder="Заголовок" maxlength="120" default="Заголовок"><?=$postData['title'] ?? ''?></textarea>
@@ -60,6 +60,7 @@
 	</div>
 	<script>
 		let postData;
-		<?php echo $editorData; ?>	
+		<?php echo $editorData; ?>
+		<?php echo $post_tags_jquery; ?>
 	</script>
 </main>

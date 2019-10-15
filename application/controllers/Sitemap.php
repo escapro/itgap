@@ -35,7 +35,7 @@ class Sitemap extends CI_Controller {
 		foreach ($posts as $key => $value) {
 			$string .= '<url>';
 			$string .= '<loc>';
-			$string .= base_url().$value['tag_url'].'/'.$value['post_name'];
+			$string .= base_url().'post/'.$value['post_name'];
 			$string .= '</loc>';
 			$string .= '<lastmod>';
 			$string .= $this->time;

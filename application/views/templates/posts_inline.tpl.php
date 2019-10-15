@@ -19,13 +19,13 @@
 				<?php foreach ($posts as $key => $value):?>
 				<article class="article-inline">
 					<div class="article-preview__content">
-						<a href="/<?=$value['tag_url'];?>/<?=$value['post_name'];?>">
+						<a href="/post/<?=$value['post_name'];?>">
 							<h2 class="article-preview__title"><?=$value['title'];?></h2>
 							<!-- <div class='article-preview-description'><?=$value['preview_text'];?></div> -->
 						</a>
 					</div>
 					<div class="article-preview__image">
-						<a href="/<?=$value['tag_url'];?>/<?=$value['post_name'];?>">
+						<a href="/post/<?=$value['post_name'];?>">
 							<img src="/static/uploads/posts/<?=$value['image_url'];?>" alt="image">
 						</a>
 					</div>

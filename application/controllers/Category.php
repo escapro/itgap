@@ -20,13 +20,18 @@ class Category extends CI_Controller {
 	{
 		$this->data['content_type'] = "block";
 
-		$this->data['tags'] = $this->post_model->get_tags($tag);
+		try {
+			$this->data['tags'] = $this->post_model->get_tags($tag);
+			$this->data['posts'] = $this->post_model->get_posts_by_tag($tag);
+		} catch (\Throwable $th) {
+			exit("Error 404");
+		}
 
 		$this->data['page_title'] = $this->data['tags']['current_tag'].' — itGap';
 		$this->data['page_description'] = $this->site_model->get_description('main');
 
 		$this->data['categories'] = $this->category_model->get_categories();
-		$this->data['posts'] = $this->post_model->get_posts_by_tag($tag);
+		
 		$this->data['popular_posts'] = $this->post_model->get_popular_posts();
 
 		$csrf = array(

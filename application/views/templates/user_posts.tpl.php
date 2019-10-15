@@ -37,7 +37,11 @@
 								<?php endif;?>
 							</a>
 							<div class="article-tags">
-								<a href="/tag/<?=$value['tag_url']?>"><?=$value['tag']?></a>
+							<?php if(!empty($value['tags'])): ?>
+								<?php foreach ($value['tags'] as $key_2 => $value_2):?>
+									<a href="/tag/<?=$value_2['tag']?>"><?=$value_2['title']?></a>
+								<?php endforeach;?>
+							<?php endif;?>
 							</div>
 						</div>
 						<?php if ($value['image_url'] !== ''):?>

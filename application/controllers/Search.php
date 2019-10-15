@@ -35,11 +35,6 @@ class Search extends CI_Controller {
 			$this->data['posts'] = [];
 		}else {
 			$this->data['posts'] = $this->search_model->search($this->data['query']);
-			
-			// foreach ($this->data['posts'] as $key => $value) {
-
-			// 	$this->data['posts'][$key]['title'] = str_replace($this->data['query'], "<mark>".$query."</mark>", $phrase);
-			// }
 		}
 		
 		$this->data['popular_posts'] = $this->post_model->get_popular_posts();

@@ -313,7 +313,7 @@ $page-left-side-width: calc(100% - #{$page-right-side-width});
 
 .page-right_block .article-preview:not(:last-child) {
 	margin-bottom: 20px;
-	padding-bottom: 20px;
+	padding-bottom: 10px;
 }
 
 .article-preview__image {
@@ -355,6 +355,7 @@ $page-left-side-width: calc(100% - #{$page-right-side-width});
 .article-preview__title {
 	font-size: $article-preview-font-size;
 	font-weight: 500;
+	margin-bottom: 5px;
 }
 
 .article-preview-description {
@@ -582,7 +583,7 @@ $page-left-side-width: calc(100% - #{$page-right-side-width});
 .post-entry .quote {
 	background-color: #fbfbfb;
 	padding: 10px;
-	border-left: 6px solid #1976D2;
+	border-left: 3px solid #1976D2;
 	margin: 20px 0;
 	font-size: 15px;
 }
@@ -966,8 +967,20 @@ $page-left-side-width: calc(100% - #{$page-right-side-width});
 }
 
 .select-tag{
-	width: 50%;
+	display: inline-table;
+	width: 100%;
 	height: 25px;
+}
+
+.select2-container--default .select2-selection--multiple {
+	border: 1px solid #EDEDED!important;
+	padding: 4px 12px !important;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice
+{
+	background-color: #F3F3F3!important;
+	border: 1px solid #e6e6e6!important;
 }
 
 .editor-meta_info {
@@ -978,9 +991,7 @@ $page-left-side-width: calc(100% - #{$page-right-side-width});
 }
 
 .editor-date {
-	display: contents;
-	width: 50%;
-	height: 25px;
+	width: 100%;
 	text-align: right;
 }
 

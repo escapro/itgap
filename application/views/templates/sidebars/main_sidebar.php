@@ -22,7 +22,7 @@
             </div>
             <div class="sidebar-block__content">
                 <?php foreach ($popular_posts as $key => $value):?>
-                <a href="/<?=$value['tag'];?>/<?=$value['post_name'];?>" class="sidebar-block__item">
+                <a href="/post/<?=$value['post_name'];?>" class="sidebar-block__item">
                     <div class="sidebar-block__item-text sidebar-text__item"><?=$value['title'];?></div>
                 </a>
                 <?php endforeach; ?>

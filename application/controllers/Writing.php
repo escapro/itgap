@@ -71,6 +71,9 @@ class Writing extends CI_Controller {
 		if(empty($data['data']['preview'])) {
 			$response['error'][] = "Нет краткого содержания";
 		}
+		if(empty($data['data']['tags'])) {
+			$response['error'][] = "Выберите хотя бы один тег";
+		}
 
 		if (empty($response['error'])) {
 
@@ -102,7 +105,9 @@ class Writing extends CI_Controller {
 		$this->data['head_more'] = 
 		'<link rel="stylesheet" type="text/css" href="/media/post/new_post.css">'.
 		'<script type="text/javascript" src="/media/post/new_post.js"></script>'.
-		'<script type="text/javascript" src="/media/post/service.js"></script>';
+		'<script type="text/javascript" src="/media/post/service.js"></script>'.
+		'<link rel="stylesheet" type="text/css" href="/media/select2/select2.min.css">'.
+		'<script type="text/javascript" src="/media/select2/select2.min.js"></script>';
 
 		$this->data['postId'] = $post_id;
 		$this->data['tags'] = $this->post_model->get_tags();
@@ -111,10 +116,18 @@ class Writing extends CI_Controller {
 		$postData = $this->post_model->get_user_post($this->data['user']->id, $post_id);
 
 		if($postData) {
-			// $this->data['editorPostData'] = json_encode($postData['data_json']);
 			$this->data['postData'] = $postData;
-			// $this->data['previewImage'] =  $postData['preview_image_url'];
+			$post_tags = $this->post_model->get_post_selected_tags($post_id);
+			$this->data['post_tags_jquery'] = '';
 
+			if(!empty($post_tags)) {
+				$this->data['post_tags_jquery'] = "$('.editor-tag__selector').val([";
+				foreach ($post_tags as $key => $value) {
+					$this->data['post_tags_jquery'] .= $value['tag_id'].",";
+				}
+				$this->data['post_tags_jquery'] .= "]);";
+			}
+			
 			$d = "";
 
 			$d .= "postData = {};\n";
@@ -131,8 +144,19 @@ class Writing extends CI_Controller {
 	}
 
 	public function delete($post_id){
-		$this->data['user'] = $this->ion_auth->user()->row();
-		$this->post_model->post_delete($this->data['user']->id, $post_id, 'draft_posts');
+		try {
+			$this->data['user'] = $this->ion_auth->user()->row();
+			$this->post_model->post_delete($this->data['user']->id, $post_id, 'draft_posts');
+			
+			$response['success'] = 1;
+			echo json_encode($response);
+		
+		} catch (\Throwable $th) {
+			$response['success'] = 0;
+			$response['error'] = "Произошла ошибка:";
+	
+			echo json_encode($response);
+		}
 	}
 
 	private function normilize_data($data) {

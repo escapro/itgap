@@ -44,10 +44,10 @@
 		<meta property="og:image" content="<?=base_url();?>media/images/logo.png">
 		<meta property="og:image:secure_url" content="<?=base_url();?>media/images/logo.png">
 	<?php endif; ?>
-	<link rel="shortcut icon" href="/favicon.ico">
-	<link rel="stylesheet" type="text/css" href="/media/css/style.min.css">
-	<link rel="stylesheet" type="text/css" href="/media/fonts/Iconfonts/css/fontello.css">
-	<script type="text/javascript" src="/media/js/jquery.min.js"></script>
-	<script type="text/javascript" src="/media/js/main.min.js"></script>
+	<link rel="icon" href="<?=base_url();?>favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" type="text/css" href="<?=base_url();?>/media/css/style.min.css">
+	<link rel="stylesheet" type="text/css" href="<?=base_url();?>/media/fonts/Iconfonts/css/fontello.css">
+	<script type="text/javascript" src="<?=base_url();?>/media/js/jquery.min.js"></script>
+	<script type="text/javascript" src="<?=base_url();?>/media/js/main.min.js"></script>
 	<?php echo isset($head_more) ? $head_more : ''; ?>
 </head>

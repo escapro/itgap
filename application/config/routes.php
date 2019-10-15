@@ -53,6 +53,11 @@ $route['default_controller'] = 'home';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = TRUE;
 
+// Основные роуты
+$route['user'] = 'user/index';
+$route['admin'] = 'admin/index';
+$route['post/(:any)'] = 'post/show/$1';
+
 $route['(:any)/(:any)'] = function ($firts, $second) {
 
     switch ($firts) {
@@ -78,22 +83,6 @@ $route['(:any)/(:any)'] = function ($firts, $second) {
             return 'post/index/'.$firts.'/'.$second;
             break;
     }
-
-    // if ($firts == 'post') {
-    //     return 'post/'.$second;
-    // }else if ($firts == 'user') {
-    //     return 'user/'.$second;
-    // }else if ($firts == 'tag') {
-    //     return 'category/tag/'.$second;
-    // }else if ($firts == 'writing') {
-    //     return 'writing/'.$second;
-    // }else if ($firts == 'upload') {
-    //     return 'upload/'.$second;
-    // }else if ($firts == 'sitemap') {
-    //     return 'sitemap/'.$second;
-    // }else {
-    //     return 'post/index/'.$firts.'/'.$second;
-    // }
 };
 
 $route['writing/(:any)/delete'] = 'writing/delete/$1';

@@ -9,6 +9,13 @@
 					<!-- <span class="post-meta__comments"><i class="icon icon-chat"></i></span> -->
 				</div>
 			</div>
+			<div class="article-tags">
+			<?php if(!empty($post['tags'])): ?>
+				<?php foreach ($post['tags'] as $key_2 => $value_2):?>
+					<a href="/tag/<?=$value_2['tag']?>"><?=$value_2['title']?></a>
+				<?php endforeach;?>
+			<?php endif;?>
+			</div>
 		</header>
 		<div class="post-content">
 			<?php if($post['image_url'] !== ''): ?>

@@ -69,7 +69,6 @@ $(document).ready(function () {
   });
 
   const edor = {
-    tag: '.editor-tag__selector',
     sourceLink: '.source-link input',
     editorTitle: '.editor__title textarea',
     mainImage: '.post__file-uploader #post-mainImage',
@@ -85,7 +84,7 @@ $(document).ready(function () {
 
   editorData.id = postData.postId;
   editorData.link = '';
-  editorData.tag = '';
+  editorData.tags = '';
   editorData.title = '';
   editorData.image = postData.previewImage;
   editorData.preview = '';
@@ -107,7 +106,19 @@ $(document).ready(function () {
       }
     }
 
-    editorData.tag = $(edor.tag).val();
+    var selectedTags = $(edor.tagSelector).select2('val');
+    
+    if(typeof selectedTags !== 'undefined') {
+      if(selectedTags.length > 0) {
+        editorData.tags = [];
+        selectedTags.forEach(tagId => {
+          editorData.tags.push(tagId);
+        });
+      }else {
+        editorData.tags = '';
+      }
+    }
+
     editorData.link = $(edor.sourceLink).val();
     editorData.title = $(edor.editorTitle).val();
     editorData.preview = $(edor.preview).val();
@@ -191,10 +202,12 @@ $(document).ready(function () {
     saveData('/writing/save');
   }, 1000));
 
-  $(edor.tagSelector).change(function (event) {
-    event.preventDefault();
+  $(edor.tagSelector).select2({
+    width: '100%',
+    placeholder: 'Выберите теги'
+  }).on('change', function() {
     saveData('/writing/save');
-  })
+  });
 
   $(document).on("change", edor.mainImage, function (e, elem) {
     uploadPhoto('/upload/article_preview');
@@ -215,7 +228,7 @@ $(document).ready(function () {
   })
 
   $(document).on("click", edor.previewBtn, function (e, elem) {
-    if(editorData.editorData !== '') {
+    if(editorData.title !== '') {
       window.open(
         "/post/preview/"+postData.postId,
         '_blank'

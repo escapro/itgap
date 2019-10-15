@@ -12,10 +12,9 @@ class Post_model extends CI_Model {
 
 	// SITEMAP USE
 	public function get_posts($page=1) {	
-		$this->db->select("p.title, t.title as tag, p.preview_text, p.post_id as post_id, p.last_change, p.preview_image_url as image_url, p.post_name, t.tag as tag_url");
+		$this->db->select("p.id as post_ID, p.title, p.preview_text, p.post_id as post_id, p.last_change, p.preview_image_url as image_url, p.post_name");
 		$this->db->from("posts p");
 		$this->db->join('active_posts a', 'p.id=a.post_id');
-		$this->db->join('tags t', 't.id=p.tag_id');
 		$this->db->order_by("p.last_change", "desc");
 		if($page !== 0) {
 			$offset = ($page * $this->offsetCount) - $this->offsetCount;	
@@ -23,19 +22,27 @@ class Post_model extends CI_Model {
 		}
 		$query = $this->db->get();
 		$data = $query->result_array();
+
+		foreach ($data as $key => $value) {
+			$data[$key]['tags'] = $this->get_post_tags($value['post_ID']);		
+		}
+
 		return $data;
 	}
 
-	public function get_post($tag, $post_name) {
-		$this->db->select("p.title, t.title as tag, p.preview_text, p.post_id as post_id, p.last_change, p.preview_image_url as image_url, p.post_name, t.tag as tag_url, p.data_html, pv.count as views");
+	public function get_post($post_name) {
+		$this->db->select("p.id as post_ID, p.title, p.preview_text, p.post_id as post_id, p.last_change, p.preview_image_url as image_url, p.post_name, p.data_html, pv.count as views");
 		$this->db->from("posts p");
 		$this->db->join('active_posts a', 'p.id=a.post_id');
-		$this->db->join('tags t', 't.id=p.tag_id');
 		$this->db->join('post_views pv', 'pv.post_id=p.id');
-		$this->db->where("t.tag", $tag);
 		$this->db->where("p.post_name", $post_name);
 		$query = $this->db->get();
 		$data = $query->result_array();
+
+		foreach ($data as $key => $value) {
+			$data[$key]['tags'] = $this->get_post_tags($value['post_ID']);		
+		}
+
 		return $data;
 	}
 
@@ -47,7 +54,6 @@ class Post_model extends CI_Model {
 			'preview_text' => $data['preview'],
 			'link' => $data['link'],
 			'preview_image_url' => $data['image'],
-			'tag_id' => $data['tag'],
 			'data_json' => $data['editorData'],
 			'data_html' => $html,
 			'last_change' => time(),
@@ -55,9 +61,20 @@ class Post_model extends CI_Model {
 		);
 
 		$this->db->insert('posts', $insert_data);
-		$last_insert_id = $this->db->insert_id();
-		$this->db->insert('post_views', ['post_id'=>$last_insert_id, 'count'=>0]);
-		return $last_insert_id;
+		$last_insert_post_id = $this->db->insert_id();
+
+		if (is_array($data['tags'])) {
+			if(!empty($data['tags'])) {
+				foreach ($data['tags'] as $key => $value) {
+					if($this->get_tags($value, true)['current_tag'] !== '') {
+						$this->db->insert('post_tags', ['tag_id'=> $value, 'post_id'=>$last_insert_post_id]);
+					}
+				}
+			}
+		}
+		
+		$this->db->insert('post_views', ['post_id'=>$last_insert_post_id, 'count'=>0]);
+		return $last_insert_post_id;
 	}
 
 	private function update_post ($data, $html) {
@@ -95,7 +112,6 @@ class Post_model extends CI_Model {
 			'link' => $data['link'],
 			'preview_image_url' => $data['image'],
 			'post_name' => $post_name,
-			'tag_id' => $data['tag'],
 			'data_json' => $data['editorData'],
 			'data_html' => $html,
 			'last_change' => time()
@@ -120,6 +136,31 @@ class Post_model extends CI_Model {
 
 		}else {
 			$this->update_post($data, $html);
+
+			$post_id = $this->get_post_id($data['id']);
+
+			$deleting_post = false;
+
+			if (is_array($data['tags'])) {
+				if(!empty($data['tags'])) {
+					foreach ($data['tags'] as $key => $value) {
+						if($this->get_tags($value, true)['current_tag'] !== '') {
+
+							if(!$deleting_post){
+								$this->db->where('post_id', $post_id);
+								$this->db->delete('post_tags');
+							}
+
+							$deleting_post = true;
+
+							$this->db->insert('post_tags', ['tag_id'=> $value, 'post_id'=>$post_id]);
+						}
+					}
+				}
+			}else if($data['tags'] == '') {
+				$this->db->where('post_id', $post_id);
+				$this->db->delete('post_tags');
+			}
 		}
 	}
 
@@ -178,30 +219,38 @@ class Post_model extends CI_Model {
 	}
 
 	public function get_drafts ($user_id) {
-		$this->db->select("p.title, t.title as tag, t.tag as tag_url, p.preview_text, p.post_id as post_id, p.last_change, p.preview_image_url as image_url");
+		$this->db->select("p.id as post_ID, p.title, p.preview_text, p.post_id as post_id, p.last_change, p.preview_image_url as image_url");
 		$this->db->from("posts p");
 		$this->db->join('draft_posts d', 'p.id=d.post_id');
-		$this->db->join('tags t', 't.id=p.tag_id');
 		$this->db->where("p.user_id", $user_id);
 		$this->db->order_by("p.last_change", "desc");
 		$query = $this->db->get();
 		$data = $query->result_array();
+
+		foreach ($data as $key => $value) {
+			$data[$key]['tags'] = $this->get_post_tags($value['post_ID']);		
+		}
+		
 		return $data;
 	}
 
 	public function get_moderations ($user_id) {
-		$this->db->select("p.title, t.title as tag, t.tag as tag_url, p.preview_text, p.post_id as post_id, p.last_change, p.preview_image_url as image_url");
+		$this->db->select("p.id as post_ID, p.title, p.preview_text, p.post_id as post_id, p.last_change, p.preview_image_url as image_url");
 		$this->db->from("posts p");
 		$this->db->join('considered_posts d', 'p.id=d.post_id');
-		$this->db->join('tags t', 't.id=p.tag_id');
 		$this->db->order_by("p.last_change", "desc");
 		$query = $this->db->get();
 		$data = $query->result_array();
+
+		foreach ($data as $key => $value) {
+			$data[$key]['tags'] = $this->get_post_tags($value['post_ID']);		
+		}
+
 		return $data;
 	}
 
 	// SITEMAP USE
-	public function get_tags ($tag=NULL) {
+	public function get_tags ($tag=NULL, $check_id=false) {
 
 		$this->db->select("*");
 		$this->db->from("tags");
@@ -211,7 +260,11 @@ class Post_model extends CI_Model {
 		if ($tag !== NULL) {
 			$this->db->select("*");
 			$this->db->from("tags");
-			$this->db->where("tag", $tag);
+			if (!$check_id) {
+				$this->db->where("tag", $tag);
+			}else {
+				$this->db->where("id", $tag);
+			}
 			$query_2 = $this->db->get();
 			$data_2 = $query_2->result_array();
 
@@ -220,7 +273,18 @@ class Post_model extends CI_Model {
 		}
 
 		return $data;
+	}
 
+	public function get_post_selected_tags($post_id) {
+		
+		$id = $this->get_post_id($post_id);
+
+		$this->db->select("*");
+		$this->db->from("post_tags");
+		$this->db->where("post_id", $id);
+		$query= $this->db->get();
+		$data = $query->result_array();
+		return $data;
 	}
 
 	public function get_user_post ($user_id, $post_id) {
@@ -238,14 +302,17 @@ class Post_model extends CI_Model {
 	}
 
 	public function get_preview_post ($user_id, $post_id) {
-		$this->db->select("p.title, t.tag, p.preview_text, p.post_id as post_id, p.last_change, p.preview_image_url as image_url, pv.count as views, p.data_html");
+		$this->db->select("p.id as post_ID, p.title, p.preview_text, p.post_id as post_id, p.last_change, p.preview_image_url as image_url, pv.count as views, p.data_html");
 		$this->db->from("posts p");
-		$this->db->join('tags t', 't.id=p.tag_id');
 		$this->db->join('post_views pv', 'pv.post_id=p.id');
 		$this->db->where("p.user_id", $user_id);
 		$this->db->where("p.post_id", $post_id);
 		$query = $this->db->get();
 		$data = $query->result_array();
+		
+		foreach ($data as $key => $value) {
+			$data[$key]['tags'] = $this->get_post_tags($value['post_ID']);		
+		}
 
 		if(!empty($data)) return $data[0];
 
@@ -302,18 +369,32 @@ class Post_model extends CI_Model {
 	}
 
 	public function get_user_active_posts($user_id) {
-		$this->db->select("p.title, t.title as tag, t.tag as tag_url, p.preview_text, p.post_id as post_id, p.last_change, p.preview_image_url as image_url");
+		$this->db->select("p.id as post_ID, p.title, p.preview_text, p.post_id as post_id, p.last_change, p.preview_image_url as image_url");
 		$this->db->from("posts p");
 		$this->db->join('active_posts a', 'p.id=a.post_id');
-		$this->db->join('tags t', 't.id=p.tag_id');
 		$this->db->where("p.user_id", $user_id);
 		$this->db->order_by("p.last_change", "desc");
 		$query = $this->db->get();
 		$data = $query->result_array();
+
+		foreach ($data as $key => $value) {
+			$data[$key]['tags'] = $this->get_post_tags($value['post_ID']);		
+		}
+
 		return $data;
 	}
 
-	public function add_view($tag, $post_name) {
+	public function get_post_tags($post_id)
+	{
+		$this->db->select("t.id, t.title, t.tag, t.description");
+		$this->db->from("post_tags");
+		$this->db->join('tags t', 'tag_id=t.id');
+		$this->db->where("post_id", $post_id);
+		$query = $this->db->get();
+		return $query->result_array();
+	}
+
+	public function add_view($post_name) {
 		$this->db->select("pv.count, p.id");
 		$this->db->from("post_views pv");
 		$this->db->join('posts p', 'p.id=pv.post_id');
@@ -342,15 +423,15 @@ class Post_model extends CI_Model {
 
 		$this->db->delete($post_type, array('post_id' => $id));
 		$this->db->delete('post_views', array('post_id' => $id));
+		$this->db->delete('post_tags', array('post_id' => $id));
 		$this->db->delete('posts', array('id' => $id, 'user_id' => $user_id));
 		
 	}
 
 	public function get_popular_posts() {
-		$this->db->select("p.title, t.tag, p.preview_text, p.post_id as post_id, p.last_change, p.preview_image_url as image_url, pv.count as views, p.post_name");
+		$this->db->select("p.title, p.preview_text, p.post_id as post_id, p.last_change, p.preview_image_url as image_url, pv.count as views, p.post_name");
 		$this->db->from("posts p");
 		$this->db->join('active_posts a', 'p.id=a.post_id');
-		$this->db->join('tags t', 't.id=p.tag_id');
 		$this->db->join('post_views pv', 'pv.post_id=p.id');
 		$this->db->order_by("views", "desc");
 		$this->db->limit(5);
@@ -360,14 +441,22 @@ class Post_model extends CI_Model {
 	}
 
 	public function get_posts_by_tag($tag) {
-		$this->db->select("p.title, t.title as tag, p.preview_text, p.post_id as post_id, p.last_change, p.preview_image_url as image_url, p.post_name, t.tag as tag_url");
+		$this->db->select("p.id as post_ID, p.title, t.title as tag, t.tag as tag_url, p.preview_text, p.post_id as post_id, p.last_change, p.preview_image_url as image_url, p.post_name, t.tag as tag_url");
 		$this->db->from("posts p");
 		$this->db->join('active_posts a', 'p.id=a.post_id');
-		$this->db->join('tags t', 't.id=p.tag_id');
+		$this->db->join('post_tags pt', 'pt.post_id=p.id');
+		$this->db->join('tags t', 't.id=pt.tag_id');
 		$this->db->where("t.tag", $tag);
 		$this->db->order_by("p.last_change", "desc");
 		$query = $this->db->get();
 		$data = $query->result_array();
+
+		// foreach ($data as $key => $value) {
+		// 	$data[$key]['tags']['url'] = $value['tag'];
+		// 	$data[$key]['tags']['title'] = $value['tag'];	
+		// }
+
+
 		return $data;
 	}
 	

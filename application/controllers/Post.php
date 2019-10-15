@@ -16,10 +16,14 @@ class Post extends CI_Controller {
 		}
 	}
 
-	public function index($tag, $post_name)
+	public function show($post_name)
 	{
-		$this->post_model->add_view($tag, $post_name);
-		$this->data['post'] = $this->post_model->get_post($tag, $post_name)[0];
+		try {
+			$this->post_model->add_view($post_name);
+			$this->data['post'] = $this->post_model->get_post($post_name)[0];
+		} catch (\Throwable $th) {
+			exit("Error 404");
+		}
 
 		$this->data['page_title'] = $this->data['post']['title']." — itGap";
 		$this->data['page_description'] = $this->data['post']['preview_text'];
@@ -50,12 +54,15 @@ class Post extends CI_Controller {
 		$this->data['head_more'] = 
 		'<link rel="stylesheet" type="text/css" href="/media/post/new_post.css">'.
 		'<script type="text/javascript" src="/media/post/new_post.js"></script>'.
-		'<script type="text/javascript" src="/media/post/service.js"></script>';
+		'<script type="text/javascript" src="/media/post/service.js"></script>'.
+		'<link rel="stylesheet" type="text/css" href="/media/select2/select2.min.css">'.
+		'<script type="text/javascript" src="/media/select2/select2.min.js"></script>';
 
 		$this->data['page_title'] = 'Новый пост — itGap';
 
 		$this->data['postId'] = $this->post_model->generate_post_id();
 		$this->data['tags'] = $this->post_model->get_tags();
+		$this->data['post_tags_jquery'] = '';
 		
 		$csrf = array(
 			'name' => $this->security->get_csrf_token_name(),
@@ -111,7 +118,9 @@ class Post extends CI_Controller {
 		$this->data['head_more'] = 
 		'<link rel="stylesheet" type="text/css" href="/media/post/new_post.css">'.
 		'<script type="text/javascript" src="/media/post/new_post.js"></script>'.
-		'<script type="text/javascript" src="/media/post/service.js"></script>';
+		'<script type="text/javascript" src="/media/post/service.js"></script>'.
+		'<link rel="stylesheet" type="text/css" href="/media/select2/select2.min.css">'.
+		'<script type="text/javascript" src="/media/select2/select2.min.js"></script>';
 
 		$this->data['postId'] = $post_id;
 		$this->data['tags'] = $this->post_model->get_tags();
@@ -126,9 +135,17 @@ class Post extends CI_Controller {
 		$postData = $this->post_model->get_user_post($this->data['user']->id, $post_id);
 
 		if($postData) {
-			// $this->data['editorPostData'] = json_encode($postData['data_json']);
 			$this->data['postData'] = $postData;
-			// $this->data['previewImage'] =  $postData['preview_image_url'];
+			$post_tags = $this->post_model->get_post_selected_tags($post_id);
+			$this->data['post_tags_jquery'] = '';
+
+			if(!empty($post_tags)) {
+				$this->data['post_tags_jquery'] .= "$('.editor-tag__selector').val([";
+				foreach ($post_tags as $key => $value) {
+					$this->data['post_tags_jquery'] .= $value['tag_id'].",";
+				}
+				$this->data['post_tags_jquery'] .= "]);";
+			}
 
 			$d = "";
 
