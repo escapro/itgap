@@ -56,6 +56,8 @@ $route['translate_uri_dashes'] = TRUE;
 // Основные роуты
 $route['user'] = 'user/index';
 $route['admin'] = 'admin/index';
+$route['post/new'] = 'post/new';
+
 $route['post/(:any)'] = 'post/show/$1';
 
 $route['(:any)/(:any)'] = function ($firts, $second) {
