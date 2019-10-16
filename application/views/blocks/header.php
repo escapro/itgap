@@ -2,17 +2,12 @@
 	<div class="container flex">
 		<div class="flex header-left">
 			<a href="/" class="logo">
-			<img src="/media/images/logo.svg" alt="image" style="
-   width: 31px;
-    height: 31px;
-    margin-right: 10px;
-">
+			<img src="/media/images/logo.svg" alt="image">
 				<span>itGap</span>
 			</a>
 			<ul class="main-menu dsktp-show">
 				<li><a href="/">Главная</a></li>
 				<li><a href="#">Лучшее</a></li>
-				<li><a href="#">О нас</a></li>
 			</ul>
 		</div>
 		<div class="flex header-right">
