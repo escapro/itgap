@@ -41,8 +41,21 @@
 		<meta property="og:image" content="<?=base_url();?>static/uploads/posts/<?=$page_image;?>">
 	    <meta property="og:image:secure_url" content="<?=base_url();?>static/uploads/posts/<?=$page_image;?>">
 	<?php else: ?>
-		<meta property="og:image" content="<?=base_url();?>media/images/logo.png">
-		<meta property="og:image:secure_url" content="<?=base_url();?>media/images/logo.png">
+		<meta property="og:image" content="<?=base_url();?>media/images/og.png">
+		<meta property="og:image:secure_url" content="<?=base_url();?>media/images/og.png">
+	<?php endif; ?>
+	<meta property="twitter:card" content="summary_large_image">
+	<meta property="twitter:url" content="<?=base_url();?>">
+	<meta property="twitter:title" content='<?=$page_title;?>'>
+	<?php if(isset($page_description)): ?>
+		<meta property="twitter:description" content="<?=$page_description?>">
+	<?php endif; ?>
+	<?php if (isset($page_image)):?>
+		<meta property="twitter:image" content="<?=base_url();?>static/uploads/posts/<?=$page_image;?>">
+	    <meta property="twitter:image" content="<?=base_url();?>static/uploads/posts/<?=$page_image;?>">
+	<?php else: ?>
+		<meta property="twitter:image" content="<?=base_url();?>media/images/og.png">
+		<meta property="twitter:image" content="<?=base_url();?>media/images/og.png">
 	<?php endif; ?>
 	<link rel="icon" href="<?=base_url();?>favicon.ico" type="image/x-icon">
 	<link rel="stylesheet" type="text/css" href="<?=base_url();?>/media/css/style.min.css">
