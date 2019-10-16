@@ -8,6 +8,7 @@ class Upload extends CI_Controller {
 
 	private $uploadPath = 'static/uploads/posts/';
 	private $response = array();
+	private $image_quality = '90%';
 	
 	public function __construct()
 	{
@@ -74,7 +75,7 @@ class Upload extends CI_Controller {
 
 				$resize_config['maintain_ratio']	= TRUE;
 				$resize_config['create_thumb'] 		= FALSE;
-				$resize_config['quality'] 			= '80%';
+				$resize_config['quality'] 			= $this->image_quality;
 
 				$this->load->library('image_lib', $resize_config);
 				$this->image_lib->resize();	
