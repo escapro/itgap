@@ -47,7 +47,7 @@
 						<?php if ($value['image_url'] !== ''):?>
 							<div class="article-preview__image">
 								<a href="/post/preview/<?=$value['post_id'];?>">
-									<img src="/static/uploads/posts/<?=$value['image_url'];?>" alt="image">
+									<img src="<?=base_url();?>static/uploads/posts/<?=$value['image_url'];?>" alt="image">
 								</a>
 							</div>
 						<?php endif;?>
