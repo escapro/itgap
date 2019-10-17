@@ -13,10 +13,10 @@ class Page extends CI_Controller {
 		$this->data['popular_posts'] = $this->post_model->get_popular_posts();
 	}
 
-	public function about()
+	public function contacts()
 	{
-		$this->data['page'] = 'about';
-		$this->data['page_title'] = "ABOUT ITGAP";
+		$this->data['page'] = 'contacts';
+		$this->data['page_title'] = "Contacts";
 		$this->load->view('page', $this->data);
 	}
 

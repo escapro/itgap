@@ -57,7 +57,7 @@ $route['translate_uri_dashes'] = TRUE;
 $route['user'] = 'user/index';
 $route['admin'] = 'admin/index';
 $route['post/new'] = 'post/new';
-$route['about'] = 'page/about';
+$route['contacts'] = 'page/contacts';
 $route['rights'] = 'page/rights';
 
 $route['post/(:any)'] = 'post/show/$1';

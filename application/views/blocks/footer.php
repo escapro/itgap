@@ -3,7 +3,7 @@
 		<div class="footer-container">
 			<div class="footer-links">
 				<ul>
-					<li><a href="/about">О нас</a></li>
+					<li><a href="/contacts">Контакты</a></li>
 					<li><a href="/rights">Соглашение</a></li>
 				</ul>
 			</div>
