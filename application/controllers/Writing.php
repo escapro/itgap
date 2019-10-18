@@ -260,9 +260,13 @@ class Writing extends CI_Controller {
 
 				$html .= '<blockquote class="quote"><div class="quote__content">';
 				$html .= $value['data']['text'];
-				$html .= '</div><footer class="quote__cite"><cite>';
-				$html .= $value['data']['caption'];
-				$html .= '</cite></footer></blockquote>';
+				$html .= '</div>';
+				if($value['data']['caption'] !== "") {
+					$html .= '<footer class="quote__cite"><cite>';
+					$html .= $value['data']['caption'];
+					$html .= '</cite></footer>';
+				}
+				$html .= '</blockquote>';
 				
 			}
 		}

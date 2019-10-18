@@ -670,6 +670,10 @@ $page-left-side-width: calc(100% - #{$page-right-side-width});
 	font-size: 15px;
 }
 
+.post-entry .quote__content {
+	line-height: 1.4em;
+}
+
 .post-entry .quote .quote__cite{
 	text-align: end;
 	color: #B2B2B2;
@@ -776,6 +780,11 @@ $page-left-side-width: calc(100% - #{$page-right-side-width});
 
 .left-sidebar {
 	padding-right: 10px;
+}
+
+.left-sidebar aside{
+	position: sticky;
+	top: 72px;
 }
 
 .page-main__right {
