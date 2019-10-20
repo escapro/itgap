@@ -16,14 +16,18 @@ class Upload extends CI_Controller {
 	}
 
 	public function article_preview() {
-		$this->upload_image('short');
+		$allowed_types = 'jpg|jpeg|png';
+		$max_size = 2000;
+		$this->upload_image('short', $allowed_types, $max_size);
 	}
 
 	public function article_image() {
-		$this->upload_image('full');
+		$allowed_types = 'jpg|jpeg|png|gif';
+		$max_size = 3000;
+		$this->upload_image('full', $allowed_types, $max_size);
 	}
 
-	private function upload_image($urlType) {
+	private function upload_image($urlType, $allowed_types, $max_size) {
 
 		if(!isset($_FILES['image'])) {
 			exit();
@@ -37,9 +41,9 @@ class Upload extends CI_Controller {
 		}
 
 		$config['upload_path']   = $file_folder;
-		$config['allowed_types'] = 'jpg|jpeg|png|webp';
-		$config['max_size']      = 2000;
-		$config['max_width']     = 2000;
+		$config['allowed_types'] = $allowed_types;
+		$config['max_size']      = $max_size;
+		$config['max_width']     = 3000;
 		$config['max_height']    = 1500;
 		$config['encrypt_name']  = TRUE;
 
