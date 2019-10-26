@@ -6,8 +6,8 @@
 				<span>itGap</span>
 			</a>
 			<ul class="main-menu dsktp-show">
-				<li><a href="/">Главная</a></li>
-				<li><a href="#">Лучшее</a></li>
+				<li><a rel="nofollow" href="/">Главная</a></li>
+				<li><a rel="nofollow" href="#">Лучшее</a></li>
 			</ul>
 		</div>
 		<div class="flex header-right">
