@@ -402,6 +402,10 @@ $page-left-side-width: calc(100% - #{$page-right-side-width});
 
 .main-sidebar li {
 	list-style: none;
+    border-radius: 3px;
+    border: 1px solid $text-second-color;
+    margin-bottom: 5px;
+    margin-right: 5px;
 }
 
 .sidebar-item {
@@ -410,6 +414,11 @@ $page-left-side-width: calc(100% - #{$page-right-side-width});
 
 .sidebar-block {
 	padding: 15px;
+}
+
+.sidebar-block__list {
+	display: flex;
+    flex-wrap: wrap;
 }
 
 .sidebar-block__item {
@@ -683,6 +692,10 @@ $page-left-side-width: calc(100% - #{$page-right-side-width});
 .post-entry .post-full {
 	margin-left: -20px;
     margin-right: -20px;
+	margin: 20px 0;
+}
+
+.post-entry .frame-wrapper {
 	margin: 20px 0;
 }
 
@@ -1368,18 +1381,13 @@ $page-left-side-width: calc(100% - #{$page-right-side-width});
 .sidebar-block-list__item a{
 	width: 100%;
     display: block;
-    font-size: 15px;
-    font-weight: 500;
-    color: $text-second-color;
+    font-size: 14px;
+	color: $text-second-color;
+	padding: 5px;
 }
 
-.sidebar-block-list__item:not(:last-child) a{
-	padding-bottom: 10px;
-}
-
-.sidebar-block-list__item:not(:last-child) {
-	border-bottom: 1px solid #e2e8e9;
-    margin-bottom: 10px;
+.sidebar-block-list__item:hover{
+	background-color: #5d87b14d;
 }
 
 .search-block .form-field {

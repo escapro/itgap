@@ -2,7 +2,7 @@
     <section class="sidebar-item">
         <div class="block sidebar-block">
             <div class="sidebar-block__header">
-                <h3 class="sidebar-block__title">Категории</h3>
+                <h3 class="sidebar-block__title">Теги</h3>
             </div>
             <div class="sidebar-block__content">
                 <ul class="sidebar-block__list">

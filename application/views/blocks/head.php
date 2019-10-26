@@ -21,12 +21,12 @@
 			"@context": "https://schema.org",
 			"@type": "WebSite",
 			"url": "'.base_url().'",
-			"name": "Itgap.ru",
-			"sameAs":["https://vk.com/public176209611"],
+			"name": "itGap.ru",
+			"sameAs":["https://vk.com/public176209611", "https://www.facebook.com/itgap.ru", "https://twitter.com/itgap_official", "https://t.me/itgap_official", "https://www.instagram.com/itgap_official"],
 			"potentialAction":{
 				"@type":"SearchAction",
-				"target":"https://itgap/search?q={search_query}",
-				"query-input":"required name=search_query"}
+				"target":"https://itgap.ru/search?q={q}",
+				"query-input":"required name=q"}
 		}</script>';
 		echo str_replace(PHP_EOL, '', $a); 
 	?>

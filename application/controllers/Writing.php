@@ -235,7 +235,7 @@ class Writing extends CI_Controller {
 				if(isset($value['data']['file']['url'])) {
 					$url = $value['data']['file']['url'];
 					$tag = $conf[$type];
-					$caption =  trim($value['data']['caption']);
+					$caption = str_replace("&nbsp;","", $value['data']['caption']);
 
 					$html .= '<figure class="post-full">';
 					$html .= '<'.$tag.' src="'.$url.'"';
@@ -268,6 +268,13 @@ class Writing extends CI_Controller {
 				}
 				$html .= '</blockquote>';
 				
+			}else if($type == 'embed') {
+
+				$html .= '<div class="frame-wrapper">';
+				$html .= '<iframe height="320" width="580" scrolling="no" frameborder="no" allowtransparency="true" allowfullscreen="true" style="max-width: 100%;" src=';
+				$html .= '"'.$value['data']['embed'].'"';
+				$html .= '></iframe>';
+				$html .= '</div>';
 			}
 		}
 
