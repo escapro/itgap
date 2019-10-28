@@ -18,7 +18,7 @@
 			</div>
 			<div class="article-preview__image">
 				<a href="/post/<?=$value['post_name'];?>">
-					<img src="<?=base_url();?>static/uploads/posts/<?=$value['image_url'];?>" alt="image">
+					<img src="https://itgap.ru/static/uploads/posts/<?=$value['image_url'];?>" alt="image">
 				</a>
 			</div>
 		</article>

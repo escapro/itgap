@@ -20,7 +20,7 @@
 		<div class="post-content">
 			<?php if($post['image_url'] !== ''): ?>
 			<div class="post-image">
-				<img src="<?=base_url();?>static/uploads/posts/<?=$post['image_url'];?>" <?php if($post['title'] !== '') echo 'alt="'.$post['title'].'"'; ?>>
+				<img src="https://itgap.ru/static/uploads/posts/<?=$post['image_url'];?>" <?php if($post['title'] !== '') echo 'alt="'.$post['title'].'"'; ?>>
 			</div>
 			<?php endif; ?>
 			<div class="post-entry">
