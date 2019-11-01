@@ -172,7 +172,7 @@ class Post extends CI_Controller {
 		
 		$response = array();
 		$response['html'] = '';
-		$posts = $this->data['posts'] = $this->post_model->get_posts($data['page']);
+		$posts = $this->post_model->get_posts($data['page']);
 
 		if(empty($posts)) {
 			exit('Error 404');
@@ -180,20 +180,22 @@ class Post extends CI_Controller {
 
 		foreach ($posts as $key => $value) {
 			$response['html'] .= '<article class="article-preview block">
-					<div class="article-preview__content">
-						<a href=/'.$value['tag_url'].'/'.$value['post_name'].'">
-							<h2 class="article-preview__title">'.$value['title'].'</h2>
-							<div class="article-preview-description">'.$value['preview_text'].'</div></a>
-						<div class="article-tags">
-							<a href="/tag/'.$value['tag_url'].'">'.$value['tag'].'</a>
-						</div>
-					</div>
-					<div class="article-preview__image">
-						<a href="/'.$value['tag_url'].'/'.$value['post_name'].'">
-							<img src="/static/uploads/posts/'.$value['image_url'].'" alt="image">
-						</a>
-					</div>
-				</article>'	;
+				<div class="article-preview__content">
+					<a href=/post/'.$value['post_name'].'">
+						<h2 class="article-preview__title">'.$value['title'].'</h2>
+						<div class="article-preview-description">'.$value['preview_text'].'</div></a>
+					<div class="article-tags">';
+					
+			foreach ($value['tags'] as $key_tag => $value_tag) {
+				$response['html'] .= '<a href="/tag/'.$value_tag['tag'].'">'.$value_tag['title'].'</a>';
+			}
+
+			$response['html'] .= '</div></div><div class="article-preview__image">
+					<a href="/post/'.$value['post_name'].'">
+						<img src="https://itgap.ru/static/uploads/posts/'.$value['image_url'].'" alt="image">
+					</a>
+				</div>
+				</article>';
 		}
 
 		echo json_encode($response);

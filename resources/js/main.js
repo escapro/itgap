@@ -84,12 +84,10 @@ $(document).ready(function () {
     var loadPage = 1;
 
     $('.load-more').on('click', () => {
-        loadContent('all', '.content .feed')
+        loadContent('all', '.content .feed', $(this))
     });
 
-    function loadContent(type, container) {
-
-        console.log(container);
+    function loadContent(type, container, object) {
         
         var data={}
 
@@ -102,7 +100,6 @@ $(document).ready(function () {
             data: data,
             success: function (response) {
                 response = JSON.parse(response);
-                console.log(response);
                 $(container).append(response.html);
                 loadPage++;
             }

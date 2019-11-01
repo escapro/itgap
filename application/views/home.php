@@ -23,9 +23,9 @@
 								require('templates/posts_inline.tpl.php');
 									break;
 							} ?>
-							<!-- <div class="centered">
+							<div class="centered">
 								<button class="btn btn-large btn-primary load-more">Показать ещё</button>
-							</div> -->
+							</div>
 					</div>
 					<div class="col sidebar right-sidebar">
 						<?php require('templates/sidebars/main_sidebar.php');?>

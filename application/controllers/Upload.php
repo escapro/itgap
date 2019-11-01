@@ -8,7 +8,6 @@ class Upload extends CI_Controller {
 
 	private $uploadPath = 'static/uploads/posts/';
 	private $response = array();
-	private $image_quality = '90%';
 	
 	public function __construct()
 	{
@@ -18,16 +17,18 @@ class Upload extends CI_Controller {
 	public function article_preview() {
 		$allowed_types = 'jpg|jpeg|png';
 		$max_size = 2000;
-		$this->upload_image('short', $allowed_types, $max_size);
+		$image_quality = '100%';
+		$this->upload_image('short', $allowed_types, $max_size, $image_quality);
 	}
 
 	public function article_image() {
 		$allowed_types = 'jpg|jpeg|png|gif';
 		$max_size = 3000;
-		$this->upload_image('full', $allowed_types, $max_size);
+		$image_quality = '90%';
+		$this->upload_image('full', $allowed_types, $max_size, $image_quality);
 	}
 
-	private function upload_image($urlType, $allowed_types, $max_size) {
+	private function upload_image($urlType, $allowed_types, $max_size, $image_quality) {
 
 		if(!isset($_FILES['image'])) {
 			exit();
@@ -79,7 +80,7 @@ class Upload extends CI_Controller {
 
 				$resize_config['maintain_ratio']	= TRUE;
 				$resize_config['create_thumb'] 		= FALSE;
-				$resize_config['quality'] 			= $this->image_quality;
+				$resize_config['quality'] 			= $image_quality;
 
 				$this->load->library('image_lib', $resize_config);
 				$this->image_lib->resize();	
