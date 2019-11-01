@@ -85,7 +85,7 @@ $background-color: #F3F3F3;
 $container-wide: 1070px;
 $article-preview-font-size: 23px;
 
-$page-right-side-width: 300px;
+$page-right-side-width: 320px;
 $page-left-side-width: calc(100% - #{$page-right-side-width});
 
 @mixin profile-icon{
@@ -329,7 +329,7 @@ $page-left-side-width: calc(100% - #{$page-right-side-width});
 .article-preview__image a {
 	display: block;
     position: relative;
-    padding-top: 50%;
+    padding-top: 45%;
 }
 
 .article-preview__image a img {
