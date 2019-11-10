@@ -25,7 +25,7 @@
 			font-family: sans-serif;
 		}
 		.header {
-			background-color: #343434;
+			background-color: #1B2A49;
 		}
 		.header a{
 			color: #fff;

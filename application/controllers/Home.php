@@ -17,6 +17,7 @@ class Home extends CI_Controller {
 		$this->data['page_description'] = $this->site_model->get_description('main');
 
 		$this->data['content_type'] = "block";
+		$this->data['is_main_page'] = true;
 
 		$this->data['tags'] = $this->post_model->get_tags();
 		$this->data['categories'] = $this->category_model->get_categories();

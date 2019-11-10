@@ -24,7 +24,7 @@ class Search extends CI_Controller {
 		$this->data['query'] = html_escape($this->data['query']);
 		$this->data['query'] = stripslashes($this->data['query']);
 
-		$this->data['page_title'] = "SEARCH";
+		$this->data['page_title'] = 'Поиск по запросу "'.$this->data['query'].'"';
 
 		$this->data['content_type'] = "inline";
 

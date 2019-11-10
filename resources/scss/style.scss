@@ -66,15 +66,15 @@ html, body {
 	margin-bottom: 40px;
 }
 
-$std-color: #343434;
-$std-color-hover: #424242;
+$std-color: #1B2A49;
+$std-color-hover: #465881;
 
-$std-item-color: #1976D2;
-$std-item-color-hover: #1565C0;
+$std-item-color: #1089FF;
+$std-item-color-hover: #0f70d1;
 
 $header-bg: $std-color;
 
-$text-second-color: #5d87b1;
+$text-second-color: #1089FF;
 
 $middle-screen: 960px;
 $litle-screen: 639px;
@@ -314,7 +314,7 @@ $page-left-side-width: calc(100% - #{$page-right-side-width});
 
 .article-preview {
 	max-width: 100%;
-	margin-bottom: 20px;
+	margin-bottom: 23px;
 }
 
 .page-right_block .article-preview:not(:last-child) {
@@ -341,7 +341,8 @@ $page-left-side-width: calc(100% - #{$page-right-side-width});
     -o-object-fit: cover;
     object-fit: cover;
     -o-object-position: center;
-    object-position: center;
+	object-position: center;
+	border-radius: 0 0 2px 2px;
 }
 
 .article-preview__content {
@@ -372,13 +373,15 @@ $page-left-side-width: calc(100% - #{$page-right-side-width});
 	margin: 10px 0;
 	line-height: 20px;
 	font-weight: 400;
-	color: #6e6e6e;
+	color: #8c8c8c;
 	line-height: 1.4;
+	font-size: 15px;
 }
 
 .block {
 	background-color: #fff;
-	box-shadow: 0 0 0 1px rgba(0,0,0,.05);
+	box-shadow: 0px 0px 6px -4px rgba(0,0,0,0.75);
+	border-radius: 2px;
 }
 
 .article-tags {
@@ -388,16 +391,22 @@ $page-left-side-width: calc(100% - #{$page-right-side-width});
 }
 
 .article-tags a{
-	background-color: #EDEDED;
-	padding: 5px;
-	border-radius: 5px;
+	padding: 5px 20px;
+	border-radius: 4px;
 	font-size: 14px;
 	margin-right: 10px;
 	margin-bottom: 10px;
+	color: #1089FF;
+	border: 1px solid #1089FF;
 }
 
 .article-tags a:hover{
-	background-color: #D0D0D0;
+	background-color: #c4e2ff;
+}
+
+.main-sidebar {
+	position: sticky;
+    top: 74px;
 }
 
 .main-sidebar li {
@@ -430,7 +439,7 @@ $page-left-side-width: calc(100% - #{$page-right-side-width});
 }
 
 .sidebar-block__item:not(:last-child) {
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 }
 
 .sidebar-block__header {
@@ -440,7 +449,7 @@ $page-left-side-width: calc(100% - #{$page-right-side-width});
 }
 
 .sidebar-block__title {
-	color: #6e6e6e;
+	color: #465881;
     font-size: 15px;
 	text-transform: uppercase;
 	font-weight: 500;
@@ -1375,7 +1384,6 @@ $page-left-side-width: calc(100% - #{$page-right-side-width});
 .sidebar-text__item {
 	padding: 0;
 	font-size: 15px;
-	font-weight: 500;
 }
 
 .sidebar-block-list__item a{
@@ -1387,7 +1395,7 @@ $page-left-side-width: calc(100% - #{$page-right-side-width});
 }
 
 .sidebar-block-list__item:hover{
-	background-color: #5d87b14d;
+	background-color: #c4e2ff;
 }
 
 .search-block .form-field {

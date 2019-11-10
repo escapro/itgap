@@ -10,10 +10,10 @@
 					<div class="col page-main page-main__left">
 					<?php require('templates/tag-navbar.php'); ?>
 						<?php if(isset($content_title)): ?>
-							<div class="block mb-2 section-head">
-								<h1 class="section-head__title"><?=$content_title;?></h1>
-								<h2 class="section-head__subtitle"><?=$current_tag_description;?></h2>								
-							</div>
+						<div class="block mb-2 section-head">
+							<h1 class="section-head__title"><?=$content_title;?></h1>
+							<h2 class="section-head__subtitle"><?=$current_tag_description;?></h2>								
+						</div>
 						<?php endif; ?>
 						<?php switch ($content_type) {
 								case 'block':
@@ -23,9 +23,11 @@
 								require('templates/posts_inline.tpl.php');
 									break;
 							} ?>
-							<div class="centered">
-								<button class="btn btn-large btn-primary load-more">Показать ещё</button>
-							</div>
+						<?php if(isset($is_main_page)): ?>
+						<div class="centered">
+							<button class="btn btn-large btn-primary load-more">Показать ещё</button>
+						</div>
+						<?php endif; ?>
 					</div>
 					<div class="col sidebar right-sidebar">
 						<?php require('templates/sidebars/main_sidebar.php');?>

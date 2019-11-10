@@ -16,14 +16,24 @@ class Page extends CI_Controller {
 	public function contacts()
 	{
 		$this->data['page'] = 'contacts';
-		$this->data['page_title'] = "Contacts";
+		$csrf = array(
+			'name' => $this->security->get_csrf_token_name(),
+			'hash' => $this->security->get_csrf_hash()
+		);
+		$this->data['csrf'] = $csrf;
+		$this->data['page_title'] = "Контакты";
 		$this->load->view('page', $this->data);
 	}
 
 	public function rights()
 	{
 		$this->data['page'] = 'rights';
-		$this->data['page_title'] = "RIGHTS";
+		$csrf = array(
+			'name' => $this->security->get_csrf_token_name(),
+			'hash' => $this->security->get_csrf_hash()
+		);
+		$this->data['csrf'] = $csrf;
+		$this->data['page_title'] = "Пользовательское соглашение";
 		$this->load->view('page', $this->data);
 	}
 }
