@@ -32,7 +32,7 @@ class Category extends CI_Controller {
 
 		$this->data['categories'] = $this->category_model->get_categories();
 		
-		$this->data['popular_posts'] = $this->post_model->get_popular_posts();
+		$this->data['suggested_posts_banner'] = $this->post_model->get_suggest_posts(5);
 
 		$csrf = array(
 			'name' => $this->security->get_csrf_token_name(),

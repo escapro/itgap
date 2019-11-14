@@ -19,5 +19,4 @@
 		<?php require('blocks/footer.php') ?>
 	</div>
 </body>
-
 </html>

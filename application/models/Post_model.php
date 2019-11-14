@@ -486,4 +486,15 @@ class Post_model extends CI_Model {
 
 		return true;
 	}
+
+	public function get_suggest_posts($limit) {
+		$this->db->select("p.id as post_ID, p.title, p.preview_text, p.post_id as post_id, p.last_change, p.preview_image_url as image_url, p.post_name");
+		$this->db->from("posts p");
+		$this->db->join('active_posts a', 'p.id=a.post_id');
+		$this->db->order_by("p.id", "RANDOM");
+		$this->db->limit($limit);
+		$query = $this->db->get();
+		$data = $query->result_array();
+		return $data;
+	}
 }

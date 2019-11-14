@@ -1,5 +1,5 @@
 <main class="content">
-	<article class="block post">
+	<article class="block post post-entry-content">
 		<header class="post-header">
 			<h1><?php if($post['title'] !== '') echo $post['title']; ?></h1>
 			<div class="post-meta">
@@ -10,23 +10,27 @@
 				</div>
 			</div>
 			<div class="article-tags">
-			<?php if(!empty($post['tags'])): ?>
+				<?php if(!empty($post['tags'])): ?>
 				<?php foreach ($post['tags'] as $key_2 => $value_2):?>
-					<a href="/tag/<?=$value_2['tag']?>"><?=$value_2['title']?></a>
+				<a href="/tag/<?=$value_2['tag']?>"><?=$value_2['title']?></a>
 				<?php endforeach;?>
-			<?php endif;?>
+				<?php endif;?>
 			</div>
 		</header>
 		<div class="post-content">
 			<?php if($post['image_url'] !== ''): ?>
 			<div class="post-image">
-				<img src="https://itgap.ru/static/uploads/posts/<?=$post['image_url'];?>" <?php if($post['title'] !== '') echo 'alt="'.$post['title'].'"'; ?>>
+				<img src="https://itgap.ru/static/uploads/posts/<?=$post['image_url'];?>"
+					<?php if($post['title'] !== '') echo 'alt="'.$post['title'].'"'; ?>>
 			</div>
 			<?php endif; ?>
 			<div class="post-entry">
 				<?=$post['data_html'];?>
 			</div>
-		<div>
+			<div>
+		<div class="post-entry-footer">
+			
+		</div>
 	</article>
 	<script>
 		document.addEventListener('DOMContentLoaded', (event) => {
@@ -35,4 +39,21 @@
 			});
 		});
 	</script>
+	<div class="post suggested-posts">
+		<h3>Также рекомендуем:</h3>
+		<?php foreach ($suggested_posts as $key => $value):?>
+		<div class="article-inline">
+			<div class="article-preview__image">
+				<a href="/post/<?=$value['post_name'];?>">
+					<img src="https://itgap.ru/static/uploads/posts/<?=$value['image_url'];?>" alt="image">
+				</a>
+			</div>
+			<div class="article-preview__content">
+				<a href="/post/<?=$value['post_name'];?>">
+					<h2 class="article-preview__title"><?=$value['title'];?></h2>
+				</a>
+			</div>
+		</div>
+		<?php endforeach; ?>
+	</div>
 </main>
