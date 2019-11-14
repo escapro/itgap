@@ -90,6 +90,7 @@ class Post extends CI_Controller {
 		$this->data['tags'] = $this->post_model->get_tags();
 		$this->data['categories'] = $this->category_model->get_categories();
 		$this->data['suggested_posts_banner'] = $this->post_model->get_suggest_posts(5);
+		$this->data['suggested_posts'] = $this->post_model->get_suggest_posts(4);
 		$this->data['post'] = $this->post_model->get_preview_post($this->data['user_id'], $post_id);
 		
 		$this->data['head_more'] = 

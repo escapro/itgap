@@ -37,7 +37,7 @@ class Search extends CI_Controller {
 			$this->data['posts'] = $this->search_model->search($this->data['query']);
 		}
 		
-		$this->data['popular_posts'] = $this->post_model->get_popular_posts();
+		$this->data['suggested_posts_banner'] = $this->post_model->get_suggest_posts(5);
 
 		$csrf = array(
 			'name' => $this->security->get_csrf_token_name(),
