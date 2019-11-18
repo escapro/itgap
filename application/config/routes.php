@@ -62,6 +62,10 @@ $route['rights'] = 'page/rights';
 $route['post/new'] = 'post/new';
 $route['post/fetch'] = 'post/fetch';
 $route['post/(:any)'] = 'post/show/$1';
+$route['post/(:any)/preview'] = 'post/preview/$1';
+
+$route['writing/(:any)/delete'] = 'writing/delete/$1';
+$route['writing/(:any)/edit'] = 'writing/edit/$1';
 
 $route['(:any)/(:any)'] = function ($firts, $second) {
 
@@ -84,12 +88,11 @@ $route['(:any)/(:any)'] = function ($firts, $second) {
         case 'sitemap':
             return 'sitemap/'.$second;
             break;
+        case 'category':
+            return 'category/'.$second;
+            break;
         default:
             return 'post/index/'.$firts.'/'.$second;
             break;
     }
 };
-
-$route['writing/(:any)/delete'] = 'writing/delete/$1';
-$route['writing/(:any)/edit'] = 'writing/edit/$1';
-$route['post/(:any)/preview'] = 'post/preview/$1';

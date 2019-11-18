@@ -50,7 +50,7 @@
 					</div>
 				</div>
 				<div class="editor-width editor-preview mb-2">
-					<textarea class="editor-item__bg" name="title" placeholder="Краткое содержание" maxlength="150" default="Краткое содержание"><?=$postData['preview_text'] ?? ''?></textarea>
+					<textarea class="editor-item__bg" name="title" placeholder="Краткое содержание" maxlength="300" default="Краткое содержание"><?=$postData['preview_text'] ?? ''?></textarea>
 				</div>
 				<div class="editor-content">
 					<div id="codex-editor"></div>

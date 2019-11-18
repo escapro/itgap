@@ -605,6 +605,10 @@ $page-left-side-width: calc(100% - #{$page-right-side-width});
 	font-weight: 400;
 }
 
+.post-entry h2 {
+	font-size: 1.4em;
+}
+
 .post-entry h2, .post-entry h3, .post-entry h4, .post-entry h5 {
 	margin-bottom: 0.5em;
     margin-top: 1em;
