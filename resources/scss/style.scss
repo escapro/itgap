@@ -160,7 +160,7 @@ $page-left-side-width: calc(100% - #{$page-right-side-width});
     display: flex;
     width: 200px;
     height: 100%;
-    color: #B3DEFF;
+    color: #fff;
     -webkit-box-pack: start;
     -ms-flex-pack: start;
     justify-content: start;
@@ -173,9 +173,10 @@ $page-left-side-width: calc(100% - #{$page-right-side-width});
 }
 
 .logo img{
-	width: 31px;
-    height: 31px;
-    margin-right: 10px;
+	width: 40px;
+    height: 40px;
+	margin-right: 10px;
+	border-radius: 10px;
 }
 
 .main-menu {
@@ -563,6 +564,10 @@ $page-left-side-width: calc(100% - #{$page-right-side-width});
 
 .soc-icon-zn {
 	background-image: url('/media/icons/zn.png');
+}
+
+.soc-icon-yt {
+	background-image: url('/media/icons/yt.svg');
 }
 
 .post {

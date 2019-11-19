@@ -14,6 +14,7 @@
 				<a href="https://t.me/itgap_official" target="_blank"><i class="soc-icon soc-icon-tg"></i></a>
 				<a href="https://www.instagram.com/itgap_official" target="_blank"><i class="soc-icon soc-icon-in"></i></a>
 				<a href="https://zen.yandex.ru/id/5d6546559c944600ac5c0ec3" target="_blank"><i class="soc-icon soc-icon-zn"></i></a>
+				<a href="https://www.youtube.com/channel/UC1OJAB33isTzLjlUQaM12AA" target="_blank"><i class="soc-icon soc-icon-yt"></i></a>
 			</div>
 			<div class="footer-right">
 				© 2019 itgap.az

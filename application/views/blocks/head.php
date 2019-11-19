@@ -34,6 +34,7 @@
 		echo str_replace(PHP_EOL, '', $a); 
 	?>
 
+	<meta property="og:locale" content="ru_RU">
 	<meta property="og:url" content="<?=base_url();?>">
 	<meta property="og:site_name" content="Itgap.ru">
 	<meta property="og:title" content='<?=$page_title;?>'>
@@ -68,9 +69,13 @@
 	<?php endif; ?>
 	
 	<link rel="icon" type="image/x-icon" href="<?=base_url();?>favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="<?=base_url();?>apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="<?=base_url();?>favicon-32x32.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="<?=base_url();?>favicon-16x16.png">
 	<link rel="icon" type="image/png" sizes="192x192" href="<?=base_url();?>android-chrome-192x192.png">
+	<meta name="apple-mobile-web-app-title" content="itGap">
+	<meta name="application-name" content="itGap">
+	<meta name="theme-color" content="#1e88e5">
 	<link rel="stylesheet" type="text/css" href="<?=base_url();?>/media/css/style.min.css">
 	<link rel="stylesheet" type="text/css" href="<?=base_url();?>/media/fonts/Iconfonts/css/fontello.css">
 	<script type="text/javascript" src="<?=base_url();?>/media/js/jquery.min.js"></script>
