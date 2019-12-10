@@ -78,6 +78,7 @@
 	<meta name="theme-color" content="#1e88e5">
 	<link rel="stylesheet" type="text/css" href="<?=base_url();?>/media/css/style.min.css">
 	<link rel="stylesheet" type="text/css" href="<?=base_url();?>/media/fonts/Iconfonts/css/fontello.css">
+	<script async type="text/javascript" src="<?=base_url();?>/media/js/lazyload.min.js"></script>
 	<script type="text/javascript" src="<?=base_url();?>/media/js/jquery.min.js"></script>
 	<script async type="text/javascript" src="<?=base_url();?>/media/js/main.min.js"></script>
 	<?php echo isset($head_more) ? $head_more : ''; ?>
