@@ -7,7 +7,7 @@ class Sitemap extends CI_Controller {
 	{
 		parent::__construct();
 		if(!is_cli()) {
-			exit("Error 404");
+			show_404();
 		}
 		$this->load->model('post_model');
 

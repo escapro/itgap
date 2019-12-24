@@ -21,7 +21,7 @@ class Writing extends CI_Controller {
 		if ($this->input->post()) {
 			$data = $this->normilize_data($this->input->post());
 		}else {
-			exit('Error 404');
+			show_404();
 		}
 
 		try {
@@ -49,7 +49,7 @@ class Writing extends CI_Controller {
 		if ($this->input->post()) {
 			$data = $this->normilize_data($this->input->post());
 		}else {
-			exit('Error 404');
+			show_404();
 		}
 
 		$this->load->helper(array('form', 'url'));
@@ -139,7 +139,7 @@ class Writing extends CI_Controller {
 
 			$this->load->view('editor', $this->data);
 		}else {
-			exit("error 404");
+			show_404();
 		}
 	}
 
@@ -162,7 +162,7 @@ class Writing extends CI_Controller {
 	private function normilize_data($data) {
 
 		if (!$this->ion_auth->is_admin()){
-			exit('Error 404');
+			show_404();
 		}
 		
 		foreach ($data as $key => $value) {

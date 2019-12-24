@@ -22,7 +22,7 @@ class User extends CI_Controller {
 	public function index()
 	{
 		if (!$this->ion_auth->is_admin()){
-			exit('Error 404');
+			show_404();
 		}
 
 		$this->load->helper('date_helper');
@@ -42,7 +42,7 @@ class User extends CI_Controller {
 	public function posts()
 	{
 		if (!$this->ion_auth->is_admin()){
-			exit('Error 404');
+			show_404();
 		}
 
 		$this->load->model('post_model');

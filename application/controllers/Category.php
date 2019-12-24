@@ -24,7 +24,7 @@ class Category extends CI_Controller {
 			$this->data['tags'] = $this->post_model->get_tags($tag);
 			$this->data['posts'] = $this->post_model->get_posts_by_tag($tag);
 		} catch (\Throwable $th) {
-			exit("Error 404");
+			show_404();
 		}
 
 		$this->data['page_title'] = $this->data['tags']['current_tag'].' — itGap';

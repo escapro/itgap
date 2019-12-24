@@ -45,7 +45,7 @@
 		<div class="article-inline">
 			<div class="article-preview__image">
 				<a href="/post/<?=$value['post_name'];?>">
-					<img class="lazy" src="media/images/placeholder.jpg" src="https://itgap.ru/static/uploads/posts/<?=$value['image_url'];?>" alt="image">
+					<img class="lazy" src="https://itgap.ru/media/images/placeholder.jpg" data-src="https://itgap.ru/static/uploads/posts/<?=$value['image_url'];?>" alt="image">
 				</a>
 				<noscript>
 					<img src="https://itgap.ru/static/uploads/posts/<?=$value['image_url'];?>" alt="image">

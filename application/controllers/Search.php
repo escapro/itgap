@@ -1,9 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-require '../vendor/autoload.php';
-
-use \EditorJS\EditorJS;
+// require '../vendor/autoload.php';
+// use \EditorJS\EditorJS;
 
 class Search extends CI_Controller {
 
@@ -18,7 +17,11 @@ class Search extends CI_Controller {
 
 	public function index()
 	{
-		$this->data['query'] = $this->input->get()['q'];
+		if(!isset($_GET['q'])){
+			$this->data['query'] = '';
+		}else {
+			$this->data['query'] = $this->input->get()['q'];
+		}
 
 		$this->data['query'] = $this->security->xss_clean($this->data['query']);
 		$this->data['query'] = html_escape($this->data['query']);

@@ -22,7 +22,7 @@ class Post extends CI_Controller {
 			$this->post_model->add_view($post_name);
 			$this->data['post'] = $this->post_model->get_post($post_name)[0];
 		} catch (\Throwable $th) {
-			exit("Error 404");
+			show_404();
 		}
 
 		$this->data['page_title'] = $this->data['post']['title']." — itGap";
@@ -113,7 +113,7 @@ class Post extends CI_Controller {
 	public function edit($post_id){
 
 		if (!$this->ion_auth->is_admin()){
-			exit('Error 404');
+			show_404();
 		}
 		$this->data['userPageBlock'] = "drafts";
 
@@ -131,7 +131,7 @@ class Post extends CI_Controller {
 		$this->data['page_title'] = 'Редактирование — itGap';
 
 		if(!$this->post_model->set_draft($this->data['user']->id, $post_id)) {
-			exit("Error 404");
+			show_404();
 		}
 		
 		$postData = $this->post_model->get_user_post($this->data['user']->id, $post_id);
@@ -160,14 +160,14 @@ class Post extends CI_Controller {
 
 			$this->load->view('editor', $this->data);
 		}else {
-			exit("error 404");
+			show_404();
 		}
 	}
 
 	public function fetch()
 	{
 		if(!$this->input->post()) {
-			exit('Error 404');
+			show_404();
 		}
 
 		$data = $this->input->post();
@@ -177,7 +177,7 @@ class Post extends CI_Controller {
 		$posts = $this->post_model->get_posts($data['page']);
 
 		if(empty($posts)) {
-			exit('Error 404');
+			show_404();
 		}
 
 		foreach ($posts as $key => $value) {

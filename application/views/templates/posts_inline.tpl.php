@@ -3,7 +3,7 @@
 		<div class="block article-inline__block">
 			<div class="section-head">
 				<div class="mb-2">
-					<h1 class="fs-2">Результат поиска: "<?=$query;?>"</h1>
+					<h1 class="fs-2">Поиск по запросу: "<?=$query;?>"</h1>
 				</div>
 				<div class="mb-2">
 					<form method="GET">
@@ -21,7 +21,6 @@
 					<div class="article-preview__content">
 						<a href="/post/<?=$value['post_name'];?>">
 							<h2 class="article-preview__title"><?=$value['title'];?></h2>
-							<!-- <div class='article-preview-description'><?=$value['preview_text'];?></div> -->
 						</a>
 					</div>
 					<div class="article-preview__image">
@@ -32,7 +31,7 @@
 				</article>
 				<?php endforeach; ?>
 				<?php else: ?>
-				<div class="no-search-result"><h3>Нет результатов по Вашему запросу</h3></div>
+				<div class="no-search-result"><h3>Нет результатов</h3></div>
 				<?php endif; ?>
 			</div>
 		</div>
