@@ -53,6 +53,10 @@ $route['default_controller'] = 'home';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = TRUE;
 
+$route['home'] = function () {
+    show_404();
+};
+
 // Основные роуты
 $route['user'] = 'user/index';
 $route['admin'] = 'admin/index';
