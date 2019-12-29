@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Post_model extends CI_Model {
 
-	private $offsetCount = 15;
+	private $offsetCount = POST_COUNT;
 
 	function __construct()
 	{
@@ -12,19 +12,31 @@ class Post_model extends CI_Model {
 
 	// SITEMAP USE
 	public function get_posts($page=1) {	
-		$this->db->select("p.id as post_ID, p.title, p.preview_text, p.post_id as post_id, p.last_change, p.preview_image_url as image_url, p.post_name");
+		$this->db->select("p.id as post_ID, p.title, p.preview_text, p.post_id as post_id, p.last_change, p.preview_image_url as image_url, p.post_name, cat.url_name as category_url, cat.title as category_title");
 		$this->db->from("posts p");
 		$this->db->join('active_posts a', 'p.id=a.post_id');
+		$this->db->join('categories cat', 'cat.id=p.category_id');
 		$this->db->order_by("p.last_change", "desc");
 		if($page !== 0) {
 			$offset = ($page * $this->offsetCount) - $this->offsetCount;	
 			$this->db->limit($this->offsetCount, $offset);
 		}
 		$query = $this->db->get();
-		$data = $query->result_array();
+		$data['posts'] = $query->result_array();
 
-		foreach ($data as $key => $value) {
-			$data[$key]['tags'] = $this->get_post_tags($value['post_ID']);		
+		foreach ($data['posts'] as $key => $value) {
+			$data['posts'][$key]['tags'] = $this->get_post_tags($value['post_ID']);		
+		}
+
+		$this->db->select("p.id");
+		$this->db->from("posts p");
+		$this->db->join('active_posts a', 'p.id=a.post_id');
+		$query = $this->db->get();
+		$post_count = count($query->result_array());
+		$leftPages = $post_count / $this->offsetCount;
+		$data['isLastPage'] = 0;
+		if ($leftPages < $page) {
+			$data['isLastPage'] = 1;
 		}
 
 		return $data;
@@ -52,6 +64,7 @@ class Post_model extends CI_Model {
 			'post_id' => $data['id'],
 			'title' => $data['title'],
 			'preview_text' => $data['preview'],
+			'category_id' => intval($data['category']),
 			'link' => $data['link'],
 			'preview_image_url' => $data['image'],
 			'data_json' => $data['editorData'],
@@ -110,6 +123,7 @@ class Post_model extends CI_Model {
 		$update_data = array(
 			'title' => $data['title'],
 			'preview_text' => $data['preview'],
+			'category_id' => intval($data['category']),
 			'link' => $data['link'],
 			'preview_image_url' => $data['image'],
 			'post_name' => $post_name,
@@ -252,6 +266,31 @@ class Post_model extends CI_Model {
 
 	// SITEMAP USE
 	public function get_tags ($tag=NULL, $check_id=false) {
+
+		$this->db->select("*");
+		$this->db->from("tags");
+		$query = $this->db->get();
+		$data['tags'] = $query->result_array();
+
+		if ($tag !== NULL) {
+			$this->db->select("*");
+			$this->db->from("tags");
+			if (!$check_id) {
+				$this->db->where("tag", $tag);
+			}else {
+				$this->db->where("id", $tag);
+			}
+			$query_2 = $this->db->get();
+			$data_2 = $query_2->result_array();
+
+			$data['current_tag'] = $data_2[0]['title'];
+			$data['current_tag_description'] = $data_2[0]['description'];
+		}
+
+		return $data;
+	}
+
+	public function get_categories ($tag=NULL, $check_id=false) {
 
 		$this->db->select("*");
 		$this->db->from("tags");
@@ -429,34 +468,113 @@ class Post_model extends CI_Model {
 		
 	}
 
-	public function get_popular_posts() {
-		$this->db->select("p.title, p.preview_text, p.post_id as post_id, p.last_change, p.preview_image_url as image_url, pv.count as views, p.post_name");
+	public function get_popular_posts($page=1, $count=NULL) {
+
+		$this->db->select("p.id as post_ID, p.title, p.preview_text, p.post_id as post_id, p.last_change, p.preview_image_url as image_url, pv.count as views, p.post_name, cat.url_name as category_url, cat.title as category_title");
 		$this->db->from("posts p");
 		$this->db->join('active_posts a', 'p.id=a.post_id');
+		$this->db->join('categories cat', 'cat.id=p.category_id');
 		$this->db->join('post_views pv', 'pv.post_id=p.id');
 		$this->db->order_by("views", "desc");
-		$this->db->limit(5);
+		if($count == NULL) {
+			if($page !== 0) {
+				$offset = ($page * $this->offsetCount) - $this->offsetCount;	
+				$this->db->limit($this->offsetCount, $offset);
+			}
+		}else {
+			$this->db->limit($count);
+		}
 		$query = $this->db->get();
-		$data = $query->result_array();
+		$data['posts'] = $query->result_array();
+
+		foreach ($data['posts'] as $key => $value) {
+			$data['posts'][$key]['tags'] = $this->get_post_tags($value['post_ID']);		
+		}
+
+		$this->db->select("p.id");
+		$this->db->from("posts p");
+		$this->db->join('active_posts a', 'p.id=a.post_id');
+		$this->db->join('categories cat', 'cat.id=p.category_id');
+		$this->db->join('post_views pv', 'pv.post_id=p.id');
+		$query = $this->db->get();
+		$post_count = count($query->result_array());
+		$leftPages = $post_count / $this->offsetCount;
+		$data['isLastPage'] = 0;
+		if ($leftPages < $page) {
+			$data['isLastPage'] = 1;
+		}
+
 		return $data;
 	}
 
-	public function get_posts_by_tag($tag) {
-		$this->db->select("p.id as post_ID, p.title, t.title as tag, t.tag as tag_url, p.preview_text, p.post_id as post_id, p.last_change, p.preview_image_url as image_url, p.post_name, t.tag as tag_url");
+	public function get_posts_by_tag($tag, $page=1) {
+		$this->db->select("p.id as post_ID, p.title, t.title as tag, t.tag as tag_url, p.preview_text, p.post_id as post_id, p.last_change, p.preview_image_url as image_url, p.post_name, t.tag as tag_url, cat.url_name as category_url, cat.title as category_title");
 		$this->db->from("posts p");
 		$this->db->join('active_posts a', 'p.id=a.post_id');
 		$this->db->join('post_tags pt', 'pt.post_id=p.id');
+		$this->db->join('categories cat', 'cat.id=p.category_id');
 		$this->db->join('tags t', 't.id=pt.tag_id');
 		$this->db->where("t.tag", $tag);
 		$this->db->order_by("p.last_change", "desc");
+		if($page !== 0) {
+			$offset = ($page * $this->offsetCount) - $this->offsetCount;	
+			$this->db->limit($this->offsetCount, $offset);
+		}
 		$query = $this->db->get();
-		$data = $query->result_array();
+		$data['posts'] = $query->result_array();
 
 		// foreach ($data as $key => $value) {
 		// 	$data[$key]['tags']['url'] = $value['tag'];
 		// 	$data[$key]['tags']['title'] = $value['tag'];	
 		// }
 
+		$this->db->select("p.id");
+		$this->db->from("posts p");
+		$this->db->join('active_posts a', 'p.id=a.post_id');
+		$this->db->join('post_tags pt', 'pt.post_id=p.id');
+		$this->db->join('tags t', 't.id=pt.tag_id');
+		$this->db->where("t.tag", $tag);
+		$query = $this->db->get();
+		$post_count = count($query->result_array());
+		$leftPages = $post_count / $this->offsetCount;
+		$data['isLastPage'] = 0;
+		if ($leftPages < $page) {
+			$data['isLastPage'] = 1;
+		}
+
+		return $data;
+	}
+
+	public function get_posts_by_category ($category, $page=1) {
+		$this->db->select("p.id as post_ID, p.title, p.preview_text, p.post_id as post_id, p.last_change, p.preview_image_url as image_url, p.post_name, cat.url_name as category_url, cat.title as category_title");
+		$this->db->from("posts p");
+		$this->db->join('active_posts a', 'p.id=a.post_id');
+		$this->db->join('categories cat', 'cat.id=p.category_id');
+		$this->db->where("cat.url_name", $category);
+		$this->db->order_by("p.last_change", "desc");
+		if($page !== 0) {
+			$offset = ($page * $this->offsetCount) - $this->offsetCount;	
+			$this->db->limit($this->offsetCount, $offset);
+		}
+		$query = $this->db->get();
+		$data['posts'] = $query->result_array();
+
+		foreach ($data['posts'] as $key => $value) {
+			$data['posts'][$key]['tags'] = $this->get_post_tags($value['post_ID']);		
+		}
+		
+		$this->db->select("p.id");
+		$this->db->from("posts p");
+		$this->db->join('active_posts a', 'p.id=a.post_id');
+		$this->db->join('categories cat', 'cat.id=p.category_id');
+		$this->db->where("cat.url_name", $category);
+		$query = $this->db->get();
+		$post_count = count($query->result_array());
+		$leftPages = $post_count / $this->offsetCount;
+		$data['isLastPage'] = 0;
+		if ($leftPages < $page) {
+			$data['isLastPage'] = 1;
+		}
 
 		return $data;
 	}

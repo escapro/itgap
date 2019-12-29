@@ -15,20 +15,30 @@ class Upload extends CI_Controller {
 	}
 
 	public function article_preview() {
+		$type = 'article';
 		$allowed_types = 'jpg|jpeg|png';
 		$max_size = 2000;
-		$image_quality = '100%';
-		$this->upload_image('short', $allowed_types, $max_size, $image_quality);
+		$image_quality = '95%';
+		$this->upload_image('short', $type, $allowed_types, $max_size, $image_quality);
 	}
 
 	public function article_image() {
+		$type = 'article';
 		$allowed_types = 'jpg|jpeg|png|gif';
 		$max_size = 3000;
 		$image_quality = '90%';
-		$this->upload_image('full', $allowed_types, $max_size, $image_quality);
+		$this->upload_image('full', $type, $allowed_types, $max_size, $image_quality);
 	}
 
-	private function upload_image($urlType, $allowed_types, $max_size, $image_quality) {
+	public function book_cover() {
+		$type = 'book_cover';
+		$allowed_types = 'jpg|jpeg|png';
+		$max_size = 1500;
+		$image_quality = '70%';
+		$this->upload_image('short', $type, $allowed_types, $max_size, $image_quality);
+	}
+
+	private function upload_image($urlType, $type, $allowed_types, $max_size, $image_quality) {
 
 		if(!isset($_FILES['image'])) {
 			exit();
@@ -66,17 +76,23 @@ class Upload extends CI_Controller {
 				$resize_config['source_image'] 		= 'static/uploads/posts/'.$image_url;
 				$resize_config['new_image']       	= 'static/uploads/posts/'.$image_url;
 				
-				if($data['image_width'] > 1000) {
-					$resize_config['width'] = 1000;
-				}else {
-					$resize_config['width'] = $data['image_width'] - 1;
+				if($type == 'article') {
+					if($data['image_width'] > 1000) {
+						$resize_config['width'] = 1000;
+					}else {
+						$resize_config['width'] = $data['image_width'];
+					}
+					
+					if($data['image_height'] > 500) {
+						$data['image_height'] = 500;
+					}else {
+						$resize_config['height'] = $data['image_height'];
+					}
+				}else if($type == 'book_cover'){
+					$resize_config['width'] = 200;
+					$resize_config['height'] = 300;
 				}
-				
-				if($data['image_height'] > 500) {
-					$data['image_height'] = 500;
-				}else {
-					$resize_config['height'] = $data['image_height'] - 1;
-				}
+			
 
 				$resize_config['maintain_ratio']	= TRUE;
 				$resize_config['create_thumb'] 		= FALSE;

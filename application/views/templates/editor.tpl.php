@@ -8,6 +8,28 @@
 					<span><?=$postData['last_change'] ?? ''?></span>
 				</div>
 			</div>
+				<div class="editor-width post-category mb-1"> 
+					<select>
+						<?php
+							foreach ($categories as $key => $value) {
+								echo '<option value="'.$value['id'].'"';
+								if(isset($postData['category_id'])) {
+									if($postData['category_id'] == $value['id']) {
+										echo "selected";
+									}
+								}else {
+									if(isset($_GET['post_category'])) {
+										$cat = $_GET['post_category'];
+										if($cat == $value['id']) {
+											echo "selected";
+										}
+									}
+								}
+								echo '>'.$value['title'].'</option>';
+							}
+						?>
+					</select>
+				</div>
 				<div class="editor-width source-link mb-1"> 
 					<input type="text" placeholder="Ссылка на источник" value="<?=$postData['link'] ?? ''?>">
 				</div>
@@ -16,11 +38,6 @@
 						<?php
 							foreach ($tags['tags'] as $key => $value) {
 								echo '<option value="'.$value['id'].'"';
-								// if(isset($postData['tag_id'])) {
-								// 	if($postData['tag_id'] == $value['id']) {
-								// 		echo ' selected';
-								// 	}
-								// }
 								echo '>'.$value['title'].'</option>';
 							}
 						?>

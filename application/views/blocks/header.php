@@ -7,7 +7,7 @@
 			</a>
 			<ul class="main-menu dsktp-show">
 				<li><a rel="nofollow" href="/">Главная</a></li>
-				<li><a rel="nofollow" href="#">Лучшее</a></li>
+				<li><a rel="nofollow" href="/top">Лучшее</a></li>
 			</ul>
 		</div>
 		<div class="flex header-right">

@@ -53,9 +53,18 @@ $route['default_controller'] = 'home';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = TRUE;
 
-$route['home'] = function () {
-    show_404();
-};
+// Redirect to 404 page
+$redirect_404 = array(
+    'home',
+    'post',
+    'category/tag/(:any)',
+    'category'
+);
+foreach ($redirect_404 as $url) {
+    $route[$url] = function () {
+        show_404();
+    };
+}
 
 // Основные роуты
 $route['user'] = 'user/index';
@@ -68,8 +77,19 @@ $route['post/fetch'] = 'post/fetch';
 $route['post/(:any)'] = 'post/show/$1';
 $route['post/(:any)/preview'] = 'post/preview/$1';
 
+$route['tag/fetch'] = 'category/tag_fetch';
+
+$route['category/fetch'] = 'category/category_fetch';
+$route['category/(:any)'] = 'category/category/$1';
+
+$route['books/(:any)'] = 'category/index/$1';
+
+$route['search/fetch'] = 'search/fetch';
+
 $route['writing/(:any)/delete'] = 'writing/delete/$1';
 $route['writing/(:any)/edit'] = 'writing/edit/$1';
+
+$route['top'] = 'home/top';
 
 $route['(:any)/(:any)'] = function ($firts, $second) {
 
@@ -91,9 +111,6 @@ $route['(:any)/(:any)'] = function ($firts, $second) {
             break;
         case 'sitemap':
             return 'sitemap/'.$second;
-            break;
-        case 'category':
-            return 'category/'.$second;
             break;
         default:
             return 'post/index/'.$firts.'/'.$second;

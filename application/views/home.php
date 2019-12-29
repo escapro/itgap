@@ -23,8 +23,8 @@
 								require('templates/posts_inline.tpl.php');
 									break;
 							} ?>
-						<?php if(isset($is_main_page)): ?>
-						<div class="centered">
+						<?php if($posts['isLastPage'] == 0): ?>
+						<div class="centered mt-2">
 							<button class="btn btn-large btn-primary load-more">Показать ещё</button>
 						</div>
 						<?php endif; ?>

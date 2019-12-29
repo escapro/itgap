@@ -57,11 +57,14 @@ class Post extends CI_Controller {
 		'<script type="text/javascript" src="/media/post/new_post.js"></script>'.
 		'<script type="text/javascript" src="/media/post/service.js"></script>'.
 		'<link rel="stylesheet" type="text/css" href="/media/select2/select2.min.css">'.
-		'<script type="text/javascript" src="/media/select2/select2.min.js"></script>';
+		'<script type="text/javascript" src="/media/select2/select2.min.js"></script>'.
+		'<script type="text/javascript" src="/media/post/book.js"></script>'.
+		'<link rel="stylesheet" type="text/css" href="/media/post/book.css">';
 
 		$this->data['page_title'] = 'Новый пост — itGap';
 
 		$this->data['postId'] = $this->post_model->generate_post_id();
+		$this->data['categories'] = $this->category_model->get_categories();
 		$this->data['tags'] = $this->post_model->get_tags();
 		$this->data['post_tags_jquery'] = '';
 		
@@ -122,10 +125,13 @@ class Post extends CI_Controller {
 		'<script type="text/javascript" src="/media/post/new_post.js"></script>'.
 		'<script type="text/javascript" src="/media/post/service.js"></script>'.
 		'<link rel="stylesheet" type="text/css" href="/media/select2/select2.min.css">'.
-		'<script type="text/javascript" src="/media/select2/select2.min.js"></script>';
+		'<script type="text/javascript" src="/media/select2/select2.min.js"></script>'.
+		'<script type="text/javascript" src="/media/post/book.js"></script>'.
+		'<link rel="stylesheet" type="text/css" href="/media/post/book.css">';
 
 		$this->data['postId'] = $post_id;
 		$this->data['tags'] = $this->post_model->get_tags();
+		$this->data['categories'] = $this->category_model->get_categories();
 		$this->data['user'] = $this->ion_auth->user()->row();
 
 		$this->data['page_title'] = 'Редактирование — itGap';
@@ -171,16 +177,26 @@ class Post extends CI_Controller {
 		}
 
 		$data = $this->input->post();
-		
-		$response = array();
-		$response['html'] = '';
-		$posts = $this->post_model->get_posts($data['page']);
+
+		if(isset($data['type']) && isset($data['page'])) {
+			if($data['type'] == 'all') {
+				$posts = $this->post_model->get_posts($data['page']);
+			}else if($data['type'] == 'top') {
+				$posts = $this->post_model->get_popular_posts($data['page']);
+			}
+		}else {
+			show_404();
+		}
 
 		if(empty($posts)) {
 			show_404();
 		}
 
-		foreach ($posts as $key => $value) {
+		$response = array();
+		$response['html'] = '';
+		$response['isLastPage'] = $posts['isLastPage'];
+
+		foreach ($posts['posts'] as $key => $value) {
 			$response['html'] .= '<article class="article-preview block">
 				<div class="article-preview__content">
 					<a href=/post/'.$value['post_name'].'">

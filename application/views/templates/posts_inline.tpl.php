@@ -1,5 +1,5 @@
 <main class="content">
-	<section class="feed">
+	<section class="feed" <?=isset($load_attributes) ? $load_attributes : ""?>>
 		<div class="block article-inline__block">
 			<div class="section-head">
 				<div class="mb-2">
@@ -15,12 +15,15 @@
 				</div>
 			</div>
 			<div class="search-result-area">
-				<?php if(!empty($posts)): ?>
-				<?php foreach ($posts as $key => $value):?>
+				<?php if(!empty($posts['posts'])): ?>
+				<?php foreach ($posts['posts'] as $key => $value):?>
 				<article class="article-inline">
 					<div class="article-preview__content">
 						<a href="/post/<?=$value['post_name'];?>">
-							<h2 class="article-preview__title"><?=$value['title'];?></h2>
+							<h2 class="article-preview__title"><?php echo preg_replace("/\w*?$query\w*/i", "<b>$0</b>", $value['title'])?></h2>
+							<div class="article-preview-description">
+								<p><?php echo preg_replace("/\w*?$query\w*/i", "<b>$0</b>", $value['preview_text'])?></p>
+							</div>
 						</a>
 					</div>
 					<div class="article-preview__image">

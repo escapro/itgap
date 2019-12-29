@@ -82,10 +82,10 @@ $litle-screen: 639px;
 $main-navbar-bg: #fff;
 $background-color: #F3F3F3;
 
-$container-wide: 1070px;
+$container-wide: 1140px;
 $article-preview-font-size: 23px;
 
-$page-right-side-width: 320px;
+$page-right-side-width: 330px;
 $page-left-side-width: calc(100% - #{$page-right-side-width});
 
 @mixin profile-icon{
@@ -315,12 +315,11 @@ $page-left-side-width: calc(100% - #{$page-right-side-width});
 
 .article-preview {
 	max-width: 100%;
-	margin-bottom: 23px;
+	// margin-bottom: 23px;
 }
 
-.page-right_block .article-preview:not(:last-child) {
+.article-preview:not(:last-child) {
 	margin-bottom: 20px;
-	padding-bottom: 10px;
 }
 
 .article-preview__image {
@@ -330,7 +329,7 @@ $page-left-side-width: calc(100% - #{$page-right-side-width});
 .article-preview__image a {
 	display: block;
     position: relative;
-    padding-top: 45%;
+    padding-top: 47%;
 }
 
 .article-preview__image a img {
@@ -355,9 +354,7 @@ $page-left-side-width: calc(100% - #{$page-right-side-width});
 }
 
 .article-inline .article-preview__content a{
-	display: flex;
     height: 100%;
-    align-items: center;
 }
 
 .article-preview__title {
@@ -374,7 +371,7 @@ $page-left-side-width: calc(100% - #{$page-right-side-width});
 	margin: 10px 0;
 	line-height: 20px;
 	font-weight: 400;
-	color: #8c8c8c;
+	color: #7d7d7d;
 	line-height: 1.4;
 	font-size: 15px;
 }
@@ -688,6 +685,44 @@ $page-left-side-width: calc(100% - #{$page-right-side-width});
     margin: 20px auto;
 }
 
+.post-entry .book {
+	display: flex;
+	margin-bottom: 10px;
+	align-items: center;
+}
+
+.post-entry .book .book_cover {
+	width: 90px;
+	height: 135px;
+	object-fit: cover;
+	margin: 0 15px 0 0;
+	border-radius: 3px;
+	-webkit-box-shadow: 0px 0px 9px -2px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0px 0px 9px -2px rgba(0,0,0,0.75);
+	box-shadow: 0px 0px 9px -2px rgba(0,0,0,0.75);
+}
+
+.post-entry .book .book_meta{
+	width: 100%;
+}
+
+.post-entry .book .book_meta h2{
+	font-size: 17px;
+	margin: 0 0 20px 0;
+}
+
+.post-entry .book .book_meta a{
+	border: 1px solid $std-item-color;
+	padding: 5px 15px;
+	border-radius: 4px;
+	margin-right: 15px;
+	font-size: 14px;
+}
+
+.post-entry .book .book_meta a:hover{
+	background-color: #c4e2ff;
+}
+
 .post-entry .quote {
 	background-color: #fbfbfb;
 	padding: 10px;
@@ -909,7 +944,7 @@ $page-left-side-width: calc(100% - #{$page-right-side-width});
 	border: none;
 	padding: 7px 10px;
 	font-size: 15px;
-	border-radius: 5px;
+	border-radius: 3px;
 	cursor: pointer;
 }
 
@@ -979,6 +1014,14 @@ $page-left-side-width: calc(100% - #{$page-right-side-width});
 	padding: 10px 15px;
 	font-size: 15px;
 	border: 1px solid #EDEDED;
+}
+
+.post-category select {
+	width: 100%;
+    border-radius: 4px;
+    padding: 10px 15px;
+    font-size: 15px;
+    border: 1px solid #EDEDED;
 }
 
 .editor__title textarea {
@@ -1109,7 +1152,6 @@ $page-left-side-width: calc(100% - #{$page-right-side-width});
 }
 
 .select-tag{
-	display: inline-table;
 	width: 100%;
 	height: 25px;
 }
@@ -1274,7 +1316,11 @@ $page-left-side-width: calc(100% - #{$page-right-side-width});
 .post-header h1 {
 	font-size: 1.5em;
 }
-//begin
+
+.suggested-posts .article-preview__content a {
+	display: flex;
+	align-items: center;
+}
 
 .suggested-posts .article-inline:not(:last-child) {
 	border-bottom: none;
@@ -1297,6 +1343,18 @@ $page-left-side-width: calc(100% - #{$page-right-side-width});
 	font-size: 23px;
 }
 
+.no-search-result {
+	height: 151px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.no-search-result {
+	font-size: 15px;
+}
+
+// BEGIN ADAPTIVE STYLE ---------------------------------------
 
 @mixin inactiveMixin {
 	content: "";
@@ -1459,7 +1517,6 @@ display: flex;
 
 .search-result-area h3{
     font-weight: 400;
-    font-size: 17px;
     color: #717171; 
 }
 
@@ -1729,7 +1786,6 @@ display: flex;
 	.article-inline .article-preview__content {
 		margin-left: 140px;
 		padding-left: 15px;
-		height: 102px;
 	}
 	
 	.article-inline .article-preview__image {

@@ -60,7 +60,8 @@ $(document).ready(function () {
           quotePlaceholder: 'Введите цитату',
           captionPlaceholder: 'Укажите автора',
         },
-      }
+      },
+      book: Book
     },
     data: postData.editorData,
     onChange: () => {
@@ -74,6 +75,7 @@ $(document).ready(function () {
     mainImage: '.post__file-uploader #post-mainImage',
     preview: '.editor-preview textarea',
     publishBtn: '.editor-navbar #publish',
+    postCategory: '.post-category select',
     tagSelector: '.select-tag .editor-tag__selector',
     saveBtn: '.navbar__items .editor-save-btn',
     previewBtn: '.navbar__items.editor-preview-btn',
@@ -83,13 +85,13 @@ $(document).ready(function () {
   var editorData = {};
 
   editorData.id = postData.postId;
+  editorData.category = $(edor.postCategory).val();
   editorData.link = '';
   editorData.tags = '';
   editorData.title = '';
   editorData.image = postData.previewImage;
   editorData.preview = '';
   editorData.editorData = '';
-
 
   function saveData(url = '') {
 
@@ -120,6 +122,7 @@ $(document).ready(function () {
     }
 
     editorData.link = $(edor.sourceLink).val();
+    editorData.category = $(edor.postCategory).val();
     editorData.title = $(edor.editorTitle).val();
     editorData.preview = $(edor.preview).val();
 
@@ -196,7 +199,7 @@ $(document).ready(function () {
         callback.apply(context, args);
       }, ms || 0);
     };
-  }
+  }  
 
   $(edor.sourceLink + ', ' + edor.editorTitle + ', ' + edor.preview).keyup(delay(function (e) {
     saveData('/writing/save');
@@ -211,6 +214,11 @@ $(document).ready(function () {
 
   $(document).on("change", edor.mainImage, function (e, elem) {
     uploadPhoto('/upload/article_preview');
+  })
+
+  $(document).on("change", edor.postCategory, function (e, elem) {
+    editorData.category = $(edor.postCategory).val();
+    saveData('/writing/save');
   })
 
   $(document).on('click', '.file-preview__clear', function () {

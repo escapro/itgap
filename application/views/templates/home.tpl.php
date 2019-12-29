@@ -1,9 +1,9 @@
 <main class="content">
-	<section class="feed">
-	<?php foreach ($posts as $key => $value):?>
+	<section class="feed" <?=isset($load_attributes) ? $load_attributes : ""?>>
+	<?php foreach ($posts['posts'] as $key => $value):?>
 		<article class="article-preview block">
 			<div class="article-preview__content">
-				<a href="/post/<?=$value['post_name'];?>">
+				<a href="/<?=$value['category_url'];?>/<?=$value['post_name'];?>">
 					<h2 class="article-preview__title"><?=$value['title'];?></h2>
 					<div class='article-preview-description'><?=$value['preview_text'];?></div></a>
 				<div class="article-tags">
@@ -17,10 +17,10 @@
 				</div>
 			</div>
 			<div class="article-preview__image">
-				<a href="/post/<?=$value['post_name'];?>">
-					<img class="lazy" src="https://itgap.ru/media/images/placeholder.jpg" data-src="https://itgap.ru/static/uploads/posts/<?=$value['image_url'];?>" alt="image">
+				<a href="/<?=$value['category_url'];?>/<?=$value['post_name'];?>">
+					<img class="lazy" src="<?=base_url();?>/media/images/placeholder.jpg" data-src="<?=base_url();?>/static/uploads/posts/<?=$value['image_url'];?>" alt="image">
 				<noscript>
-					<img src="https://itgap.ru/static/uploads/posts/<?=$value['image_url'];?>" alt="image">
+					<img src="<?=base_url();?>/static/uploads/posts/<?=$value['image_url'];?>" alt="image">
 				</noscript>
 				</a>
 			</div>

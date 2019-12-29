@@ -71,6 +71,9 @@ class Writing extends CI_Controller {
 		if(empty($data['data']['preview'])) {
 			$response['error'][] = "Нет краткого содержания";
 		}
+		if (empty($data['data']['category'])) {
+			$response['error'][] = "Произошла ошибка";
+		}
 		if(empty($data['data']['tags'])) {
 			$response['error'][] = "Выберите хотя бы один тег";
 		}
@@ -107,10 +110,13 @@ class Writing extends CI_Controller {
 		'<script type="text/javascript" src="/media/post/new_post.js"></script>'.
 		'<script type="text/javascript" src="/media/post/service.js"></script>'.
 		'<link rel="stylesheet" type="text/css" href="/media/select2/select2.min.css">'.
-		'<script type="text/javascript" src="/media/select2/select2.min.js"></script>';
+		'<script type="text/javascript" src="/media/select2/select2.min.js"></script>'.
+		'<script type="text/javascript" src="/media/post/book.js"></script>'.
+		'<link rel="stylesheet" type="text/css" href="/media/post/book.css">';
 
 		$this->data['postId'] = $post_id;
 		$this->data['tags'] = $this->post_model->get_tags();
+		$this->data['categories'] = $this->category_model->get_categories();
 		$this->data['user'] = $this->ion_auth->user()->row();
 		
 		$postData = $this->post_model->get_user_post($this->data['user']->id, $post_id);
@@ -254,7 +260,8 @@ class Writing extends CI_Controller {
 
 			}else if($type == 'delimiter') {
 
-				$html .= '<div class="delimiter">***</div>';
+				$html .= '<hr>';
+				// $html .= '<div class="delimiter">***</div>';
 
 			}else if($type == 'quote') {
 
@@ -274,6 +281,57 @@ class Writing extends CI_Controller {
 				$html .= '<iframe height="320" width="580" scrolling="no" frameborder="no" allowtransparency="true" allowfullscreen="true" style="max-width: 100%;" src=';
 				$html .= '"'.$value['data']['embed'].'"';
 				$html .= '></iframe>';
+				$html .= '</div>';
+
+			}else if($type == 'book') {
+
+				$cover = $value['data']['cover'];
+				$title = $value['data']['title'];
+				$read_link = $value['data']['read_link'];
+				$buy_link = $value['data']['buy_link'];
+
+				$html .= '<div class="book">';
+				
+				// Обложка
+				$html .= '<img ';
+				$html .= 'class="book_cover"';
+				$html .= ' src="/static/uploads/posts/'.$cover.'"';
+				$html .= ' title="'.$title.'"';
+				$html .= ' alt="Обложка книги: '.$title.'"';
+				$html .= '/>';
+
+				// Название и ссылки книги
+				$html .= '<div class="book_meta">';
+
+				// Название книги
+				$html .= '<h2>';
+				$html .= $title;
+				$html .= '</h2>';
+
+				// Ссылка для чтения
+				if ($read_link !== '') {
+					$html .= '<a';
+					$html .= ' href="'.$read_link.'"';
+					$html .= ' target="_blank"';
+					$html .= ' rel="noopener noreferrer nofollow"';
+					$html .= '>';
+					$html .= 'Читать';
+					$html .= '</a>';
+				}
+
+				// Ссылка для купли
+				if ($buy_link !== '') {
+					$html .= '<a';
+					$html .= ' href="'.$buy_link.'"';
+					$html .= ' target="_blank"';
+					$html .= ' rel="noopener noreferrer nofollow"';
+					$html .= '>';
+					$html .= 'Купить';
+					$html .= '</a>';
+				}
+
+				$html .= '</div>';
+				
 				$html .= '</div>';
 			}
 		}

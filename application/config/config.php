@@ -458,9 +458,13 @@ $config['csrf_exclude_uris'] = array(
     'upload/article_preview',
     'writing/publish',
     'upload/article_image',
-    'post/fetch',
+    'upload/book_cover',
     'upload/fetch_image',
-    'writing/fetchUrl'
+    'writing/fetchUrl',
+    'post/fetch',
+    'tag/fetch',
+    'search/fetch',
+    'category/fetch'
 );
 
 /*

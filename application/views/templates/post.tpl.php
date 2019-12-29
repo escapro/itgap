@@ -20,7 +20,7 @@
 		<div class="post-content">
 			<?php if($post['image_url'] !== ''): ?>
 			<div class="post-image">
-				<img src="https://itgap.ru/static/uploads/posts/<?=$post['image_url'];?>"
+				<img src="<?=base_url();?>/static/uploads/posts/<?=$post['image_url'];?>"
 					<?php if($post['title'] !== '') echo 'alt="'.$post['title'].'"'; ?>>
 			</div>
 			<?php endif; ?>
@@ -45,10 +45,10 @@
 		<div class="article-inline">
 			<div class="article-preview__image">
 				<a href="/post/<?=$value['post_name'];?>">
-					<img class="lazy" src="https://itgap.ru/media/images/placeholder.jpg" data-src="https://itgap.ru/static/uploads/posts/<?=$value['image_url'];?>" alt="image">
+					<img class="lazy" src="<?=base_url();?>/media/images/placeholder.jpg" data-src="<?=base_url();?>/static/uploads/posts/<?=$value['image_url'];?>" alt="image">
 				</a>
 				<noscript>
-					<img src="https://itgap.ru/static/uploads/posts/<?=$value['image_url'];?>" alt="image">
+					<img src="<?=base_url();?>/static/uploads/posts/<?=$value['image_url'];?>" alt="image">
                 </noscript>
 			</div>
 			<div class="article-preview__content">

@@ -78,30 +78,63 @@ $(document).ready(function () {
     });
 
     $('.header-toggle_main_menu-block').on('click', function () {
-        alert("ssdf");
+        alert("");
     })
 
     var loadPage = 1;
 
     $('.load-more').on('click', () => {
-        loadContent('all', '.content .feed', $(this))
+        var 
+            page = $('.content .feed').attr('page'),
+            data={},
+            url='',
+            container;
+
+        if(page == 'all') {
+            url = '/post/fetch';
+            data.type = 'all';
+            container = '.content .feed';
+
+        }else if(page == 'tag') {
+            url = '/tag/fetch';
+            data.tag = $('.content .feed').attr('tag');
+            container = '.content .feed'; 
+
+        }else if(page == 'search') {
+            url = '/search/fetch';
+            data.query = $('.content .feed').attr('query');
+            container = '.content .search-result-area';
+
+        }else if(page == 'category') {
+            url = '/category/fetch';
+            data.category = $('.content .feed').attr('category');
+            container = '.content .feed';
+        }else if(page == 'top') {
+            url = '/post/fetch';
+            data.type = 'top';
+            container = '.content .feed';
+        }
+    
+        loadContent(data, url, container)
     });
 
-    function loadContent(type, container, object) {
-        
-        var data={}
+    function loadContent(data, url, container) {
 
         data.page = loadPage + 1;
-        data.postsType = type;
 
         $.ajax({
             type: "POST",
-            url: '/post/fetch',
+            url: url,
             data: data,
             success: function (response) {
                 response = JSON.parse(response);
+
                 $(container).append(response.html);
                 loadPage++;
+
+                if(response.isLastPage == 1) {
+                    $('.load-more').parent().remove();
+                }
             }
         });
     }
