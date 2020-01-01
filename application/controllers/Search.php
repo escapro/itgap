@@ -79,9 +79,9 @@ class Search extends CI_Controller {
 			'<article class="article-inline">
 				<div class="article-preview__content">
 					<a href="/post/'.$value['post_name'].'">
-						<h2 class="article-preview__title">'.preg_replace("/\w*?$query\w*/i", "<mark>$0</mark>", $value['title']).'</h2>
+						<h2 class="article-preview__title">'.preg_replace("/\w*?$query\w*/i", "<b>$0</b>", $value['title']).'</h2>
 						<div class="article-preview-description">
-							<p>'.preg_replace("/\w*?$query\w*/i", "<mark>$0</mark>", $value['preview_text']).'</p>
+							<p>'.preg_replace("/\w*?$query\w*/i", "<b>$0</b>", $value['preview_text']).'</p>
 						</div>
 					</a>
 				</div>

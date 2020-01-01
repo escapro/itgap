@@ -315,7 +315,7 @@ class Writing extends CI_Controller {
 					$html .= ' target="_blank"';
 					$html .= ' rel="noopener noreferrer nofollow"';
 					$html .= '>';
-					$html .= 'Читать';
+					$html .= 'Скачать';
 					$html .= '</a>';
 				}
 

@@ -17,7 +17,7 @@
 				<a href="https://www.youtube.com/channel/UC1OJAB33isTzLjlUQaM12AA" target="_blank"><i class="soc-icon soc-icon-yt"></i></a>
 			</div>
 			<div class="footer-right">
-				© 2019 itgap.ru
+				© <?=Date('Y');?> itgap.ru
 			</div>
 		</div>
 	</div>
