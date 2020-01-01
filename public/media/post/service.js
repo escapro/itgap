@@ -70,6 +70,7 @@ $(document).ready(function () {
   });
 
   const edor = {
+    pageTitle: '.editor-page_title input',
     sourceLink: '.source-link input',
     editorTitle: '.editor__title textarea',
     mainImage: '.post__file-uploader #post-mainImage',
@@ -86,6 +87,7 @@ $(document).ready(function () {
 
   editorData.id = postData.postId;
   editorData.category = $(edor.postCategory).val();
+  editorData.pageTitle = '';
   editorData.link = '';
   editorData.tags = '';
   editorData.title = '';
@@ -121,6 +123,7 @@ $(document).ready(function () {
       }
     }
 
+    editorData.pageTitle = $(edor.pageTitle).val();
     editorData.link = $(edor.sourceLink).val();
     editorData.category = $(edor.postCategory).val();
     editorData.title = $(edor.editorTitle).val();
@@ -201,7 +204,7 @@ $(document).ready(function () {
     };
   }  
 
-  $(edor.sourceLink + ', ' + edor.editorTitle + ', ' + edor.preview).keyup(delay(function (e) {
+  $(edor.pageTitle + ', ' + edor.sourceLink + ', ' + edor.editorTitle + ', ' + edor.preview).keyup(delay(function (e) {
     saveData('/writing/save');
   }, 1000));
 

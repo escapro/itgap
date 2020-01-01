@@ -9,7 +9,7 @@
 				</div>
 			</div>
 				<div class="editor-width post-category mb-1"> 
-					<select>
+					<select class="form-control">
 						<?php
 							foreach ($categories as $key => $value) {
 								echo '<option value="'.$value['id'].'"';
@@ -30,8 +30,11 @@
 						?>
 					</select>
 				</div>
+				<div class="editor-width editor-page_title mb-1"> 
+					<input class="form-control" type="text" placeholder="Заголовок страницы" value="<?=$postData['post_name'] ?? ''?>">
+				</div>
 				<div class="editor-width source-link mb-1"> 
-					<input type="text" placeholder="Ссылка на источник" value="<?=$postData['link'] ?? ''?>">
+					<input class="form-control" type="text" placeholder="Ссылка на источник" value="<?=$postData['link'] ?? ''?>">
 				</div>
 				<div class="select-tag mb-2">
 					<select class="editor-tag__selector" name="states[]" multiple="multiple">

@@ -161,11 +161,6 @@ $page-left-side-width: calc(100% - #{$page-right-side-width});
     width: 200px;
     height: 100%;
     color: #fff;
-    -webkit-box-pack: start;
-    -ms-flex-pack: start;
-    justify-content: start;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
     align-items: center;
     font-size: 40px;
 	font-weight: 900;
@@ -1001,7 +996,7 @@ $page-left-side-width: calc(100% - #{$page-right-side-width});
 	font-family: 'Roboto', sans-serif!important;
 }
 
-.editor-width input, .editor-width textarea, .editor-width label {
+.editor .editor__title textarea, .editor .editor-item__bg {
 	width: 100%;
 	border-radius: 5px;
 	border: none;
@@ -1010,18 +1005,12 @@ $page-left-side-width: calc(100% - #{$page-right-side-width});
     box-sizing: border-box;
 }
 
-.source-link input {
+.editor .form-control {
+	width: 100%;
 	padding: 10px 15px;
+	border-radius: 4px;
 	font-size: 15px;
 	border: 1px solid #EDEDED;
-}
-
-.post-category select {
-	width: 100%;
-    border-radius: 4px;
-    padding: 10px 15px;
-    font-size: 15px;
-    border: 1px solid #EDEDED;
 }
 
 .editor__title textarea {

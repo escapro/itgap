@@ -37,9 +37,11 @@ $(document).ready(function () {
 
         switch (action) {
             case 'delete':
-                $.get('/writing/' + postId + '/delete', function(data, status){
-                    postBlock.remove();
-                });
+                if(confirm("Вы действительно хотите удалить данный пост?")) {
+                    $.get('/writing/' + postId + '/delete', function(data, status){
+                        postBlock.remove();
+                    });
+                }
             break;
         }
     })
