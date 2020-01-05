@@ -59,7 +59,11 @@ $(document).ready(function () {
         config: {
           quotePlaceholder: 'Введите цитату',
           captionPlaceholder: 'Укажите автора',
-        },
+        }
+      },
+      table: {
+        class: Table,
+        inlineToolbar: true
       },
       book: Book
     },
