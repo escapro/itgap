@@ -333,6 +333,24 @@ class Writing extends CI_Controller {
 				$html .= '</div>';
 				
 				$html .= '</div>';
+
+			}else if($type == 'table') {
+
+				$html .= '<table>';
+
+				foreach ($value['data']['content'] as $key_2 => $value_2) {
+					$html .= '<tr>';
+					foreach ($value_2 as $value_3) {
+						$html .= '<td>';
+						$html .= $value_3;
+						$html .= '</td>';
+					}
+
+					$html .= '</tr>';
+				}
+
+				$html .= '</table>';
+
 			}
 		}
 
