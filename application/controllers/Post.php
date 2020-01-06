@@ -16,11 +16,11 @@ class Post extends CI_Controller {
 		}
 	}
 
-	public function show($post_name)
+	public function show($category, $post_name)
 	{
 		try {
 			$this->post_model->add_view($post_name);
-			$this->data['post'] = $this->post_model->get_post($post_name)[0];
+			$this->data['post'] = $this->post_model->get_post($post_name, $category)[0];
 		} catch (\Throwable $th) {
 			show_404();
 		}

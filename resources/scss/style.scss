@@ -764,7 +764,8 @@ $page-left-side-width: calc(100% - #{$page-right-side-width});
     width: 100%;
     height: 100%;
     border-collapse: collapse;
-    table-layout: fixed;
+	table-layout: fixed;
+	margin-bottom: 10px;
 }
 
 .post-entry table td {

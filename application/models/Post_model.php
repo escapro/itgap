@@ -42,12 +42,14 @@ class Post_model extends CI_Model {
 		return $data;
 	}
 
-	public function get_post($post_name) {
+	public function get_post($post_name, $category) {
 		$this->db->select("p.id as post_ID, p.title, p.preview_text, p.post_id as post_id, p.last_change, p.preview_image_url as image_url, p.post_name, p.data_html, pv.count as views");
 		$this->db->from("posts p");
 		$this->db->join('active_posts a', 'p.id=a.post_id');
 		$this->db->join('post_views pv', 'pv.post_id=p.id');
+		$this->db->join('categories cat', 'cat.id=p.category_id');
 		$this->db->where("p.post_name", $post_name);
+		$this->db->where("cat.url_name", $category);
 		$query = $this->db->get();
 		$data = $query->result_array();
 

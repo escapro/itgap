@@ -74,7 +74,6 @@ $route['rights'] = 'page/rights';
 
 $route['post/new'] = 'post/new';
 $route['post/fetch'] = 'post/fetch';
-$route['post/(:any)'] = 'post/show/$1';
 $route['post/(:any)/preview'] = 'post/preview/$1';
 
 $route['tag/fetch'] = 'category/tag_fetch';
@@ -82,7 +81,7 @@ $route['tag/fetch'] = 'category/tag_fetch';
 $route['category/fetch'] = 'category/category_fetch';
 $route['category/(:any)'] = 'category/category/$1';
 
-$route['books/(:any)'] = 'category/index/$1';
+// $route['books/(:any)'] = 'category/index/$1';
 
 $route['search/fetch'] = 'search/fetch';
 
@@ -94,9 +93,6 @@ $route['top'] = 'home/top';
 $route['(:any)/(:any)'] = function ($firts, $second) {
 
     switch ($firts) {
-        case 'post':
-            return 'post/'.$second;
-            break;
         case 'user':
             return 'user/'.$second;
             break;
@@ -113,7 +109,7 @@ $route['(:any)/(:any)'] = function ($firts, $second) {
             return 'sitemap/'.$second;
             break;
         default:
-            return 'post/index/'.$firts.'/'.$second;
+            return 'post/show/'.$firts.'/'.$second;
             break;
     }
 };
