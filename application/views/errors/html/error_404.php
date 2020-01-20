@@ -45,7 +45,7 @@
     		color: #333;
 		}
 		.error-msg {
-			font-size: 42px;
+			font-size: 2em;
     		color: #8e8e8e;
 		}
 	</style>
