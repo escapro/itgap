@@ -8,13 +8,10 @@
 				</ul>
 			</div>
 			<div class="footer-social">
-				<a href="https://www.facebook.com/itgap.ru" target="_blank"><i class="soc-icon soc-icon-fb"></i></a>
-				<a href="https://vk.com/public176209611" target="_blank"><i class="soc-icon soc-icon-vk"></i></a>
+				<a href="https://vk.com/itgap_official" target="_blank"><i class="soc-icon soc-icon-vk"></i></a>
 				<a href="https://twitter.com/itgap_official" target="_blank"><i class="soc-icon soc-icon-tw"></i></a>
 				<a href="https://t.me/itgap_official" target="_blank"><i class="soc-icon soc-icon-tg"></i></a>
-				<a href="https://www.instagram.com/itgap_official" target="_blank"><i class="soc-icon soc-icon-in"></i></a>
-				<a href="https://zen.yandex.ru/id/5d6546559c944600ac5c0ec3" target="_blank"><i class="soc-icon soc-icon-zn"></i></a>
-				<a href="https://www.youtube.com/channel/UC1OJAB33isTzLjlUQaM12AA" target="_blank"><i class="soc-icon soc-icon-yt"></i></a>
+				<a href="https://zen.yandex.ru/itgap" target="_blank"><i class="soc-icon soc-icon-zn"></i></a>
 			</div>
 			<div class="footer-right">
 				© <?=Date('Y');?> itgap.ru
