@@ -1,6 +1,0 @@
-{
-    "require": {
-        "codex-team/editor.js": "dev-master",
-        "intervention/image": "^2.5"
-    }
-}

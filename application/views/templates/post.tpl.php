@@ -32,7 +32,8 @@
 			
 		</div>
 	</article>
-	<script>
+	<script async>
+		$(".post-entry a").attr("target", "_blank");		
 		document.addEventListener('DOMContentLoaded', (event) => {
 			document.querySelectorAll('pre code').forEach((block) => {
 				hljs.highlightBlock(block);

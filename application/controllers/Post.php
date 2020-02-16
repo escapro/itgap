@@ -25,6 +25,10 @@ class Post extends CI_Controller {
 			show_404();
 		}
 
+		if(empty($this->data['post'])) {
+			show_404();
+		}
+
 		$this->data['page_title'] = $this->data['post']['title']." — itGap";
 		$this->data['page_description'] = $this->data['post']['preview_text'];
 		$this->data['page_image'] = $this->data['post']['image_url'];
