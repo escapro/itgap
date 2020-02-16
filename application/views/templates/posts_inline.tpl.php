@@ -20,9 +20,9 @@
 				<article class="article-inline">
 					<div class="article-preview__content">
 						<a href="/post/<?=$value['post_name'];?>">
-							<h2 class="article-preview__title"><?php echo preg_replace("/\w*?$query\w*/i", "<b>$0</b>", $value['title'])?></h2>
+							<h2 class="article-preview__title"><?php echo preg_replace("/\w*?$query\w*/i", "<b style='font-size: 21px'>$0</b>", $value['title'])?></h2>
 							<div class="article-preview-description">
-								<p><?php echo preg_replace("/\w*?$query\w*/i", "<b>$0</b>", $value['preview_text'])?></p>
+								<p><?php echo preg_replace("/\w*?$query\w*/i", "<b style='font-size: 16px'>$0</b>", $value['preview_text'])?></p>
 							</div>
 						</a>
 					</div>
@@ -31,6 +31,7 @@
 							<img src="https://itgap.ru/static/uploads/posts/<?=$value['image_url'];?>" alt="image">
 						</a>
 					</div>
+					<div class="article-inline_borderBottom"></div>
 				</article>
 				<?php endforeach; ?>
 				<?php else: ?>

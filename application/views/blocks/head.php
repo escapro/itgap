@@ -10,6 +10,13 @@
 		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-131792796-2"></script>
 		<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'UA-131792796-2');</script>
 		<meta name="google-site-verification" content="2I45M7PBDeVLgx1uQn51I4t4YmJORZ0IFB-mUSzfGSA" />
+		<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+		<script>
+			(adsbygoogle = window.adsbygoogle || []).push({
+				google_ad_client: "ca-pub-9975977745394887",
+				enable_page_level_ads: true
+			});
+		</script>
 	<?php endif; ?>
 	
 	<title><?=$page_title;?></title>
