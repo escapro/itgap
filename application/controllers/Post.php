@@ -203,7 +203,7 @@ class Post extends CI_Controller {
 		foreach ($posts['posts'] as $key => $value) {
 			$response['html'] .= '<article class="article-preview block">
 				<div class="article-preview__content">
-					<a href=/post/'.$value['post_name'].'">
+					<a href=/'.$value['category_url'].'/'.$value['post_name'].'">
 						<h2 class="article-preview__title">'.$value['title'].'</h2>
 						<div class="article-preview-description">'.$value['preview_text'].'</div></a>
 					<div class="article-tags">';
@@ -213,7 +213,7 @@ class Post extends CI_Controller {
 			}
 
 			$response['html'] .= '</div></div><div class="article-preview__image">
-					<a href="/post/'.$value['post_name'].'">
+					<a href="/'.$value['category_url'].'/'.$value['post_name'].'">
 						<img src="https://itgap.ru/static/uploads/posts/'.$value['image_url'].'" alt="image">
 					</a>
 				</div>

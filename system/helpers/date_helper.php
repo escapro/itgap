@@ -757,7 +757,7 @@ if ( ! function_exists('date_range'))
 		switch ($monthType) {
 			case 'long':
 				$data['month'] = $CI->lang->line("cal_" . strtolower(date("M", $timestamp)) . "_2", FALSE);
-				return $data['day'].' '.$data['month'].' '.$data['year'].' в '.$data['hour'].':'.$data['min'];
+				return $data['day'].' '.$data['month'].' '.$data['year'];
 				break;
 			case 'number':
 				$data['month'] = date("m", $timestamp);
