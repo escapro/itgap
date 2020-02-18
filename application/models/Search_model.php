@@ -11,10 +11,11 @@ class Search_model extends CI_Model {
 	}
 
 	public function search ($search_query, $page=1) {
-		$this->db->select("p.title, p.preview_text, p.post_id as post_id, p.last_change, p.preview_image_url as image_url, p.post_name");
+		$this->db->select("p.title, p.preview_text, p.post_id as post_id, p.last_change, p.preview_image_url as image_url, p.post_name, cat.url_name as category_url");
 		$this->db->from("posts p");
 		$this->db->join('active_posts a', 'p.id=a.post_id');
 		$this->db->join('post_views pw', 'p.id=pw.post_id');
+		$this->db->join('categories cat', 'cat.id=p.category_id');
 		$this->db->like('p.title', $search_query);
 		$this->db->or_like('p.preview_text', $search_query);
 		$this->db->order_by('pw.count', 'desc');

@@ -22,7 +22,7 @@
             </div>
             <div class="sidebar-block__content">
                 <?php foreach ($suggested_posts_banner as $key => $value):?>
-                <a href="/post/<?=$value['post_name'];?>" class="sidebar-block__item">
+                <a href="/<?=$value['category_url'];?>/<?=$value['post_name'];?>" class="sidebar-block__item">
                     <!-- <div class="sidebar-block__item-image">
                         <img src="/static/uploads/posts/<?=$value['image_url'];?>" alt="image">
                     </div> -->

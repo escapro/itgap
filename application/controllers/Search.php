@@ -78,7 +78,7 @@ class Search extends CI_Controller {
 			$response['html'] .= 
 			'<article class="article-inline">
 				<div class="article-preview__content">
-					<a href="/post/'.$value['post_name'].'">
+					<a href="/'.$value['category_url'].'/'.$value['post_name'].'">
 						<h2 class="article-preview__title">'.preg_replace("/\w*?$query\w*/i", "<b>$0</b>", $value['title']).'</h2>
 						<div class="article-preview-description">
 							<p>'.preg_replace("/\w*?$query\w*/i", "<b>$0</b>", $value['preview_text']).'</p>
@@ -86,7 +86,7 @@ class Search extends CI_Controller {
 					</a>
 				</div>
 				<div class="article-preview__image">
-					<a href="/post/'.$value['post_name'].'">
+					<a href="/'.$value['category_url'].'/'.$value['post_name'].'">
 						<img src="https://itgap.ru/static/uploads/posts/'.$value['image_url'].'" alt="image">
 					</a>
 				</div>

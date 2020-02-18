@@ -45,7 +45,7 @@
 		<?php foreach ($suggested_posts as $key => $value):?>
 		<div class="article-inline">
 			<div class="article-preview__image">
-				<a href="/post/<?=$value['post_name'];?>">
+				<a href="/<?=$value['category_url'];?>/<?=$value['post_name'];?>">
 					<img class="lazy" src="<?=base_url();?>/media/images/placeholder.jpg" data-src="<?=base_url();?>/static/uploads/posts/<?=$value['image_url'];?>" alt="image">
 				</a>
 				<noscript>
@@ -53,7 +53,7 @@
                 </noscript>
 			</div>
 			<div class="article-preview__content">
-				<a href="/post/<?=$value['post_name'];?>">
+				<a href="/<?=$value['category_url'];?>/<?=$value['post_name'];?>">
 					<h2 class="article-preview__title"><?=$value['title'];?></h2>
 				</a>
 			</div>
