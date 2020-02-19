@@ -4,6 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Post_model extends CI_Model {
 
 	private $offsetCount = POST_COUNT;
+	private $currentShowenPostId = NULL;
 
 	function __construct()
 	{
@@ -57,6 +58,7 @@ class Post_model extends CI_Model {
 			$data[$key]['tags'] = $this->get_post_tags($value['post_ID']);		
 		}
 
+		$this->currentShowenPostId = $data[0]['post_ID'];
 		return $data;
 	}
 
@@ -619,6 +621,7 @@ class Post_model extends CI_Model {
 		$this->db->from("posts p");
 		$this->db->join('active_posts a', 'p.id=a.post_id');
 		$this->db->join('categories cat', 'cat.id=p.category_id');
+		$this->db->where_not_in('p.id', $this->currentShowenPostId);
 		$this->db->order_by("p.id", "RANDOM");
 		$this->db->limit($limit);
 		$query = $this->db->get();

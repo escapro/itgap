@@ -32,20 +32,16 @@
              </div>
         </div>
     </section>
-    <section class="sidebar-item">
-        <div class="sidebar-ad">
-            <?php if(APP_ENV == 'production'): ?>
-                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                <ins class="adsbygoogle"
-                    style="display:block"
-                    data-ad-client="ca-pub-9975977745394887"
-                    data-ad-slot="7516198603"
-                    data-ad-format="auto"
-                    data-full-width-responsive="true"></ins>
-                <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
-            <?php endif; ?>
-        </div>
+    <section class="sidebar-item sidebar-ad">
+        <?php if(APP_ENV == 'production'): ?>
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <ins class="adsbygoogle"
+                style="display:inline-block;width:320px;height:620px"
+                data-ad-client="ca-pub-9975977745394887"
+                data-ad-slot="7516198603"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        <?php endif; ?>
     </section>
 </aside>

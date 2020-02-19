@@ -45,6 +45,8 @@ class Post extends CI_Controller {
 		$this->load->helper('date_helper');
 		$this->data['post']['last_change'] = product_date_format($this->data['post']['last_change'], 'long');
 
+		$this->data['is_post_show_page'] = true;
+
 		$csrf = array(
 			'name' => $this->security->get_csrf_token_name(),
 			'hash' => $this->security->get_csrf_hash()

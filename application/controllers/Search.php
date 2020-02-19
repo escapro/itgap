@@ -90,6 +90,7 @@ class Search extends CI_Controller {
 						<img src="https://itgap.ru/static/uploads/posts/'.$value['image_url'].'" alt="image">
 					</a>
 				</div>
+				<div class="article-inline_borderBottom"></div>
 			</article>';
 		}
 

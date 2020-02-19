@@ -1,6 +1,6 @@
 <main class="content">
 	<div class="content_top-ad">
-		<?php if(APP_ENV == 'production'): ?>
+		<?php if(APP_ENV == 'production') : ?>
 			<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 			<ins class="adsbygoogle"
 				style="display:block"

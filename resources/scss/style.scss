@@ -397,10 +397,10 @@ $page-left-side-width: calc(100% - #{$page-right-side-width});
 	background-color: #c4e2ff;
 }
 
-// .main-sidebar {
-// 	position: sticky;
-// 	top: -225px;
-// }
+.main-sidebar {
+	position: sticky;
+	top: -595px;
+}
 
 .main-sidebar li {
 	list-style: none;

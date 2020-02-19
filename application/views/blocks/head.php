@@ -11,6 +11,19 @@
 		<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'UA-131792796-2');</script>
 		<meta name="google-site-verification" content="2I45M7PBDeVLgx1uQn51I4t4YmJORZ0IFB-mUSzfGSA" />
 	<?php endif; ?>
+
+	<script>var isAdBlockActive=true;</script>
+	<script src="/media/js/ads.js"></script>
+	<script>
+		window.onload = function() {
+			if (isAdBlockActive) {
+				document.getElementsByClassName("main-sidebar")[0].style.top = "-260px";
+			}else {
+				document.querySelector(".feed .article-preview:first-child").style.marginTop = "15px";	
+				document.getElementsByClassName("article-inline")[2].remove();
+			}
+		}
+	</script>
 	
 	<title><?=$page_title;?></title>
 
