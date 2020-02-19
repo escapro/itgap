@@ -78,10 +78,10 @@
 			<div class="article-inline">
 				<div class="article-preview__image">
 					<a href="/<?=$value['category_url'];?>/<?=$value['post_name'];?>">
-						<img class="lazy" src="<?=base_url();?>/media/images/placeholder.jpg" data-src="<?=base_url();?>/static/uploads/posts/<?=$value['image_url'];?>" alt="image">
+						<img class="lazy" src="<?=base_url();?>/media/images/placeholder.jpg" data-src="<?=base_url();?>/static/uploads/posts/<?=$value['image_url'];?>" alt="<?=$value['title'];?>">
 					</a>
 					<noscript>
-						<img src="<?=base_url();?>/static/uploads/posts/<?=$value['image_url'];?>" alt="image">
+						<img src="<?=base_url();?>/static/uploads/posts/<?=$value['image_url'];?>" alt="<?=$value['title'];?>">
 					</noscript>
 				</div>
 				<div class="article-preview__content">

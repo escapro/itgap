@@ -28,7 +28,7 @@
 					</div>
 					<div class="article-preview__image">
 						<a href="/<?=$value['category_url'];?>/<?=$value['post_name'];?>">
-							<img src="https://itgap.ru/static/uploads/posts/<?=$value['image_url'];?>" alt="image">
+							<img src="https://itgap.ru/static/uploads/posts/<?=$value['image_url'];?>" alt="<?=$value['title'];?>">
 						</a>
 					</div>
 					<div class="article-inline_borderBottom"></div>

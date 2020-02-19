@@ -216,7 +216,7 @@ class Post extends CI_Controller {
 
 			$response['html'] .= '</div></div><div class="article-preview__image">
 					<a href="/'.$value['category_url'].'/'.$value['post_name'].'">
-						<img src="https://itgap.ru/static/uploads/posts/'.$value['image_url'].'" alt="image">
+						<img src="https://itgap.ru/static/uploads/posts/'.$value['image_url'].'" alt="'.$value['title'].'">
 					</a>
 				</div>
 				</article>';
