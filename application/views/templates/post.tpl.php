@@ -1,4 +1,16 @@
 <main class="content">
+<?php if(APP_ENV == 'production'): ?>
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<ins class="adsbygoogle"
+		style="display:block"
+		data-ad-client="ca-pub-9975977745394887"
+		data-ad-slot="6901476157"
+		data-ad-format="auto"
+		data-full-width-responsive="true"></ins>
+	<script>
+		(adsbygoogle = window.adsbygoogle || []).push({});
+	</script>
+<?php endif; ?>
 	<article class="block post post-entry-content">
 		<header class="post-header">
 			<h1><?php if($post['title'] !== '') echo $post['title']; ?></h1>
@@ -26,8 +38,22 @@
 			<?php endif; ?>
 			<div class="post-entry">
 				<?=$post['data_html'];?>
+				<div class="post-bottom_ad">
+					<?php if(APP_ENV == 'production'): ?>
+						<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+						<ins class="adsbygoogle"
+							style="display:block; text-align:center;"
+							data-ad-layout="in-article"
+							data-ad-format="fluid"
+							data-ad-client="ca-pub-9975977745394887"
+							data-ad-slot="2995565323"></ins>
+						<script>
+							(adsbygoogle = window.adsbygoogle || []).push({});
+						</script>
+					<?php endif; ?>
+				</div>
 			</div>
-			<div>
+		</div>
 		<div class="post-entry-footer">
 			
 		</div>
@@ -42,22 +68,43 @@
 	</script>
 	<div class="post suggested-posts">
 		<h3>Также рекомендуем:</h3>
+		<?php $loop = 0?>
 		<?php foreach ($suggested_posts as $key => $value):?>
-		<div class="article-inline">
-			<div class="article-preview__image">
-				<a href="/<?=$value['category_url'];?>/<?=$value['post_name'];?>">
-					<img class="lazy" src="<?=base_url();?>/media/images/placeholder.jpg" data-src="<?=base_url();?>/static/uploads/posts/<?=$value['image_url'];?>" alt="image">
-				</a>
-				<noscript>
-					<img src="<?=base_url();?>/static/uploads/posts/<?=$value['image_url'];?>" alt="image">
-                </noscript>
-			</div>
-			<div class="article-preview__content">
-				<a href="/<?=$value['category_url'];?>/<?=$value['post_name'];?>">
-					<h2 class="article-preview__title"><?=$value['title'];?></h2>
-				</a>
-			</div>
-		</div>
+			<?php $loop++; ?>
+			<?php if($loop == 2): ?>
+				<div class="article-inline">
+					<div class="suggested-posts_ad">
+						<?php if(APP_ENV == 'production'): ?>
+							<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+							<ins class="adsbygoogle"
+								style="display:block"
+								data-ad-format="fluid"
+								data-ad-layout-key="-h8+t-2c-eb+z1"
+								data-ad-client="ca-pub-9975977745394887"
+								data-ad-slot="7958101982"></ins>
+							<script>
+								(adsbygoogle = window.adsbygoogle || []).push({});
+							</script>
+						<?php endif; ?>
+					</div>
+				</div>
+			<?php else: ?>
+				<div class="article-inline">
+					<div class="article-preview__image">
+						<a href="/<?=$value['category_url'];?>/<?=$value['post_name'];?>">
+							<img class="lazy" src="<?=base_url();?>/media/images/placeholder.jpg" data-src="<?=base_url();?>/static/uploads/posts/<?=$value['image_url'];?>" alt="image">
+						</a>
+						<noscript>
+							<img src="<?=base_url();?>/static/uploads/posts/<?=$value['image_url'];?>" alt="image">
+						</noscript>
+					</div>
+					<div class="article-preview__content">
+						<a href="/<?=$value['category_url'];?>/<?=$value['post_name'];?>">
+							<h2 class="article-preview__title"><?=$value['title'];?></h2>
+						</a>
+					</div>
+				</div>
+			<?php endif; ?>
 		<?php endforeach; ?>
 	</div>
 </main>

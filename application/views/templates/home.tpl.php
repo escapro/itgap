@@ -1,4 +1,18 @@
 <main class="content">
+	<div class="content_top-ad">
+		<?php if(APP_ENV == 'production'): ?>
+			<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+			<ins class="adsbygoogle"
+				style="display:block"
+				data-ad-client="ca-pub-9975977745394887"
+				data-ad-slot="6901476157"
+				data-ad-format="auto"
+				data-full-width-responsive="true"></ins>
+			<script>
+				(adsbygoogle = window.adsbygoogle || []).push({});
+			</script>
+		<?php endif; ?>
+	</div>
 	<section class="feed" <?=isset($load_attributes) ? $load_attributes : ""?>>
 	<?php foreach ($posts['posts'] as $key => $value):?>
 		<article class="article-preview block">
