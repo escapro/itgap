@@ -3,49 +3,64 @@
 		<div class="editor">
 			<form action="#">
 			<div class="editor-error"></div>
-			<div class="editor-with editor-meta_info">
-				<div class="editor-date">
-					<span><?=$postData['last_change'] ?? ''?></span>
-				</div>
+			<div class="editor-with editor-meta_info mb-2">
+				<div class="form-field">
+					<label class="form-label" for="editor-datepicker">Дата публикации</label>
+					<input type='text' id="editor-datepicker" class="form-control editor-datepicker" value="<?php echo isset($postData['last_change']) ? $postData['last_change'] : time()?>"/>
+					<?php echo isset($postData['last_change']) ? '<small id="hDate" style="margin-left: 16px; color: silver">'.date("d.m.Y H:i", $postData['last_change']).'</small>' : '' ?>
+				</div> 
 			</div>
-				<div class="editor-width post-category mb-1"> 
-					<select class="form-control">
-						<?php
-							foreach ($categories as $key => $value) {
-								echo '<option value="'.$value['id'].'"';
-								if(isset($postData['category_id'])) {
-									if($postData['category_id'] == $value['id']) {
-										echo "selected";
-									}
-								}else {
-									if(isset($_GET['post_category'])) {
-										$cat = $_GET['post_category'];
-										if($cat == $value['id']) {
+				<div class="editor-width post-category mb-2"> 
+					<div class="form-field">
+						<label class="form-label" for="editor-category">Категория</label>
+						<select class="form-control" id="editor-category">
+							<?php
+								foreach ($categories as $key => $value) {
+									echo '<option value="'.$value['id'].'"';
+									if(isset($postData['category_id'])) {
+										if($postData['category_id'] == $value['id']) {
 											echo "selected";
 										}
+									}else {
+										if(isset($_GET['post_category'])) {
+											$cat = $_GET['post_category'];
+											if($cat == $value['id']) {
+												echo "selected";
+											}
+										}
 									}
+									echo '>'.$value['title'].'</option>';
 								}
-								echo '>'.$value['title'].'</option>';
-							}
-						?>
-					</select>
+							?>
+						</select>
+					</div>
 				</div>
-				<div class="editor-width editor-page_title mb-1"> 
-					<input class="form-control" type="text" placeholder="Заголовок страницы" value="<?=$postData['post_name'] ?? ''?>">
+				<div class="editor-width editor-page_title mb-2">
+					<div class="form-field">
+						<label class="form-label" for="editor-title">URL страницы</label>
+						<input class="form-control" id="editor-title" type="text" placeholder="Заголовок страницы" value="<?=$postData['post_name'] ?? ''?>">
+					</div>
 				</div>
-				<div class="editor-width source-link mb-1"> 
-					<input class="form-control" type="text" placeholder="Ссылка на источник" value="<?=$postData['link'] ?? ''?>">
-				</div>
+				<div class="editor-width source-link mb-2">
+					<div class="form-field">
+						<label class="form-label" for="editor-sourceLink">Ссылка на источник</label>
+						<input class="form-control" id="editor-sourceLink" type="text" placeholder="Ссылка на источник" value="<?=$postData['link'] ?? ''?>">
+					</div>
+					</div>
 				<div class="select-tag mb-2">
-					<select class="editor-tag__selector" name="states[]" multiple="multiple">
-						<?php
-							foreach ($tags['tags'] as $key => $value) {
-								echo '<option value="'.$value['id'].'"';
-								echo '>'.$value['title'].'</option>';
-							}
-						?>
-					</select>
+					<div class="form-field">
+						<label class="form-label" for="editorTags">Теги</label>
+						<select class="editor-tag__selector" id="editorTags" name="states[]" multiple="multiple">
+							<?php
+								foreach ($tags['tags'] as $key => $value) {
+									echo '<option value="'.$value['id'].'"';
+									echo '>'.$value['title'].'</option>';
+								}
+							?>
+						</select>
+					</div>
 				</div>
+				<hr>
 				<div class="editor-width editor__title mb-2">
 					<textarea name="title" placeholder="Заголовок" maxlength="120" default="Заголовок"><?=$postData['title'] ?? ''?></textarea>
 				</div>

@@ -69,12 +69,15 @@ $(document).ready(function () {
     },
     data: postData.editorData,
     onChange: () => {
-      saveData('/writing/save');
+      if(isAutoSave()) {
+        saveData('/writing/save');
+      }
     }
   });
 
   const edor = {
     pageTitle: '.editor-page_title input',
+    date: '#editor-datepicker',
     sourceLink: '.source-link input',
     editorTitle: '.editor__title textarea',
     mainImage: '.post__file-uploader #post-mainImage',
@@ -83,16 +86,18 @@ $(document).ready(function () {
     postCategory: '.post-category select',
     tagSelector: '.select-tag .editor-tag__selector',
     saveBtn: '.navbar__items .editor-save-btn',
+    updateBtn: '.navbar__items .editor-update-btn',
     previewBtn: '.navbar__items.editor-preview-btn',
     errorBar: '.editor-error'
   }
 
   var editorData = {};
-
+  
   editorData.id = postData.postId;
   editorData.category = $(edor.postCategory).val();
   editorData.pageTitle = '';
   editorData.link = '';
+  editorData.date = $(edor.date).val();
   editorData.tags = '';
   editorData.title = '';
   editorData.image = postData.previewImage;
@@ -101,16 +106,26 @@ $(document).ready(function () {
 
   function saveData(url = '') {
 
-    $(edor.publishBtn).prop('disabled', true);
-    $(edor.saveBtn).html('<div class="loader"></div>')
+    $(".btn").prop('disabled', true);
+    if(isAutoSave()) {
+      $(edor.saveBtn).html('<div class="loader"></div>') 
+    }else {
+      $(edor.previewBtn).html('<div class="loader"></div>') 
+    }
     setTimeout(() => {
-      $(edor.saveBtn).html('<span class="ico icon-floppy"></span>')
-      $(edor.publishBtn).prop('disabled', false);
+      if(isAutoSave()) {
+        $(edor.saveBtn).html('<span class="ico icon-floppy"></span>')
+      }else {
+        $(edor.previewBtn).html('<span class="ico icon-eye-1"></span>')
+      }
+      $(".btn").prop('disabled', false);
     }, 500);
 
-    if (url !== '') {
-      if (editorData !== '') {
-        window.history.pushState({}, "", '/writing/'+postData.postId+'/edit');
+    if(isAutoSave()) {
+      if (url !== '') {
+        if (editorData !== '') {
+          window.history.pushState({}, "", '/writing/'+postData.postId+'/edit');
+        }
       }
     }
 
@@ -161,7 +176,9 @@ $(document).ready(function () {
           '<div class="file-preview__controls"> <div class="file-preview__clear">Удалить</div> </div>' +
           '</div>'
         );
-        saveData('/writing/save');
+        if(isAutoSave()) {
+          saveData('/writing/save');
+        }
       })
   }
 
@@ -171,7 +188,7 @@ $(document).ready(function () {
       url: url,
       data: editorData,
       success: function (response) {
-        console.log(editorData);
+        // console.log(editorData);
         
         response = JSON.parse(response);
         
@@ -208,15 +225,13 @@ $(document).ready(function () {
     };
   }  
 
-  $(edor.pageTitle + ', ' + edor.sourceLink + ', ' + edor.editorTitle + ', ' + edor.preview).keyup(delay(function (e) {
-    saveData('/writing/save');
-  }, 1000));
-
   $(edor.tagSelector).select2({
     width: '100%',
     placeholder: 'Выберите теги'
   }).on('change', function() {
-    saveData('/writing/save');
+    if(isAutoSave()) {
+      saveData('/writing/save');
+    }
   });
 
   $(document).on("change", edor.mainImage, function (e, elem) {
@@ -225,14 +240,34 @@ $(document).ready(function () {
 
   $(document).on("change", edor.postCategory, function (e, elem) {
     editorData.category = $(edor.postCategory).val();
-    saveData('/writing/save');
+    if(isAutoSave()) {
+      saveData('/writing/save');
+    }
   })
 
   $(document).on('click', '.file-preview__clear', function () {
     $('.editor-file__loader').html('<label class="editor-item__bg post__file-uploader" for="post-mainImage"> <div class="db ta-c"> <span class="icon-picture"></span> <div class="mt-05">Разрешение картинки строго 2:1, минимальная высота 500px.</div> <input class="hide" id="post-mainImage" type="file" accept="image/*"> </div> </label>');
     editorData.image = '';
-    saveData('/writing/save');
+    if(isAutoSave()) {
+      saveData('/writing/save');
+    }
   })
+
+  if(isAutoSave()) {
+    $(edor.pageTitle + ', ' + edor.sourceLink + ', ' + edor.editorTitle + ', ' + edor.preview).keyup(delay(function (e) {
+      saveData('/writing/save');
+    }, 1000));
+  }
+
+  $(edor.date).keyup(delay(function (e) {
+    var dateValue = this.value;
+    editorData.date = dateValue;
+    var d = new Date(dateValue * 1000);
+    $('#hDate').html( d.getDate() + '.' + d.getMonth() + '.' + d.getFullYear() + ' ' + d.getHours() + ':' + d.getMinutes());
+    if(isAutoSave()) {
+      saveData('/writing/save');
+    }
+  }, 1000));
 
   $(document).on("click", edor.publishBtn, function (e, elem) {
     saveData('/writing/publish');
@@ -241,6 +276,12 @@ $(document).ready(function () {
   $(document).on("click", edor.saveBtn, function (e, elem) {
     saveData('/writing/save');
   })
+  
+  if(!isAutoSave()) {
+    $(document).on("click", edor.updateBtn, function (e, elem) {
+      saveData('/writing/update');
+    })
+  }
 
   $(document).on("click", edor.previewBtn, function (e, elem) {
     if(editorData.title !== '') {
@@ -250,5 +291,31 @@ $(document).ready(function () {
       );
     }
   })
+
+  $(document).on("click", "#editorDeletePost", function (e, elem) {
+    if(confirm("Вы действительно хотите удалить данный пост?")) {
+      $.get('/writing/' + postData.postId + '/delete', function(data, status){
+          window.location = "/user/drafts";
+      });
+    }
+  })
+
+  $(document).on("click", "#editorPostToDraft", function (e, elem) {
+    if(confirm("Вы действительно хотите переместить пост в черновик?")) {
+      $.get('/post/toDraft/' + postData.postId, function(data, status){
+          window.location = "/user/drafts";
+      });
+    }
+  })
+
+  function isAutoSave() {
+    $result = true;
+    switch (cPage) {
+      case 'postEditPage':
+        $result = false;
+        break;
+    }
+    return $result;
+  }
 
 });

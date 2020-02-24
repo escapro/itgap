@@ -12,6 +12,7 @@
 .icon-eye:before { content: '\e81d'; } /* '' */
 .icon-bookmark:before { content: '\e821'; } /* '' */
 .icon-chat:before { content: '\e826'; } /* '' */
+.icon-trash-empty:before { content: '\e82b'; } /* '' */
 .icon-cog:before { content: '\e830'; } /* '' */
 .icon-left-open:before { content: '\e84a'; } /* '' */
 .icon-right-open:before { content: '\e84b'; } /* '' */
@@ -19,3 +20,4 @@
 .icon-bell-alt:before { content: '\f0f3'; } /* '' */
 .icon-ellipsis:before { content: '\f141'; } /* '' */
 .icon-share:before { content: '\f1e0'; } /* '' */
+.icon-sticky-note:before { content: '\f249'; } /* '' */

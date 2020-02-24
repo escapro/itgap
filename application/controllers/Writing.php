@@ -14,9 +14,12 @@ class Writing extends CI_Controller {
 		$this->load->model('post_model');;
 	}
 
-	public function save()
+	public function save($postData=NULL, $update_time=false)
 	{
 		$data = '';
+		if($postData !== NULL) {
+			$data = $postData;
+		}
 		
 		if ($this->input->post()) {
 			$data = $this->normilize_data($this->input->post());
@@ -27,7 +30,7 @@ class Writing extends CI_Controller {
 		try {
 
 			$user_data = $this->ion_auth->user()->row();
-			$this->post_model->save_draft($data['data'], $data['html'], $user_data->id);
+			$this->post_model->save_draft($data['data'], $data['html'], $user_data->id, $update_time);
 			$response['success'] = 1;
 			
 			echo json_encode($response);
@@ -41,6 +44,26 @@ class Writing extends CI_Controller {
 		}	
 	}
 
+	public function update()
+	{
+		$data = '';
+		$response = array();
+		
+		if ($this->input->post()) {
+			$data = $this->normilize_data($this->input->post());
+		}else {
+			show_404();
+		}
+		
+		$response = $this->postErrorValidation($data);
+
+		if (empty($response['error'])) {
+			$this->save($data, true);
+		}else {
+			echo json_encode($response);
+		}
+	}
+
 	public function publish(){
 
 		$data = '';
@@ -51,32 +74,8 @@ class Writing extends CI_Controller {
 		}else {
 			show_404();
 		}
-
-		$this->load->helper(array('form', 'url'));
-		$this->load->library('form_validation');
-
-		// Проерка формы
-		if (empty($data['data']['id']) && empty($data['data']['tag']) && empty($data['data']['editorData'])) {
-			$response['error'][] = "Произошла ошибка";
-		}
-		if (empty($data['data']['title'])) {
-			$response['error'][] = "Нет названия";
-		}
-		if(strlen($data['data']['title']) < 20 && strlen($data['data']['title']) > 1) {
-			$response['error'][] = "Минимальная длина названия: 20";
-		}
-		if(empty($data['data']['image'])) {
-			$response['error'][] = "Нет изображения";
-		}
-		if(empty($data['data']['preview'])) {
-			$response['error'][] = "Нет краткого содержания";
-		}
-		if (empty($data['data']['category'])) {
-			$response['error'][] = "Произошла ошибка";
-		}
-		if(empty($data['data']['tags'])) {
-			$response['error'][] = "Выберите хотя бы один тег";
-		}
+		
+		$response = $this->postErrorValidation($data);
 
 		if (empty($response['error'])) {
 
@@ -90,6 +89,8 @@ class Writing extends CI_Controller {
 	
 			} catch (\Throwable $th) {
 	
+				// echo $th;
+				// exit();
 				$response['success'] = 0;
 				$response['error'] = "Произошла ошибка:";
 	
@@ -118,8 +119,10 @@ class Writing extends CI_Controller {
 		$this->data['tags'] = $this->post_model->get_tags();
 		$this->data['categories'] = $this->category_model->get_categories();
 		$this->data['user'] = $this->ion_auth->user()->row();
+
+		$this->data['postWritingPage'] = true;
 		
-		$postData = $this->post_model->get_user_post($this->data['user']->id, $post_id);
+		$postData = $this->post_model->get_user_draft_post_data($this->data['user']->id, $post_id);
 
 		if($postData) {
 			$this->data['postData'] = $postData;
@@ -137,6 +140,7 @@ class Writing extends CI_Controller {
 			$d = "";
 
 			$d .= "postData = {};\n";
+			$d .= 'cPage = "postWritingPage";'."\n";
 			$d .= 'postData.postId = "'.$post_id.'";'."\n";
 			$d .= 'postData.previewImage = "'.$postData["preview_image_url"].'";'."\n";
 			$d .= "postData.editorData = ".$postData['data_json'].";";
@@ -163,6 +167,38 @@ class Writing extends CI_Controller {
 	
 			echo json_encode($response);
 		}
+	}
+
+	private function postErrorValidation($data){
+		$this->load->helper(array('form', 'url'));
+		$this->load->library('form_validation');
+
+		$response = array();
+
+		// Проерка формы
+		if (empty($data['data']['id']) && empty($data['data']['tag']) && empty($data['data']['editorData'])) {
+			$response['error'][] = "Произошла ошибка";
+		}
+		if (empty($data['data']['title'])) {
+			$response['error'][] = "Нет названия";
+		}
+		if(strlen($data['data']['title']) < 20 && strlen($data['data']['title']) > 1) {
+			$response['error'][] = "Минимальная длина названия: 20";
+		}
+		if(empty($data['data']['image'])) {
+			$response['error'][] = "Нет изображения";
+		}
+		if(empty($data['data']['preview'])) {
+			$response['error'][] = "Нет краткого содержания";
+		}
+		if (empty($data['data']['category'])) {
+			$response['error'][] = "Произошла ошибка";
+		}
+		if(empty($data['data']['tags'])) {
+			$response['error'][] = "Выберите хотя бы один тег";
+		}
+
+		return $response;
 	}
 
 	private function normilize_data($data) {

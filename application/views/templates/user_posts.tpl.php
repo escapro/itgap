@@ -47,7 +47,10 @@
 						<?php if ($value['image_url'] !== ''):?>
 							<div class="article-preview__image">
 								<a href="/post/preview/<?=$value['post_id'];?>">
-									<img src="<?=base_url();?>static/uploads/posts/<?=$value['image_url'];?>" alt="image">
+									<img class="lazy" src="<?=base_url();?>/media/images/placeholder.jpg" data-src="<?=base_url();?>/static/uploads/posts/<?=$value['image_url'];?>" alt="<?=$value['title'];?>">
+									<noscript>
+										<img src="<?=base_url();?>/static/uploads/posts/<?=$value['image_url'];?>" alt="<?=$value['title'];?>">
+									</noscript>
 								</a>
 							</div>
 						<?php endif;?>

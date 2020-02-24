@@ -455,6 +455,7 @@ $config['csrf_expire'] = 7200;
 $config['csrf_regenerate'] = FALSE;
 $config['csrf_exclude_uris'] = array(
     'writing/save',
+    'writing/update',
     'upload/article_preview',
     'writing/publish',
     'upload/article_image',
@@ -462,6 +463,7 @@ $config['csrf_exclude_uris'] = array(
     'upload/fetch_image',
     'writing/fetchUrl',
     'post/fetch',
+    'post/toDraft',
     'tag/fetch',
     'search/fetch',
     'category/fetch'

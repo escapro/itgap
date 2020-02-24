@@ -22,6 +22,8 @@ class Post extends CI_Controller {
 			$this->post_model->add_view($post_name);
 			$this->data['post'] = $this->post_model->get_post($post_name, $category)[0];
 		} catch (\Throwable $th) {
+			echo $th;
+			exit();
 			show_404();
 		}
 
@@ -73,6 +75,8 @@ class Post extends CI_Controller {
 		$this->data['categories'] = $this->category_model->get_categories();
 		$this->data['tags'] = $this->post_model->get_tags();
 		$this->data['post_tags_jquery'] = '';
+
+		$this->data['postWritingPage'] = true;
 		
 		$csrf = array(
 			'name' => $this->security->get_csrf_token_name(),
@@ -82,6 +86,7 @@ class Post extends CI_Controller {
 		
 
 		$d = "";
+		$d .= 'cPage = "postWritingPage";'."\n";
 		$d .= "postData = {};";
 		$d .= 'postData.postId = "'.$this->data['postId'].'";';
 		$d .= 'postData.previewImage = "";';
@@ -119,6 +124,13 @@ class Post extends CI_Controller {
 		$this->load->view('post', $this->data);
 	}
 
+	public function toDraft($post_id){
+		$this->data['user'] = $this->ion_auth->user()->row();
+		if(!$this->post_model->set_draft($this->data['user']->id, $post_id)) {
+			show_404();
+		}
+	}
+
 	public function edit($post_id){
 
 		if (!$this->ion_auth->is_admin()){
@@ -140,13 +152,11 @@ class Post extends CI_Controller {
 		$this->data['categories'] = $this->category_model->get_categories();
 		$this->data['user'] = $this->ion_auth->user()->row();
 
-		$this->data['page_title'] = 'Редактирование — itGap';
+		$this->data['postEditPage'] = true;
 
-		if(!$this->post_model->set_draft($this->data['user']->id, $post_id)) {
-			show_404();
-		}
+		$this->data['page_title'] = 'Редактирование — itGap';
 		
-		$postData = $this->post_model->get_user_post($this->data['user']->id, $post_id);
+		$postData = $this->post_model->get_user_active_post_data($this->data['user']->id, $post_id);
 
 		if($postData) {
 			$this->data['postData'] = $postData;
@@ -164,6 +174,7 @@ class Post extends CI_Controller {
 			$d = "";
 
 			$d .= "postData = {};\n";
+			$d .= 'cPage = "postEditPage";'."\n";
 			$d .= 'postData.postId = "'.$post_id.'";'."\n";
 			$d .= 'postData.previewImage = "'.$postData["preview_image_url"].'";'."\n";
 			$d .= "postData.editorData = ".$postData['data_json'].";";

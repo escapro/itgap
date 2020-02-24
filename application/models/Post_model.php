@@ -94,7 +94,7 @@ class Post_model extends CI_Model {
 		return $last_insert_post_id;
 	}
 
-	private function update_post ($data, $html) {
+	private function update_post ($data, $html, $update_time) {
 
 		$data['pageTitle'] = str_replace(' ', '-', $data['pageTitle']);
 
@@ -139,15 +139,20 @@ class Post_model extends CI_Model {
 			'preview_image_url' => $data['image'],
 			'post_name' => $post_name,
 			'data_json' => $data['editorData'],
-			'data_html' => $html,
-			'last_change' => time()
+			'data_html' => $html
 		);
+
+		if(!$update_time) {
+			$update_data['last_change'] = time();
+		}else {
+			$update_data['last_change'] = $data['date'];
+		}
 
 		$this->db->where('post_id', $data['id']);
 		$this->db->update('posts', $update_data);
 	}
 
-	public function save_draft ($data, $html, $user_id) {
+	public function save_draft ($data, $html, $user_id, $update_time) {
 
 		if(!$this->check_post_user($data['id'], $user_id)) {
 
@@ -161,7 +166,7 @@ class Post_model extends CI_Model {
 
 
 		}else {
-			$this->update_post($data, $html);
+			$this->update_post($data, $html, $update_time);
 
 			$post_id = $this->get_post_id($data['id']);
 
@@ -195,7 +200,7 @@ class Post_model extends CI_Model {
 
 		if($this->check_post_user($data['id'], $user_id)) {
 
-			$this->update_post($data, $html);
+			$this->update_post($data, $html, false);
 
 			$this->db->select("id");
 			$this->db->from("posts");
@@ -338,10 +343,24 @@ class Post_model extends CI_Model {
 		return $data;
 	}
 
-	public function get_user_post ($user_id, $post_id) {
+	public function get_user_draft_post_data ($user_id, $post_id) {
 		$this->db->select("*");
 		$this->db->from("posts p");
 		$this->db->join('draft_posts d', 'p.id=d.post_id');
+		$this->db->where("p.user_id", $user_id);
+		$this->db->where("p.post_id", $post_id);
+		$query = $this->db->get();
+		$data = $query->result_array();
+
+		if(!empty($data)) return $data[0];
+
+		return false;
+	}
+
+	public function get_user_active_post_data ($user_id, $post_id) {
+		$this->db->select("*");
+		$this->db->from("posts p");
+		$this->db->join('active_posts a', 'p.id=a.post_id');
 		$this->db->where("p.user_id", $user_id);
 		$this->db->where("p.post_id", $post_id);
 		$query = $this->db->get();

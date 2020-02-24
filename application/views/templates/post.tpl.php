@@ -1,16 +1,18 @@
 <main class="content">
-<?php if(APP_ENV == 'production' && isset($is_post_show_page)): ?>
-	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-	<ins class="adsbygoogle"
-		style="display:block"
-		data-ad-client="ca-pub-9975977745394887"
-		data-ad-slot="6901476157"
-		data-ad-format="auto"
-		data-full-width-responsive="true"></ins>
-	<script>
-		(adsbygoogle = window.adsbygoogle || []).push({});
-	</script>
-<?php endif; ?>
+	<div class="content_top-ad">
+		<?php if(APP_ENV == 'qwe' && isset($is_post_show_page)): ?>
+			<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+			<ins class="adsbygoogle"
+				style="display:block"
+				data-ad-client="ca-pub-9975977745394887"
+				data-ad-slot="6901476157"
+				data-ad-format="auto"
+				data-full-width-responsive="true"></ins>
+			<script>
+				(adsbygoogle = window.adsbygoogle || []).push({});
+			</script>
+		<?php endif; ?>
+	</div>
 	<article class="block post post-entry-content">
 		<header class="post-header">
 			<h1><?php if($post['title'] !== '') echo $post['title']; ?></h1>
