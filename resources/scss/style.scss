@@ -399,7 +399,7 @@ $page-left-side-width: calc(100% - #{$page-right-side-width});
 
 .main-sidebar {
 	position: sticky;
-	top: -630px;
+	top: -995px;
 }
 
 .main-sidebar li {
@@ -470,6 +470,10 @@ $page-left-side-width: calc(100% - #{$page-right-side-width});
 	font-size: 14px;
 	display: table-cell;
 	vertical-align: middle;
+}
+
+.bxS {
+	box-shadow: 0px 0px 6px -4px rgba(0,0,0,0.75);
 }
 
 .tg-link{

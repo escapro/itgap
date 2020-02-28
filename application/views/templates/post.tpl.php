@@ -1,16 +1,27 @@
 <main class="content">
-	<div class="content_top-ad">
-		<?php if(APP_ENV == 'qwe' && isset($is_post_show_page)): ?>
-			<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-			<ins class="adsbygoogle"
-				style="display:block"
-				data-ad-client="ca-pub-9975977745394887"
-				data-ad-slot="6901476157"
-				data-ad-format="auto"
-				data-full-width-responsive="true"></ins>
-			<script>
-				(adsbygoogle = window.adsbygoogle || []).push({});
+	<div class="mb-2 bxS">
+		<?php if(APP_ENV == 'production'): ?>
+			<div id="yandex_rtb_R-A-518420-3"></div>
+			<script type="text/javascript">
+				(function(w, d, n, s, t) {
+					w[n] = w[n] || [];
+					w[n].push(function() {
+						Ya.Context.AdvManager.render({
+							blockId: "R-A-518420-3",
+							renderTo: "yandex_rtb_R-A-518420-3",
+							async: true
+						});
+					});
+					t = d.getElementsByTagName("script")[0];
+					s = d.createElement("script");
+					s.type = "text/javascript";
+					s.src = "//an.yandex.ru/system/context.js";
+					s.async = true;
+					t.parentNode.insertBefore(s, t);
+				})(this, this.document, "yandexContextAsyncCallbacks");
 			</script>
+		<?php else: ?>
+			<div class="bxS mb-2" style="display: block; width: 760px; height: 210px; background-color: #333"></div>
 		<?php endif; ?>
 	</div>
 	<article class="block post post-entry-content">
@@ -40,6 +51,29 @@
 			<?php endif; ?>
 			<div class="post-entry">
 				<?=$post['data_html'];?>
+				<?php if(APP_ENV == 'production'): ?>
+					<div id="yandex_rtb_R-A-518420-4"></div>
+					<script type="text/javascript">
+						(function(w, d, n, s, t) {
+							w[n] = w[n] || [];
+							w[n].push(function() {
+								Ya.Context.AdvManager.render({
+									blockId: "R-A-518420-4",
+									renderTo: "yandex_rtb_R-A-518420-4",
+									async: true
+								});
+							});
+							t = d.getElementsByTagName("script")[0];
+							s = d.createElement("script");
+							s.type = "text/javascript";
+							s.src = "//an.yandex.ru/system/context.js";
+							s.async = true;
+							t.parentNode.insertBefore(s, t);
+						})(this, this.document, "yandexContextAsyncCallbacks");
+					</script>
+				<?php else: ?>
+					<div class="bxS mb-2" style="display: block; width: 690px; height: 320px; background-color: #333"></div>
+				<?php endif; ?>
 			</div>
 		</div>
 		<div class="post-entry-footer">
@@ -58,25 +92,7 @@
 		<h3>Также рекомендуем:</h3>
 		<?php $loop = 0?>
 		<?php foreach ($suggested_posts as $key => $value):?>
-			<?php $loop++; ?>
-			<?php if($loop == 2): ?>
-				<div class="article-inline">
-					<div class="suggested-posts_ad">
-						<?php if(APP_ENV == 'production'): ?>
-							<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-							<ins class="adsbygoogle"
-								style="display:block"
-								data-ad-format="fluid"
-								data-ad-layout-key="-hn+t-2c-eb+z1"
-								data-ad-client="ca-pub-9975977745394887"
-								data-ad-slot="7958101982"></ins>
-							<script>
-								(adsbygoogle = window.adsbygoogle || []).push({});
-							</script>
-						<?php endif; ?>
-					</div>
-				</div>
-			<?php endif; ?>
+			<?php // ?>
 			<div class="article-inline">
 				<div class="article-preview__image">
 					<a href="/<?=$value['category_url'];?>/<?=$value['post_name'];?>">
