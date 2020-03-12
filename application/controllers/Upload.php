@@ -77,17 +77,17 @@ class Upload extends CI_Controller {
 				$resize_config['new_image']       	= 'static/uploads/posts/'.$image_url;
 				
 				if($type == 'article') {
-					if($data['image_width'] > 1000) {
-						$resize_config['width'] = 1000;
-					}else {
-						$resize_config['width'] = $data['image_width'];
-					}
+					// if($data['image_width'] > 1000) {
+					// 	$resize_config['width'] = 1000;
+					// }else {
+					// 	$resize_config['width'] = $data['image_width'];
+					// }
 					
-					if($data['image_height'] > 500) {
-						$data['image_height'] = 500;
-					}else {
-						$resize_config['height'] = $data['image_height'];
-					}
+					// if($data['image_height'] > 500) {
+					// 	$data['image_height'] = 500;
+					// }else {
+					// 	$resize_config['height'] = $data['image_height'];
+					// }
 				}else if($type == 'book_cover'){
 					$resize_config['width'] = 200;
 					$resize_config['height'] = 300;

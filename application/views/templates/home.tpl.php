@@ -1,11 +1,9 @@
 <main class="content">
-	<div class="content_top-ad">
-		<?php if(APP_ENV == 'production'): ?>
-			<!--  -->
-		<?php else: ?>
+	<?php if(APP_ENV == 'production'): ?>
+		
+	<?php else: ?>
 			<div class="bxS mb-2" style="display: block; width: 760px; height: 210px; background-color: #333"></div>
-		<?php endif; ?>
-	</div>
+	<?php endif; ?>
 	<section class="feed" <?=isset($load_attributes) ? $load_attributes : ""?>>
 	<?php foreach ($posts['posts'] as $key => $value):?>
 		<article class="article-preview block">

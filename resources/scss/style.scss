@@ -399,7 +399,7 @@ $page-left-side-width: calc(100% - #{$page-right-side-width});
 
 .main-sidebar {
 	position: sticky;
-	top: -995px;
+	top: -623px;
 }
 
 .main-sidebar li {
@@ -1366,6 +1366,12 @@ hr {
 
 .post-entry-content {
 	margin-bottom: 15px;
+}
+
+.MfXHN8 {
+	display: flex;
+	max-width: 760px;
+	height: 200px;
 }
 
 .suggested-posts h3 {
