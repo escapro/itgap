@@ -1,4 +1,10 @@
 <main class="content">
+	<?php if(isset($user_id)):?>
+		<div class="post-admin-control">
+			<a class="post-admin-control_link" href="/post/edit/<?=$post['post_id'];?>">Редактировать</a>
+			<a class="post-admin-control_link" href="#">В черновик</a>
+		</div>
+	<?php endif; ?>
 	<article class="block post post-entry-content">
 		<header class="post-header">
 			<h1><?php if($post['title'] !== '') echo $post['title']; ?></h1>

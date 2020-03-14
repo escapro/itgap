@@ -1,5 +1,7 @@
 $(document).ready(function () {
 
+    let isPostImageOpen = false;
+
     function toggleCheckbox(el) {
         var checkbox = $(el).find('input');
 
@@ -144,4 +146,36 @@ $(document).ready(function () {
     var myLazyLoad = new LazyLoad({
 		elements_selector: ".lazy"
     });
+
+    $(document).on('click', '.post-entry figure img', function(el) {
+        togglePostImage(this);
+    })
+
+    $(document).on('click', '.full-image-preview', function(el) {
+        togglePostImage();
+    })
+
+    function togglePostImage(el=undefined) {
+        var className = "full-image-preview";
+        if(!isPostImageOpen) {
+            isPostImageOpen = true;
+            lockScrolling(false);
+            var image = '<div class="'+className+'"></div>';
+            $(image).insertBefore('.main');
+            $(el).clone().appendTo('.'+className);
+            lockScrolling(true);
+        }else {
+            isPostImageOpen = false;
+            lockScrolling(false);
+            $('.'+className).remove();
+        }
+    }
+
+    function lockScrolling(action) {
+        if(action) {
+            $('body').css('overflow', 'hidden');
+        }else {
+            $('body').css('overflow', 'auto');
+        }
+    }
 });

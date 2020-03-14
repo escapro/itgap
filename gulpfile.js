@@ -54,4 +54,4 @@ function abfuscateJs(done) {
     done();
 }
 
-gulp.task('default', gulp.parallel(liveReload, watchFiles));
+gulp.task('default', gulp.parallel(watchFiles));

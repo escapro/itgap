@@ -19,7 +19,6 @@
 		window.onload = function() {
 			if (isAdBlockActive) {
 				document.getElementsByClassName("main-sidebar")[0].style.top = "-225px";
-				document.getElementsByClassName("MfXHN8")[0].style.display = "none";
 			}else {
 				// document.querySelector(".feed .article-preview:first-child").style.marginTop = "15px";	
 			}

@@ -10,7 +10,8 @@
 			<div class="article-preview__content">
 				<a href="/<?=$value['category_url'];?>/<?=$value['post_name'];?>">
 					<h2 class="article-preview__title"><?=$value['title'];?></h2>
-					<div class='article-preview-description'><?=$value['preview_text'];?></div></a>
+					<div class='article-preview-description'><?=$value['preview_text'];?></div>
+				</a>
 				<div class="article-tags">
 				<?php if(isset($value['tags'])): ?>
 					<?php foreach ($value['tags'] as $key_2 => $value_2):?>
