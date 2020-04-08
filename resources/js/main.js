@@ -178,4 +178,8 @@ $(document).ready(function () {
             $('body').css('overflow', 'auto');
         }
     }
+
+    if (!isAdBlockActive) {
+        document.getElementsByClassName("main-sidebar")[0].style.top = "-870px";
+    }
 });

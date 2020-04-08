@@ -10,20 +10,10 @@
 		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-131792796-2"></script>
 		<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'UA-131792796-2');</script>
 		<meta name="google-site-verification" content="2I45M7PBDeVLgx1uQn51I4t4YmJORZ0IFB-mUSzfGSA" />
-		<script data-ad-client="ca-pub-9975977745394887" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 	<?php endif; ?>
 
 	<script>var isAdBlockActive=true;</script>
 	<script src="/media/js/ads.js"></script>
-	<script>
-		window.onload = function() {
-			if (isAdBlockActive) {
-				document.getElementsByClassName("main-sidebar")[0].style.top = "-225px";
-			}else {
-				// document.querySelector(".feed .article-preview:first-child").style.marginTop = "15px";	
-			}
-		}
-	</script>
 	
 	<title><?=$page_title;?></title>
 

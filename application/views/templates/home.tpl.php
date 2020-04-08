@@ -1,9 +1,7 @@
 <main class="content">
-	<?php if(APP_ENV == 'production'): ?>
-		
-	<?php else: ?>
-			<div class="bxS mb-2" style="display: block; width: 760px; height: 210px; background-color: #333"></div>
-	<?php endif; ?>
+	<div class="BYmiTN flex-center n-ls">
+		<a target="_blank" rel="nofollow" href="https://bit.ly/39TIxkA"><img src="https://itgap.ru/static/uploads/2465ebb3705bd345a2e6eef3a37d10c3.jpg"></a>
+	</div>
 	<section class="feed" <?=isset($load_attributes) ? $load_attributes : ""?>>
 	<?php foreach ($posts['posts'] as $key => $value):?>
 		<article class="article-preview block">

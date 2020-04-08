@@ -15,32 +15,8 @@
              </div>
         </div>
     </section>
-    <section class="sidebar-item sidebar-mon">
-        <?php if(APP_ENV == 'production'): ?>
-            <!-- <div class="bxS">
-                <div id="yandex_rtb_R-A-518420-2"></div>
-                <script type="text/javascript">
-                    (function(w, d, n, s, t) {
-                        w[n] = w[n] || [];
-                        w[n].push(function() {
-                            Ya.Context.AdvManager.render({
-                                blockId: "R-A-518420-2",
-                                renderTo: "yandex_rtb_R-A-518420-2",
-                                async: true
-                            });
-                        });
-                        t = d.getElementsByTagName("script")[0];
-                        s = d.createElement("script");
-                        s.type = "text/javascript";
-                        s.src = "//an.yandex.ru/system/context.js";
-                        s.async = true;
-                        t.parentNode.insertBefore(s, t);
-                    })(this, this.document, "yandexContextAsyncCallbacks");
-                </script>
-            </div> -->
-        <?php else: ?>
-            <div class="bxS" style="display: block; width: 320px; height: 340px; background-color: #333"></div>
-        <?php endif; ?>
+    <section class="sidebar-item">
+        <a target="_blank" rel="nofollow" href="https://bit.ly/39TIxkA"><img src="https://itgap.ru/static/uploads/banner-de8e598409da4ac045e290b9382535b2.jpg"></a>
     </section>
     <section class="sidebar-item">
         <div class="block sidebar-block">
@@ -59,7 +35,7 @@
              </div>
         </div>
     </section>
-    <section class="sidebar-item sidebar-mon">
+    <section class="sidebar-item flex-center">
         <?php if(APP_ENV == 'production'): ?>
             <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
             <ins class="adsbygoogle"
@@ -70,7 +46,7 @@
                 (adsbygoogle = window.adsbygoogle || []).push({});
             </script>
         <?php else: ?>
-            <div class="bxS" style="display: block; width: 320px; height: 750px; background-color: #333"></div>
+            <div class="advertisment bxS" style="display: block; width: 300px; height: 600px; background-color: #333"></div>
         <?php endif; ?>
     </section>
 </aside>

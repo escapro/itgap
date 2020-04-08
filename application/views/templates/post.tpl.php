@@ -1,4 +1,7 @@
 <main class="content">
+	<div class="BYmiTN flex-center n-ls">
+		<a target="_blank" rel="nofollow" href="https://bit.ly/39TIxkA"><img src="https://itgap.ru/static/uploads/2465ebb3705bd345a2e6eef3a37d10c3.jpg"></a>
+	</div>
 	<?php if(isset($user_id)):?>
 		<div class="post-admin-control">
 			<a class="post-admin-control_link" href="/post/edit/<?=$post['post_id'];?>">Редактировать</a>
@@ -31,12 +34,38 @@
 			</div>
 			<?php endif; ?>
 			<div class="post-entry">
+				<?php
+					$post['data_html'] = preg_replace_callback('#(<p>.*?</p>)#', 'callback_func', $post['data_html']);
+
+					function callback_func($matches)
+					{
+						static $count = 0;
+						$ret = $matches[1];
+						if (++$count == 1) {
+							if (APP_ENV == 'production') {
+								$ret .= '
+								<div class="mb-2">
+									<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+									<ins class="adsbygoogle"
+										style="display:block; text-align:center;"
+										data-ad-layout="in-article"
+										data-ad-format="fluid"
+										data-ad-client="ca-pub-9975977745394887"
+										data-ad-slot="2995565323"></ins>
+									<script>
+										(adsbygoogle = window.adsbygoogle || []).push({});
+									</script>
+								</div>';	
+							}else {
+								$ret .= '<div class="advertisment bxS mb-2" style="display: block; width: 100%; height: 200px; background-color: #333"></div>';
+							}
+						}
+						return $ret;
+					}
+				?>
+
 				<?=$post['data_html'];?>
-				<?php if(APP_ENV == 'production'): ?>
-					
-				<?php else: ?>
-					<div class="bxS mb-2" style="display: block; width: 690px; height: 320px; background-color: #333"></div>
-				<?php endif; ?>
+
 			</div>
 		</div>
 		<div class="post-entry-footer">
@@ -44,7 +73,20 @@
 		</div>
 	</article>
 	<?php if(APP_ENV == 'production'): ?>
-		
+		<div class="mb-2">
+			<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+			<ins class="adsbygoogle"
+				style="display:block"
+				data-ad-client="ca-pub-9975977745394887"
+				data-ad-slot="6901476157"
+				data-ad-format="auto"
+				data-full-width-responsive="true"></ins>
+			<script>
+				(adsbygoogle = window.adsbygoogle || []).push({});
+			</script>
+		</div>
+	<?php else: ?>
+		<div class="bxS mb-2" style="display: block; width: 760px; height: 210px; background-color: #333"></div>
 	<?php endif; ?>
 	<script async>
 		$(".post-entry a").attr("target", "_blank");		

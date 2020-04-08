@@ -399,7 +399,7 @@ $page-left-side-width: calc(100% - #{$page-right-side-width});
 
 .main-sidebar {
 	position: sticky;
-	top: -623px;
+	top: -225px;
 }
 
 .main-sidebar li {
@@ -622,7 +622,7 @@ $page-left-side-width: calc(100% - #{$page-right-side-width});
 
 .post-entry p{
 	line-height: 1.6em;
-	margin-bottom: 10px;
+	margin-bottom: 15px;
 	font-weight: 400;
 }
 
@@ -648,16 +648,17 @@ $page-left-side-width: calc(100% - #{$page-right-side-width});
 .post-entry code {
 	background: rgba(251,241,241,0.78);
     color: #C44545;
-    padding: 20px 0 20px 20px;
+	padding: 4px 6px;
     border-radius: 2px;
     font-family: Menlo, Monaco, Consolas, Courier New, monospace;
     font-size: 0.9em;
 }
 
 .post-entry .codeStyle-dark code{
-	font-size: 1.1rem;
+	font-size: 1rem;
 	font-family: monospace;
 	color: #fff;
+	padding: 15px;
 	background: none;
 	line-height: 20px;
 }
@@ -679,7 +680,6 @@ $page-left-side-width: calc(100% - #{$page-right-side-width});
 
 .post-entry ol, .post-entry ul {
 	margin-bottom: 20px;
-	padding-left: 15px;
 }
 
 .post-entry li {
@@ -1362,7 +1362,7 @@ hr {
 }
 
 .post-header h1 {
-	font-size: 1.5em;
+	font-size: 1.8em;
 }
 
 .suggested-posts .article-preview__content a {
@@ -1400,6 +1400,15 @@ hr {
 
 .no-search-result {
 	font-size: 15px;
+}
+
+.BYmiTN {
+	margin-bottom: 15px;
+}
+
+.BYmiTN img{
+	width: 760px;
+	max-width: 100%;
 }
 
 // BEGIN ADAPTIVE STYLE ---------------------------------------
@@ -1663,6 +1672,10 @@ display: flex;
 	margin-right: 10px;
 }
 
+.mlhjRn {
+	max-height: 210px;
+}
+
 //begin
 @media (max-width: $middle-screen) {
 	.container {
@@ -1840,6 +1853,10 @@ display: flex;
 	
 	.suggested-posts .article-preview__image {
 		margin-bottom: 5px;
+	}
+
+	.n-ls {
+		display: none;
 	}
 }
 
