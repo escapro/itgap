@@ -16,7 +16,7 @@
         </div>
     </section>
     <section class="sidebar-item">
-        <a target="_blank" rel="nofollow" href="https://bit.ly/39TIxkA"><img src="https://itgap.ru/static/uploads/banner-de8e598409da4ac045e290b9382535b2.jpg"></a>
+        <a target="_blank" rel="nofollow" href="https://ad.admitad.com/g/3w3tocvbxr3e3da004095fb557f5d8/"><img src="https://itgap.ru/static/uploads/banner-de8e598409da4ac045e290b9382535b2.jpg"></a>
     </section>
     <section class="sidebar-item">
         <div class="block sidebar-block">

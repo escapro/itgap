@@ -1,6 +1,6 @@
 <main class="content">
 	<div class="BYmiTN flex-center n-ls">
-		<a target="_blank" rel="nofollow" href="https://bit.ly/39TIxkA"><img src="https://itgap.ru/static/uploads/2465ebb3705bd345a2e6eef3a37d10c3.jpg"></a>
+		<a target="_blank" rel="nofollow" href="https://ad.admitad.com/g/3w3tocvbxr3e3da004095fb557f5d8/"><img src="https://itgap.ru/static/uploads/2465ebb3705bd345a2e6eef3a37d10c3.jpg"></a>
 	</div>
 	<section class="feed" <?=isset($load_attributes) ? $load_attributes : ""?>>
 	<?php foreach ($posts['posts'] as $key => $value):?>

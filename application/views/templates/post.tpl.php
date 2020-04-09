@@ -1,6 +1,6 @@
 <main class="content">
 	<div class="BYmiTN flex-center n-ls">
-		<a target="_blank" rel="nofollow" href="https://bit.ly/39TIxkA"><img src="https://itgap.ru/static/uploads/2465ebb3705bd345a2e6eef3a37d10c3.jpg"></a>
+		<a target="_blank" rel="nofollow" href="https://ad.admitad.com/g/3w3tocvbxr3e3da004095fb557f5d8/"><img src="https://itgap.ru/static/uploads/2465ebb3705bd345a2e6eef3a37d10c3.jpg"></a>
 	</div>
 	<?php if(isset($user_id)):?>
 		<div class="post-admin-control">
@@ -14,7 +14,7 @@
 			<div class="post-meta">
 				<span class="post-meta__time"><i class="icon icon-clock"></i><?=$post['last_change'];?></span>
 				<div class="right">
-					<span class="post-meta__views"><i class="icon icon-eye"></i><?=$post['views'];?></span>
+					<span class="post-meta__views"><i class="icon icon-eye"></i><?=number_format($post['views'], 0, ',', ' ');?></span>
 					<!-- <span class="post-meta__comments"><i class="icon icon-chat"></i></span> -->
 				</div>
 			</div>
