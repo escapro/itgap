@@ -54,6 +54,22 @@ class Post extends CI_Controller {
 			'hash' => $this->security->get_csrf_hash()
 		);
 		$this->data['csrf'] = $csrf;
+
+		// Insert advertisments
+		if ($category == 'post') {
+
+			$this->insert_adv(1, '
+				<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+				<ins class="adsbygoogle"
+					style="display:block; text-align:center;"
+					data-ad-layout="in-article"
+					data-ad-format="fluid"
+					data-ad-client="ca-pub-9975977745394887"
+					data-ad-slot="2995565323"></ins>
+				<script>
+					(adsbygoogle = window.adsbygoogle || []).push({});
+				</script>');
+		}
 		
 		$this->load->view('post', $this->data);
 	}
@@ -234,5 +250,43 @@ class Post extends CI_Controller {
 		}
 
 		echo json_encode($response);
+	}
+
+	private function insert_adv($after_par, $script) {
+
+		$after = $after_par;
+
+		$dom = new DOMDocument;
+		libxml_use_internal_errors(true);
+		$dom->loadHTML(mb_convert_encoding($this->data['post']['data_html'], 'HTML-ENTITIES', 'UTF-8'));
+			
+		$par_length = $dom->getElementsByTagName('p')->length;
+		if ($par_length <= 3) {
+			return;
+		}
+		if ($after == 'mid') {
+			$after = ceil($par_length / 2);
+		}
+
+		$after--;
+
+		$adv_block = $dom->createElement('div');
+
+		$adv_script = new DOMDocument();
+
+		if (APP_ENV !== 'production') {
+			$script = '<div class="advertisment bxS mb-2" style="display: block; width: 100%; height: 200px; background-color: #333"></div>';
+		}
+
+		$adv_script->loadHTML($script);
+
+		$adv_block->appendChild($dom->importNode($adv_script->documentElement, true));
+
+		$adv_block->setAttribute('class', 'mb-2');
+
+		$dom->getElementsByTagName('p')->item($after)->appendChild($adv_block);
+		
+		$this->data['post']['data_html'] = $dom->saveHTML();
+
 	}
 }

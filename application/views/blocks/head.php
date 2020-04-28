@@ -12,8 +12,10 @@
 		<meta name="google-site-verification" content="2I45M7PBDeVLgx1uQn51I4t4YmJORZ0IFB-mUSzfGSA" />
 	<?php endif; ?>
 
+	<script type="text/javascript" src="https://vk.com/js/api/openapi.js?167"></script>
+
 	<script>var isAdBlockActive=true;</script>
-	<script src="/media/js/ads.js"></script>
+	<script src="/media/js/advertisment.js"></script>
 	
 	<title><?=$page_title;?></title>
 

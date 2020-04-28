@@ -399,7 +399,7 @@ $page-left-side-width: calc(100% - #{$page-right-side-width});
 
 .main-sidebar {
 	position: sticky;
-	top: -225px;
+	top: 70px;
 }
 
 .main-sidebar li {
@@ -766,15 +766,15 @@ $page-left-side-width: calc(100% - #{$page-right-side-width});
 }
 
 .post-entry .quote {
-	background-color: #fbfbfb;
+	background-color: #f5f5f5;
 	padding: 10px;
+	border-radius: 2px;
 	border-left: 3px solid #1976D2;
 	margin: 20px 0;
-	font-size: 15px;
 }
 
 .post-entry .quote__content {
-	line-height: 1.4em;
+	line-height: 1.8em;
 }
 
 .post-entry .quote .quote__cite{

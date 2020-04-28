@@ -1,7 +1,4 @@
 <main class="content">
-	<div class="BYmiTN flex-center n-ls">
-		<a target="_blank" rel="nofollow" href="https://ad.admitad.com/g/3w3tocvbxr3e3da004095fb557f5d8/"><img src="https://itgap.ru/static/uploads/2465ebb3705bd345a2e6eef3a37d10c3.jpg"></a>
-	</div>
 	<?php if(isset($user_id)):?>
 		<div class="post-admin-control">
 			<a class="post-admin-control_link" href="/post/edit/<?=$post['post_id'];?>">Редактировать</a>
@@ -34,38 +31,7 @@
 			</div>
 			<?php endif; ?>
 			<div class="post-entry">
-				<?php
-					$post['data_html'] = preg_replace_callback('#(<p>.*?</p>)#', 'callback_func', $post['data_html']);
-
-					function callback_func($matches)
-					{
-						static $count = 0;
-						$ret = $matches[1];
-						if (++$count == 1) {
-							if (APP_ENV == 'production') {
-								$ret .= '
-								<div class="mb-2">
-									<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-									<ins class="adsbygoogle"
-										style="display:block; text-align:center;"
-										data-ad-layout="in-article"
-										data-ad-format="fluid"
-										data-ad-client="ca-pub-9975977745394887"
-										data-ad-slot="2995565323"></ins>
-									<script>
-										(adsbygoogle = window.adsbygoogle || []).push({});
-									</script>
-								</div>';	
-							}else {
-								$ret .= '<div class="advertisment bxS mb-2" style="display: block; width: 100%; height: 200px; background-color: #333"></div>';
-							}
-						}
-						return $ret;
-					}
-				?>
-
 				<?=$post['data_html'];?>
-
 			</div>
 		</div>
 		<div class="post-entry-footer">
@@ -86,7 +52,7 @@
 			</script>
 		</div>
 	<?php else: ?>
-		<div class="bxS mb-2" style="display: block; width: 760px; height: 210px; background-color: #333"></div>
+		<div class="advertisment bxS mb-2" style="display: block; width: 760px; height: 210px; background-color: #333"></div>
 	<?php endif; ?>
 	<script async>
 		$(".post-entry a").attr("target", "_blank");		
@@ -115,5 +81,14 @@
 				</div>
 			</div>
 		<?php endforeach; ?>
+	</div>
+	<div class="mt-2 comment-block">
+		<div id="vk_comments"></div>
+		<script type="text/javascript">
+			window.onload = function () {
+				VK.init({apiId: 7429865, onlyWidgets: true});
+				VK.Widgets.Comments('vk_comments', {limit: 10, attach: "*", pageUrl: location.href});
+			}
+		</script>
 	</div>
 </main>
