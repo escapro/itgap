@@ -1,9 +1,9 @@
 <main class="content">
 	<?php if(isset($user_id)):?>
-		<div class="post-admin-control">
-			<a class="post-admin-control_link" href="/post/edit/<?=$post['post_id'];?>">Редактировать</a>
-			<a class="post-admin-control_link" href="#">В черновик</a>
-		</div>
+	<div class="post-admin-control">
+		<a class="post-admin-control_link" href="/post/edit/<?=$post['post_id'];?>">Редактировать</a>
+		<a class="post-admin-control_link" href="#">В черновик</a>
+	</div>
 	<?php endif; ?>
 	<article class="block post post-entry-content">
 		<header class="post-header">
@@ -11,7 +11,8 @@
 			<div class="post-meta">
 				<span class="post-meta__time"><i class="icon icon-clock"></i><?=$post['last_change'];?></span>
 				<div class="right">
-					<span class="post-meta__views"><i class="icon icon-eye"></i><?=number_format($post['views'], 0, ',', ' ');?></span>
+					<span class="post-meta__views"><i
+							class="icon icon-eye"></i><?=number_format($post['views'], 0, ',', ' ');?></span>
 					<!-- <span class="post-meta__comments"><i class="icon icon-chat"></i></span> -->
 				</div>
 			</div>
@@ -35,27 +36,37 @@
 			</div>
 		</div>
 		<div class="post-entry-footer">
-			
+
 		</div>
 	</article>
 	<?php if(APP_ENV == 'production'): ?>
-		<div class="mb-2">
-			<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-			<ins class="adsbygoogle"
-				style="display:block"
-				data-ad-client="ca-pub-9975977745394887"
-				data-ad-slot="6901476157"
-				data-ad-format="auto"
-				data-full-width-responsive="true"></ins>
-			<script>
-				(adsbygoogle = window.adsbygoogle || []).push({});
-			</script>
-		</div>
+	<div class="mb-2">
+		<div id="yandex_rtb_R-A-518420-4"></div>
+		<script type="text/javascript">
+			(function (w, d, n, s, t) {
+				w[n] = w[n] || [];
+				w[n].push(function () {
+					Ya.Context.AdvManager.render({
+						blockId: "R-A-518420-4",
+						renderTo: "yandex_rtb_R-A-518420-4",
+						async: true
+					});
+				});
+				t = d.getElementsByTagName("script")[0];
+				s = d.createElement("script");
+				s.type = "text/javascript";
+				s.src = "//an.yandex.ru/system/context.js";
+				s.async = true;
+				t.parentNode.insertBefore(s, t);
+			})(this, this.document, "yandexContextAsyncCallbacks");
+		</script>
+	</div>
 	<?php else: ?>
-		<div class="advertisment bxS mb-2" style="display: block; width: 760px; height: 210px; background-color: #333"></div>
+	<div class="advertisment bxS mb-2" style="display: block; width: 760px; height: 210px; background-color: #333">
+	</div>
 	<?php endif; ?>
 	<script async>
-		$(".post-entry a").attr("target", "_blank");		
+		$(".post-entry a").attr("target", "_blank");
 		document.addEventListener('DOMContentLoaded', (event) => {
 			document.querySelectorAll('pre code').forEach((block) => {
 				hljs.highlightBlock(block);
@@ -65,29 +76,39 @@
 	<div class="post suggested-posts block">
 		<h3>Также рекомендуем:</h3>
 		<?php foreach ($suggested_posts as $key => $value):?>
-			<div class="article-inline">
-				<div class="article-preview__image">
-					<a href="/<?=$value['category_url'];?>/<?=$value['post_name'];?>">
-						<img class="lazy" src="<?=base_url();?>/media/images/placeholder.jpg" data-src="<?=base_url();?>/static/uploads/posts/<?=$value['image_url'];?>" alt="<?=$value['title'];?>">
-					</a>
-					<noscript>
-						<img src="<?=base_url();?>/static/uploads/posts/<?=$value['image_url'];?>" alt="<?=$value['title'];?>">
-					</noscript>
-				</div>
-				<div class="article-preview__content">
-					<a href="/<?=$value['category_url'];?>/<?=$value['post_name'];?>">
-						<h2 class="article-preview__title"><?=$value['title'];?></h2>
-					</a>
-				</div>
+		<div class="article-inline">
+			<div class="article-preview__image">
+				<a href="/<?=$value['category_url'];?>/<?=$value['post_name'];?>">
+					<img class="lazy" src="<?=base_url();?>/media/images/placeholder.jpg"
+						data-src="<?=base_url();?>/static/uploads/posts/<?=$value['image_url'];?>"
+						alt="<?=$value['title'];?>">
+				</a>
+				<noscript>
+					<img src="<?=base_url();?>/static/uploads/posts/<?=$value['image_url'];?>"
+						alt="<?=$value['title'];?>">
+				</noscript>
 			</div>
+			<div class="article-preview__content">
+				<a href="/<?=$value['category_url'];?>/<?=$value['post_name'];?>">
+					<h2 class="article-preview__title"><?=$value['title'];?></h2>
+				</a>
+			</div>
+		</div>
 		<?php endforeach; ?>
 	</div>
 	<div class="mt-2 comment-block">
 		<div id="vk_comments"></div>
 		<script type="text/javascript">
 			window.onload = function () {
-				VK.init({apiId: 7429865, onlyWidgets: true});
-				VK.Widgets.Comments('vk_comments', {limit: 10, attach: "*", pageUrl: location.href});
+				VK.init({
+					apiId: 7429865,
+					onlyWidgets: true
+				});
+				VK.Widgets.Comments('vk_comments', {
+					limit: 10,
+					attach: "*",
+					pageUrl: location.href
+				});
 			}
 		</script>
 	</div>
