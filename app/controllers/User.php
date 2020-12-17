@@ -17,6 +17,7 @@ class User extends CI_Controller {
 		} 
 		
 		$this->data['categories'] = $this->category_model->get_categories();
+		$this->data['is_admin'] = $this->ion_auth->is_admin();
 	}
 
 	public function index()
@@ -111,6 +112,23 @@ class User extends CI_Controller {
 		}
 		
 		$this->data['editorPostData'] = '';
+
+		$this->load->view('user', $this->data);
+
+	}
+
+	public function admin(){
+
+		$this->data['userPageBlock'] = "admin";
+
+		$this->load->helper('date_helper');
+
+		$this->data['user'] = $this->ion_auth->user()->row();
+
+		$d = product_date_format($this->data['user']->created_on, 'number');
+		$this->data['user']->created_on = $d['day'].'.'.$d['month'].'.'.$d['year'];
+
+		$this->data['page_title'] = 'Админ панель - itGap';
 
 		$this->load->view('user', $this->data);
 

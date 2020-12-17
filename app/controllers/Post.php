@@ -14,17 +14,21 @@ class Post extends CI_Controller {
 		if ($this->ion_auth->logged_in()){
 			$this->data['user_id'] = $this->ion_auth->user()->row()->id;
 		}
+
+		$this->data['is_admin'] = $this->ion_auth->is_admin();
 	}
 
 	public function show($category, $post_name)
 	{
 		try {
-			$this->post_model->add_view($post_name);
+			if($this->ion_auth->is_admin() === false) {
+				$this->post_model->add_view($post_name);
+			}
 			$this->data['post'] = $this->post_model->get_post($post_name, $category)[0];
 		} catch (\Throwable $th) {
 			echo $th;
-			exit();
 			show_404();
+			exit();
 		}
 
 		if(empty($this->data['post'])) {

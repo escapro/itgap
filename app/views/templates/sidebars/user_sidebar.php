@@ -16,12 +16,16 @@
                 <?php
                     $profile = '';
                     $add_posts = '';
+                    $admin = '';
                     $drafts = '';
                     $mod = '';
                     $add_book = '';
                     switch ($userPageBlock) {
                         case 'profile':
                             $profile = 'active';
+                        break;
+                        case 'admin':
+                            $admin = 'active';
                         break;
                         case 'active_posts':
                             $add_posts = 'active';
@@ -37,7 +41,9 @@
                         break;
                     }
                 ?>
-                <a class="account-section" href="/admin">Админ панель</a>
+                <?php if($is_admin): ?>
+                    <a class="account-section <?=$admin;?>" href="/user/admin">Админ панель</a>
+                <?php endif;?>
                 <a class="account-section <?=$profile;?>" href="/user">Профиль</a>
                 <a class="account-section" href="/post/new">Новая статья</a>
                 <a class="account-section" href="/post/new?post_category=2">Добавить книгу</a>

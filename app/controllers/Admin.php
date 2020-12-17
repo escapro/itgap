@@ -10,7 +10,8 @@ class Admin extends CI_Controller {
 		$this->load->model('post_model');;
 
 		if (!$this->ion_auth->is_admin()){
-			exit('Error 404');
+			show_404();
+			exit();
 		}
 
 		$this->load->helper('date_helper');
@@ -33,7 +34,8 @@ class Admin extends CI_Controller {
 
 	public function approve_post($post_id) {
 		if (!$this->ion_auth->is_admin()){
-			exit('Error 404');
+			show_404();
+			exit();
 		}
 
 		$this->load->helper('url');
@@ -44,7 +46,8 @@ class Admin extends CI_Controller {
 
 	public function reject_post($post_id) {
 		if (!$this->ion_auth->is_admin()){
-			exit('Error 404');
+			show_404();
+			exit();
 		}else {
 			$this->post_model->admin_reject_post($post_id);
 			header('Location: /user/in_moderations');

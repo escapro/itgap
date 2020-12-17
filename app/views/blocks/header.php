@@ -2,8 +2,8 @@
 	<div class="container flex">
 		<div class="flex header-left">
 			<a href="/" class="logo">
-			<img src="/media/images/logo.svg" alt="image">
-				<span>itGap</span>
+			<img src="/media/images/logo_2.svg" alt="image">
+				<!-- <span>itGap</span> -->
 			</a>
 			<ul class="main-menu dsktp-show">
 				<li><a rel="nofollow" href="/">Главная</a></li>

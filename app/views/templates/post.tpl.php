@@ -1,8 +1,14 @@
 <main class="content">
-	<?php if(isset($user_id)):?>
-	<div class="post-admin-control">
-		<a class="post-admin-control_link" href="/post/edit/<?=$post['post_id'];?>">Редактировать</a>
-		<a class="post-admin-control_link" href="#">В черновик</a>
+	<?php if($is_admin):?>
+	<div class="d-flex flex-wrap mb-1 m-mt-1"">
+		<a class="panel-btn mr-1" href="/post/edit/<?=$post['post_id'];?>">
+			<span class="ico icon-pencil"></span>
+			<span>Редактировать</span>
+		</a>
+		<a class="panel-btn" href="#">
+			<span class="ico icon-sticky-note"></span>
+			<span>В черновик</span>
+		</a>
 	</div>
 	<?php endif; ?>
 	<article class="block post post-entry-content">

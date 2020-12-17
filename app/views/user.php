@@ -17,6 +17,9 @@
 								case 'profile':
 									require('templates/user_profile.tpl.php');
 								break;
+								case 'admin':
+									require('templates/admin/main.tpl.php');
+								break;
 								case 'posts':
 									require('templates/user_posts.tpl.php');
 								break;
