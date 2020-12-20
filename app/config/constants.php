@@ -2,8 +2,8 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 // APPLICATION ENVIROMENT MODE
-defined('APP_ENV') OR define('APP_ENV', 'production');
-// defined('APP_ENV') OR define('APP_ENV', 'development');
+// defined('APP_ENV') OR define('APP_ENV', 'production');
+defined('APP_ENV') OR define('APP_ENV', 'development');
 
 // POST COUNT IN PAGE
 defined('POST_COUNT') OR define('POST_COUNT', 15);

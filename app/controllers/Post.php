@@ -46,10 +46,20 @@ class Post extends CI_Controller {
 		$this->data['tags'] = $this->post_model->get_tags();
 		$this->data['categories'] = $this->category_model->get_categories();
 		$this->data['suggested_posts_banner'] = $this->post_model->get_suggest_posts(5);
-		$this->data['suggested_posts'] = $this->post_model->get_suggest_posts(4);
+
+		$tags_for_similar_posts = array_map(function($tag) {
+			return $tag['tag'];
+		}, $this->data['post']['tags']);
+
+		$this->data['suggested_posts'] = $this->post_model->get_posts_by_tags($tags_for_similar_posts, 4);
 
 		$this->load->helper('date_helper');
+
 		$this->data['post']['last_change'] = product_date_format($this->data['post']['last_change'], 'long');
+
+		foreach ($this->data['suggested_posts'] as $key => $value) {
+			$this->data['suggested_posts'][$key]['last_change'] = product_date_format($value['last_change'], 'long', true);
+		}
 
 		$this->data['is_post_show_page'] = true;
 

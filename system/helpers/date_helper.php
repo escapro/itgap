@@ -740,10 +740,11 @@ if ( ! function_exists('date_range'))
 		return $range;
 	}
 
-	function product_date_format($timestamp, $monthType) {
+	function product_date_format($timestamp, $monthType, $with_time=false) {
 		$CI =& get_instance();
 		
 		$date = array();
+		$result = '';
 
 		$CI->lang->load('calendar_lang', 'ru');
 
@@ -757,7 +758,7 @@ if ( ! function_exists('date_range'))
 		switch ($monthType) {
 			case 'long':
 				$data['month'] = $CI->lang->line("cal_" . strtolower(date("M", $timestamp)) . "_2", FALSE);
-				return $data['day'].' '.$data['month'].' '.$data['year'];
+				$result = $data['day'].' '.$data['month'].' '.$data['year'];
 				break;
 			case 'number':
 				$data['month'] = date("m", $timestamp);
@@ -766,8 +767,12 @@ if ( ! function_exists('date_range'))
 				$data['month'] = $CI->lang->line("cal_" . strtolower(date("M", $timestamp)), FALSE);
 				break;
 		}
+
+		if($with_time) {
+			$result .= ' в '.$data['hour'].':'.$data['min'];
+		}
 	
-		return $data;
+		return $result;
 
 	}
 }

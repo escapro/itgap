@@ -80,7 +80,7 @@
 		});
 	</script>
 	<div class="post suggested-posts block">
-		<h3>Также рекомендуем:</h3>
+		<h3>Похожие публикации:</h3>
 		<?php foreach ($suggested_posts as $key => $value):?>
 		<div class="article-inline">
 			<div class="article-preview__image">
@@ -95,9 +95,17 @@
 				</noscript>
 			</div>
 			<div class="article-preview__content">
-				<a href="/<?=$value['category_url'];?>/<?=$value['post_name'];?>">
-					<h2 class="article-preview__title"><?=$value['title'];?></h2>
-				</a>
+				<div class="d-flex column h-100 space-between">
+					<div>
+						<span class='article-preview__date'><?=$value['last_change']?></span>
+						<a class="article-preview__title" href="/<?=$value['category_url'];?>/<?=$value['post_name'];?>">
+							<div><?=$value['title'];?></div>
+						</a>
+					</div>
+					<div>
+						<span class="article-preview__views"><i class="icon icon-eye"></i><?=$value['views']?></span>
+					</div>
+				</div>
 			</div>
 		</div>
 		<?php endforeach; ?>

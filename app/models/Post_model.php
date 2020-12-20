@@ -647,4 +647,21 @@ class Post_model extends CI_Model {
 		$data = $query->result_array();
 		return $data;
 	}
+
+	public function get_posts_by_tags($tags, $limit) {
+		$this->db->select("p.id as post_ID, p.title, p.preview_text, p.post_id as post_id, p.last_change, p.preview_image_url as image_url, p.post_name, cat.url_name as category_url, pv.count as views, p.last_change");
+		$this->db->from("posts p");
+		$this->db->join('active_posts a', 'p.id=a.post_id');
+		$this->db->join('categories cat', 'cat.id=p.category_id');
+		$this->db->join('post_tags pt', 'pt.post_id=p.id');
+		$this->db->join('post_views pv', 'pv.post_id=p.id');
+		$this->db->join('tags t', 't.id=pt.tag_id');
+		$this->db->where_in("t.tag", $tags);
+		$this->db->where_not_in('p.id', $this->currentShowenPostId);
+		$this->db->order_by("p.id", "RANDOM");
+		$this->db->limit($limit);
+		$query = $this->db->get();
+		$data = $query->result_array();
+		return $data;
+	}
 }
