@@ -53,6 +53,10 @@ class Post extends CI_Controller {
 
 		$this->data['suggested_posts'] = $this->post_model->get_posts_by_tags($tags_for_similar_posts, 4);
 
+		if(sizeof($this->data['suggested_posts']) == 0) {
+			$this->data['suggested_posts'] = $this->post_model->get_suggest_posts(4);
+		}
+
 		$this->load->helper('date_helper');
 
 		$this->data['post']['last_change'] = product_date_format($this->data['post']['last_change'], 'long');
@@ -72,26 +76,26 @@ class Post extends CI_Controller {
 		// Insert advertisments
 		if ($category == 'post') {
 
-			$this->insert_adv(1, '
-			<div id="yandex_rtb_R-A-518420-3"></div>
-			<script type="text/javascript">
-				(function(w, d, n, s, t) {
-					w[n] = w[n] || [];
-					w[n].push(function() {
-						Ya.Context.AdvManager.render({
-							blockId: "R-A-518420-3",
-							renderTo: "yandex_rtb_R-A-518420-3",
-							async: true
-						});
-					});
-					t = d.getElementsByTagName("script")[0];
-					s = d.createElement("script");
-					s.type = "text/javascript";
-					s.src = "//an.yandex.ru/system/context.js";
-					s.async = true;
-					t.parentNode.insertBefore(s, t);
-				})(this, this.document, "yandexContextAsyncCallbacks");
-			</script>');
+			// $this->insert_adv(1, '
+			// <div id="yandex_rtb_R-A-518420-3"></div>
+			// <script type="text/javascript">
+			// 	(function(w, d, n, s, t) {
+			// 		w[n] = w[n] || [];
+			// 		w[n].push(function() {
+			// 			Ya.Context.AdvManager.render({
+			// 				blockId: "R-A-518420-3",
+			// 				renderTo: "yandex_rtb_R-A-518420-3",
+			// 				async: true
+			// 			});
+			// 		});
+			// 		t = d.getElementsByTagName("script")[0];
+			// 		s = d.createElement("script");
+			// 		s.type = "text/javascript";
+			// 		s.src = "//an.yandex.ru/system/context.js";
+			// 		s.async = true;
+			// 		t.parentNode.insertBefore(s, t);
+			// 	})(this, this.document, "yandexContextAsyncCallbacks");
+			// </script>');
 		}
 		
 		$this->load->view('post', $this->data);
@@ -143,8 +147,23 @@ class Post extends CI_Controller {
 		$this->data['tags'] = $this->post_model->get_tags();
 		$this->data['categories'] = $this->category_model->get_categories();
 		$this->data['suggested_posts_banner'] = $this->post_model->get_suggest_posts(5);
-		$this->data['suggested_posts'] = $this->post_model->get_suggest_posts(4);
 		$this->data['post'] = $this->post_model->get_preview_post($this->data['user_id'], $post_id);
+
+		$tags_for_similar_posts = array_map(function($tag) {
+			return $tag['tag'];
+		}, $this->data['post']['tags']);
+
+		$this->data['suggested_posts'] = $this->post_model->get_posts_by_tags($tags_for_similar_posts, 4);
+
+		if(sizeof($this->data['suggested_posts']) == 0) {
+			$this->data['suggested_posts'] = $this->post_model->get_suggest_posts(4);
+		}
+
+		$this->load->helper('date_helper');
+
+		foreach ($this->data['suggested_posts'] as $key => $value) {
+			$this->data['suggested_posts'][$key]['last_change'] = product_date_format($value['last_change'], 'long', true);
+		}
 		
 		$this->data['head_more'] = 
 		'<link rel="stylesheet" type="text/css" href="/media/highlight/styles/atom-one-dark.css">'.

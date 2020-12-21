@@ -44,7 +44,7 @@
         </div>
     </section>
     <section class="sidebar-item flex-center">
-        <?php if(APP_ENV == 'production'): ?>
+        <?php if(APP_ENV == 'test'): ?>
         <div id="yandex_rtb_R-A-518420-1"></div>
         <script type="text/javascript">
             (function (w, d, n, s, t) {
@@ -64,7 +64,8 @@
                 t.parentNode.insertBefore(s, t);
             })(this, this.document, "yandexContextAsyncCallbacks");
         </script>
-        <?php else: ?>
+        <?php endif; ?>
+        <?php if(APP_ENV == 'development'): ?>
         <div class="advertisment bxS" style="display: block; width: 300px; height: 600px; background-color: #333"></div>
         <?php endif; ?>
     </section>

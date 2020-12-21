@@ -45,7 +45,7 @@
 
 		</div>
 	</article>
-	<?php if(APP_ENV == 'production'): ?>
+	<?php if(APP_ENV == 'test'): ?>
 	<div class="mb-2">
 		<div id="yandex_rtb_R-A-518420-4"></div>
 		<script type="text/javascript">
@@ -67,7 +67,8 @@
 			})(this, this.document, "yandexContextAsyncCallbacks");
 		</script>
 	</div>
-	<?php else: ?>
+	<?php endif; ?>
+	<?php if(APP_ENV == 'development'): ?>
 	<div class="advertisment bxS mb-2" style="display: block; width: 760px; height: 210px; background-color: #333">
 	</div>
 	<?php endif; ?>

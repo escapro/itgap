@@ -762,9 +762,11 @@ if ( ! function_exists('date_range'))
 				break;
 			case 'number':
 				$data['month'] = date("m", $timestamp);
+				$result = $data;
 				break;
 			case 'short':
 				$data['month'] = $CI->lang->line("cal_" . strtolower(date("M", $timestamp)), FALSE);
+				$result = $data;
 				break;
 		}
 
