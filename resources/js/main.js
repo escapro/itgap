@@ -180,6 +180,6 @@ $(document).ready(function () {
     }
 
     if (!isAdBlockActive) {
-        document.getElementsByClassName("main-sidebar")[0].style.top = "-760px";
+        document.getElementsByClassName("main-sidebar")[0].style.top = "0";
     }
 });
