@@ -90,6 +90,8 @@ $route['writing/(:any)/edit'] = 'writing/edit/$1';
 
 $route['top'] = 'home/top';
 
+$route['goto/(:any)'] = 'url/redirect/$1';
+
 $route['(:any)/(:any)'] = function ($firts, $second) {
 
     switch ($firts) {
@@ -108,8 +110,12 @@ $route['(:any)/(:any)'] = function ($firts, $second) {
         case 'sitemap':
             return 'sitemap/'.$second;
             break;
-        default:
+        case 'post':
+        case 'books':
             return 'post/show/'.$firts.'/'.$second;
             break;
+        default:
+        show_404();
+        return;
     }
 };

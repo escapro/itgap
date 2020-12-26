@@ -24,10 +24,14 @@ class Post extends CI_Controller {
 			if($this->ion_auth->is_admin() === false) {
 				$this->post_model->add_view($post_name);
 			}
-			$this->data['post'] = $this->post_model->get_post($post_name, $category)[0];
+			$this->data['post'] = $this->post_model->get_post($post_name, $category);
+			if(sizeof($this->data['post']) > 0) $this->data['post'] = $this->data['post'][0];
 		} catch (\Throwable $th) {
-			echo $th;
-			show_404();
+			if(APP_ENV === 'production') {
+				show_404();
+			}else {
+				echo $th;
+			}
 			exit();
 		}
 
@@ -149,11 +153,16 @@ class Post extends CI_Controller {
 		$this->data['suggested_posts_banner'] = $this->post_model->get_suggest_posts(5);
 		$this->data['post'] = $this->post_model->get_preview_post($this->data['user_id'], $post_id);
 
-		$tags_for_similar_posts = array_map(function($tag) {
-			return $tag['tag'];
-		}, $this->data['post']['tags']);
+		$tags_for_similar_posts = [];
+		$this->data['suggested_posts'] = [];
 
-		$this->data['suggested_posts'] = $this->post_model->get_posts_by_tags($tags_for_similar_posts, 4);
+		if(sizeof($this->data['post']['tags']) > 0) {
+			$tags_for_similar_posts = array_map(function($tag) {
+				return $tag['tag'];
+			}, $this->data['post']['tags']);
+	
+			$this->data['suggested_posts'] = $this->post_model->get_posts_by_tags($tags_for_similar_posts, 4);
+		}
 
 		if(sizeof($this->data['suggested_posts']) == 0) {
 			$this->data['suggested_posts'] = $this->post_model->get_suggest_posts(4);

@@ -57,8 +57,10 @@ class Post_model extends CI_Model {
 		foreach ($data as $key => $value) {
 			$data[$key]['tags'] = $this->get_post_tags($value['post_ID']);		
 		}
+		if(isset($data[0])) {
+			$this->currentShowenPostId = $data[0]['post_ID'];
+		}
 
-		$this->currentShowenPostId = $data[0]['post_ID'];
 		return $data;
 	}
 

@@ -1,6 +1,11 @@
 <main class="content">
+	<div class="mb-2 bM3oLxMJeGE">
+		<a target="_blank" rel="nofollow" href="goto/bM3oLxMJeGE">
+			<img border="0" src="/bM3oLxMJeGE.jpg" />
+		</a>
+	</div>
 	<section class="feed" <?=isset($load_attributes) ? $load_attributes : ""?>>
-	<?php foreach ($posts['posts'] as $key => $value):?>
+		<?php foreach ($posts['posts'] as $key => $value):?>
 		<article class="article-preview block">
 			<div class="article-preview__content">
 				<a href="/<?=$value['category_url'];?>/<?=$value['post_name'];?>">
@@ -8,24 +13,27 @@
 					<div class='article-preview-description'><?=$value['preview_text'];?></div>
 				</a>
 				<div class="article-tags">
-				<?php if(isset($value['tags'])): ?>
+					<?php if(isset($value['tags'])): ?>
 					<?php foreach ($value['tags'] as $key_2 => $value_2):?>
-						<a href="/tag/<?=$value_2['tag']?>"><?=$value_2['title']?></a>
+					<a href="/tag/<?=$value_2['tag']?>"><?=$value_2['title']?></a>
 					<?php endforeach;?>
-				<?php else:?>
+					<?php else:?>
 					<a href="/tag/<?=$value['tag_url']?>"><?=$value['tag']?></a>
-				<?php endif;?>
+					<?php endif;?>
 				</div>
 			</div>
 			<div class="article-preview__image">
 				<a href="/<?=$value['category_url'];?>/<?=$value['post_name'];?>">
-					<img class="lazy" src="<?=base_url();?>/media/images/placeholder.jpg" data-src="<?=base_url();?>/static/uploads/posts/<?=$value['image_url'];?>" alt="<?=$value['title'];?>">
-				<noscript>
-					<img src="<?=base_url();?>/static/uploads/posts/<?=$value['image_url'];?>" alt="<?=$value['title'];?>">
-				</noscript>
+					<img class="lazy" src="<?=base_url();?>/media/images/placeholder.jpg"
+						data-src="<?=base_url();?>/static/uploads/posts/<?=$value['image_url'];?>"
+						alt="<?=$value['title'];?>">
+					<noscript>
+						<img src="<?=base_url();?>/static/uploads/posts/<?=$value['image_url'];?>"
+							alt="<?=$value['title'];?>">
+					</noscript>
 				</a>
 			</div>
 		</article>
-	<?php endforeach; ?>
+		<?php endforeach; ?>
 	</section>
 </main>
