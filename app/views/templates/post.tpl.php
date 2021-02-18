@@ -1,8 +1,6 @@
 <main class="content">
 	<div class="mb-2 bM3oLxMJeGE">
-		<a target="_blank" rel="nofollow" href="/goto/bM3oLxMJeGE">
-			<img border="0" src="/bM3oLxMJeGE.jpg" />
-		</a>
+		
 	</div>
 	<?php if($is_admin):?>
 	<div class="d-flex flex-wrap mb-1 m-mt-1"">

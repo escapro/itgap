@@ -1,8 +1,6 @@
 <main class="content">
 	<div class="mb-2 bM3oLxMJeGE">
-		<a target="_blank" rel="nofollow" href="goto/bM3oLxMJeGE">
-			<img border="0" src="/bM3oLxMJeGE.jpg" />
-		</a>
+		
 	</div>
 	<section class="feed" <?=isset($load_attributes) ? $load_attributes : ""?>>
 		<?php foreach ($posts['posts'] as $key => $value):?>
