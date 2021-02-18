@@ -215,7 +215,17 @@ class CI_Log {
 			$date = date($this->_date_fmt);
 		}
 
-		$message .= $this->_format_line($level, $date, $msg);
+		$ip = '';
+
+		if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+			$ip = $_SERVER['HTTP_CLIENT_IP'];
+		} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+			$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+		} else {
+			$ip = $_SERVER['REMOTE_ADDR'];
+		}
+
+		$message .= $this->_format_line($level, $date, $ip, $msg);
 
 		for ($written = 0, $length = self::strlen($message); $written < $length; $written += $result)
 		{
@@ -249,9 +259,9 @@ class CI_Log {
 	 * @param	string	$message 	The log message
 	 * @return	string	Formatted log line with a new line character '\n' at the end
 	 */
-	protected function _format_line($level, $date, $message)
+	protected function _format_line($level, $date, $ip, $message)
 	{
-		return $level.' - '.$date.' --> '.$message."\n";
+		return $level.' - '.$date.' - '.$ip.' --> '.$message."\n";
 	}
 
 	// --------------------------------------------------------------------

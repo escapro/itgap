@@ -823,6 +823,7 @@ class Ion_auth_model extends CI_Model
 		$query = $this->db->get_where($this->tables['groups'], ['name' => $this->config->item('default_group', 'ion_auth')], 1)->row();
 		if (!isset($query->id) && empty($groups))
 		{
+			echo "account_creation_invalid_default_group";
 			$this->set_error('account_creation_invalid_default_group');
 			return FALSE;
 		}

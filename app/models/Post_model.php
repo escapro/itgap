@@ -466,19 +466,24 @@ class Post_model extends CI_Model {
 		return $query->result_array();
 	}
 
-	public function add_view($post_name) {
-		$this->db->select("pv.count, p.id");
-		$this->db->from("post_views pv");
-		$this->db->join('posts p', 'p.id=pv.post_id');
-		$this->db->where("p.post_name", $post_name);
-		$query = $this->db->get();
-		$post = $query->result_array()[0];
-		$update_data = array(
-			'count' => intval($post['count']) + 1,
-		);
+	public function add_view($post_id) {
+		// $this->db->select("pv.count, p.id");
+		// $this->db->from("post_views pv");
+		// $this->db->join('posts p', 'p.id=pv.post_id');
+		// $this->db->where("p.post_name", $post_name);
+		// $query = $this->db->get();
+		// $post = $query->result_array()[0];
+		// $update_data = array(
+		// 	'count' => intval($post['count']) + 1,
+		// );
 
-		$this->db->where('post_id', $post['id']);
-		$this->db->update('post_views', $update_data);
+		// $this->db->where('post_id', $post['id']);
+		// $this->db->update('post_views', $update_data);
+
+
+		$this->db->set('count', 'count + 1', FALSE);
+		$this->db->where('post_id', $post_id);
+		$this->db->update('post_views');
 	}
 
 	private function get_post_id($id) {

@@ -10,3 +10,5 @@ RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
 RewriteCond %{THE_REQUEST} /public/([^\s?]*) [NC]
 RewriteRule ^ %1 [L,NE,R=302]
 RewriteRule ^((?!public/).*)$ public/$1 [L,NC]
+
+ErrorDocument 403 /errors/show_404

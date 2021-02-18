@@ -58,7 +58,9 @@ $redirect_404 = array(
     'home',
     'post',
     'category/tag/(:any)',
-    'category'
+    'category',
+    'admin',
+    'auth'
 );
 foreach ($redirect_404 as $url) {
     $route[$url] = function () {
@@ -68,7 +70,7 @@ foreach ($redirect_404 as $url) {
 
 // Основные роуты
 $route['user'] = 'user/index';
-$route['admin'] = 'admin/index';
+// $route['admin'] = 'admin/index';
 $route['contacts'] = 'page/contacts';
 $route['rights'] = 'page/rights';
 
@@ -89,6 +91,8 @@ $route['writing/(:any)/delete'] = 'writing/delete/$1';
 $route['writing/(:any)/edit'] = 'writing/edit/$1';
 
 $route['top'] = 'home/top';
+
+$route['oauth/(:any)/(:any)'] = 'oauth/$1/$2';
 
 $route['goto/(:any)'] = 'url/redirect/$1';
 
