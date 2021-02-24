@@ -48,7 +48,7 @@
 
 		</div>
 	</article>
-	<?php if(APP_ENV == 'test'): ?>
+	<?php if(APP_ENV == 'production'): ?>
 	<div class="mb-2">
 		<div id="yandex_rtb_R-A-518420-4"></div>
 		<script type="text/javascript">

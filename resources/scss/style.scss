@@ -431,7 +431,7 @@ $page-left-side-width: calc(100% - #{$page-right-side-width});
 
 .main-sidebar {
 	position: sticky;
-	top: 70px;
+	top: -5px;
 }
 
 .main-sidebar li {

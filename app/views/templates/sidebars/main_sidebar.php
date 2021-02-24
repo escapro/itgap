@@ -44,7 +44,7 @@
         </div>
     </section>
     <section class="sidebar-item flex-center">
-        <?php if(APP_ENV == 'test'): ?>
+        <?php if(APP_ENV == 'production'): ?>
         <div id="yandex_rtb_R-A-518420-1"></div>
         <script type="text/javascript">
             (function (w, d, n, s, t) {
