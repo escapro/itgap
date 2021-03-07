@@ -1,12 +1,36 @@
 <main class="content">
-	<div class="mb-2 bM3oLxMJeGE">
-		
+	<?php if(APP_ENV == 'production'): ?>
+	<div class="mb-2">
+		<div id="yandex_rtb_R-A-518420-5"></div>
+		<script type="text/javascript">
+			(function (w, d, n, s, t) {
+				w[n] = w[n] || [];
+				w[n].push(function () {
+					Ya.Context.AdvManager.render({
+						blockId: "R-A-518420-5",
+						renderTo: "yandex_rtb_R-A-518420-5",
+						async: true
+					});
+				});
+				t = d.getElementsByTagName("script")[0];
+				s = d.createElement("script");
+				s.type = "text/javascript";
+				s.src = "//an.yandex.ru/system/context.js";
+				s.async = true;
+				t.parentNode.insertBefore(s, t);
+			})(this, this.document, "yandexContextAsyncCallbacks");
+		</script>
 	</div>
+	<?php endif; ?>
+	<?php if(APP_ENV == 'development'): ?>
+	<div class="advertisment bxS mb-2" style="display: block; width: 760px; height: 180px; background-color: #333">
+	</div>
+	<?php endif; ?>
 	<?php if($is_admin):?>
 	<div class="d-flex flex-wrap mb-1 m-mt-1"">
-		<a class="panel-btn mr-1" href="/post/edit/<?=$post['post_id'];?>">
-			<span class="ico icon-pencil"></span>
-			<span>Редактировать</span>
+		<a class=" panel-btn mr-1" href="/post/edit/<?=$post['post_id'];?>">
+		<span class="ico icon-pencil"></span>
+		<span>Редактировать</span>
 		</a>
 		<a class="panel-btn" href="#">
 			<span class="ico icon-sticky-note"></span>
@@ -102,7 +126,8 @@
 				<div class="d-flex column h-100 space-between">
 					<div>
 						<span class='article-preview__date'><?=$value['last_change']?></span>
-						<a class="article-preview__title" href="/<?=$value['category_url'];?>/<?=$value['post_name'];?>">
+						<a class="article-preview__title"
+							href="/<?=$value['category_url'];?>/<?=$value['post_name'];?>">
 							<div><?=$value['title'];?></div>
 						</a>
 					</div>
@@ -117,17 +142,27 @@
 	<div class="mt-2 comment-block">
 		<div id="vk_comments"></div>
 		<script type="text/javascript">
-			window.onload = function () {
-				VK.init({
-					apiId: 7429865,
-					onlyWidgets: true
-				});
-				VK.Widgets.Comments('vk_comments', {
-					limit: 10,
-					attach: "*",
-					pageUrl: location.href
-				});
-			}
+			var comment_enabled = false;
+			$(window).scroll(function () {
+				var hT = $('#vk_comments').offset().top,
+					hH = $('#vk_comments').outerHeight(),
+					wH = $(window).height(),
+					wS = $(this).scrollTop();
+				if (wS > (hT + hH - wH)) {
+					if (!comment_enabled) {
+						VK.init({
+							apiId: 7429865,
+							onlyWidgets: true
+						});
+						VK.Widgets.Comments('vk_comments', {
+							limit: 10,
+							attach: "*",
+							pageUrl: location.href
+						});
+						comment_enabled = true;
+					}
+				}
+			});
 		</script>
 	</div>
 </main>
