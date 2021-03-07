@@ -1,5 +1,5 @@
 <main class="content">
-	<?php if(APP_ENV == 'production'): ?>
+	<?php if(APP_ENV == 'test'): ?>
 	<div class="mb-2">
 		<div id="yandex_rtb_R-A-518420-5"></div>
 		<script type="text/javascript">
@@ -72,7 +72,7 @@
 
 		</div>
 	</article>
-	<?php if(APP_ENV == 'production'): ?>
+	<?php if(APP_ENV == 'test'): ?>
 	<div class="mb-2">
 		<div id="yandex_rtb_R-A-518420-4"></div>
 		<script type="text/javascript">
