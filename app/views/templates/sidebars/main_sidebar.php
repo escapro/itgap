@@ -43,26 +43,15 @@
             </div>
         </div>
     </section>
-    <section class="sidebar-item flex-center">
-        <?php if(APP_ENV == 'test'): ?>
-        <div id="yandex_rtb_R-A-518420-1"></div>
-        <script type="text/javascript">
-            (function (w, d, n, s, t) {
-                w[n] = w[n] || [];
-                w[n].push(function () {
-                    Ya.Context.AdvManager.render({
-                        blockId: "R-A-518420-1",
-                        renderTo: "yandex_rtb_R-A-518420-1",
-                        async: true
-                    });
-                });
-                t = d.getElementsByTagName("script")[0];
-                s = d.createElement("script");
-                s.type = "text/javascript";
-                s.src = "//an.yandex.ru/system/context.js";
-                s.async = true;
-                t.parentNode.insertBefore(s, t);
-            })(this, this.document, "yandexContextAsyncCallbacks");
+    <section class="sidebar-item">
+        <?php if(APP_ENV == 'production'): ?>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <ins class="adsbygoogle"
+            style="display:inline-block;width:300px;height:600px"
+            data-ad-client="ca-pub-5882767307365612"
+            data-ad-slot="2866005136"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
         <?php endif; ?>
         <?php if(APP_ENV == 'development'): ?>
