@@ -18,6 +18,9 @@ class User extends CI_Controller {
 		
 		$this->data['categories'] = $this->category_model->get_categories();
 		$this->data['is_admin'] = $this->ion_auth->is_admin();
+
+		$this->data['head_more'] = 
+		'<meta name="robots" content="noindex">';
 	}
 
 	public function index()

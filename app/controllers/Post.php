@@ -104,7 +104,8 @@ class Post extends CI_Controller {
 
 	public function new()
 	{
-		$this->data['head_more'] = 
+		$this->data['head_more'] =
+		'<meta name="robots" content="noindex">'.
 		'<link rel="stylesheet" type="text/css" href="/media/post/new_post.css">'.
 		'<script type="text/javascript" src="/media/post/new_post.js"></script>'.
 		'<script type="text/javascript" src="/media/post/service.js"></script>'.
@@ -174,6 +175,7 @@ class Post extends CI_Controller {
 		}
 		
 		$this->data['head_more'] = 
+		'<meta name="robots" content="noindex">'.
 		'<link rel="stylesheet" type="text/css" href="/media/highlight/styles/atom-one-dark.css">'.
 		'<script type="text/javascript" src="/media/highlight/highlight.pack.js"></script>';
 
@@ -204,7 +206,8 @@ class Post extends CI_Controller {
 		}
 		$this->data['userPageBlock'] = "drafts";
 
-		$this->data['head_more'] = 
+		$this->data['head_more'] =
+		'<meta name="robots" content="noindex">'.
 		'<link rel="stylesheet" type="text/css" href="/media/post/new_post.css">'.
 		'<script type="text/javascript" src="/media/post/new_post.js"></script>'.
 		'<script type="text/javascript" src="/media/post/service.js"></script>'.

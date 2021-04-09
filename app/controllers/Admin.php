@@ -19,6 +19,9 @@ class Admin extends CI_Controller {
 		$this->data['user'] = $this->ion_auth->user()->row();
 		$d = product_date_format($this->data['user']->created_on, 'number');
 		$this->data['user']->created_on = $d['day'].'.'.$d['month'].'.'.$d['year'];
+
+		$this->data['head_more'] = 
+		'<meta name="robots" content="noindex">';
 	}
 
 	public function index() {
