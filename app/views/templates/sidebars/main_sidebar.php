@@ -1,11 +1,18 @@
 <aside class="main-sidebar">
     <section class="sidebar-item">
         <div class="flex" style="justify-content: center; align-items: center">
-            <a href="tg://resolve?domain=itgap_official">
+            <!-- <a href="tg://resolve?domain=itgap_official">
                 <div class="block flex"
                     style="justify-content: center; align-items: center; padding: 10px; border-radius: 10px">
                     <i class="soc-icon soc-icon-tg" style="border: none; width: 30px; height: 30px;"></i>
                     <span style="margin-left: 10px;"><b>Читать наc в Telegram</b></span>
+                </div>
+            </a> -->
+            <a target="_blank" href="https://www.youtube.com/channel/UC1OJAB33isTzLjlUQaM12AA">
+                <div class="block flex"
+                    style="justify-content: center; align-items: center; padding: 10px; border-radius: 10px">
+                    <i class="soc-icon soc-icon-yt_orig" style="border: none; width: 30px; height: 30px;"></i>
+                    <span style="margin-left: 10px;"><b>Смотрите нас на YouTube</b></span>
                 </div>
             </a>
         </div>

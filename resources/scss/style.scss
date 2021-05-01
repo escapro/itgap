@@ -612,6 +612,10 @@ $page-left-side-width: calc(100% - #{$page-right-side-width});
 	background-image: url('/media/icons/yt.svg');
 }
 
+.soc-icon-yt_orig {
+	background-image: url('/media/icons/yt_orig.svg');
+}
+
 .icon-trash-empty {
 	color: #C62828 !important;
 }
