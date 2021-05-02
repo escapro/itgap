@@ -20,7 +20,7 @@ class User extends CI_Controller {
 		$this->data['is_admin'] = $this->ion_auth->is_admin();
 
 		$this->data['head_more'] = 
-		'<meta name="robots" content="noindex">';
+		'<meta name="robots" content="noindex, nofollow">';
 	}
 
 	public function index()

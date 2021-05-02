@@ -431,7 +431,7 @@ $page-left-side-width: calc(100% - #{$page-right-side-width});
 
 .main-sidebar {
 	position: sticky;
-	top: -5px;
+	top: 70px;
 }
 
 .main-sidebar li {
@@ -1601,9 +1601,9 @@ hr {
 .sidebar-block-list__item a {
 	width: 100%;
 	display: block;
-	font-size: 14px;
+	font-size: 13px;
 	color: $text-second-color;
-	padding: 5px;
+	padding: 4px;
 }
 
 .sidebar-block-list__item:hover {

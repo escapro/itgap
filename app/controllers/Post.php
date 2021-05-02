@@ -56,7 +56,7 @@ class Post extends CI_Controller {
 
 		$this->data['tags'] = $this->post_model->get_tags();
 		$this->data['categories'] = $this->category_model->get_categories();
-		$this->data['suggested_posts_banner'] = $this->post_model->get_suggest_posts(5);
+		$this->data['suggested_posts_banner'] = $this->post_model->get_suggest_posts(4);
 
 		$tags_for_similar_posts = array_map(function($tag) {
 			return $tag['tag'];
@@ -105,7 +105,7 @@ class Post extends CI_Controller {
 	public function new()
 	{
 		$this->data['head_more'] =
-		'<meta name="robots" content="noindex">'.
+		'<meta name="robots" content="noindex, nofollow">'.
 		'<link rel="stylesheet" type="text/css" href="/media/post/new_post.css">'.
 		'<script type="text/javascript" src="/media/post/new_post.js"></script>'.
 		'<script type="text/javascript" src="/media/post/service.js"></script>'.
@@ -148,7 +148,7 @@ class Post extends CI_Controller {
 
 		$this->data['tags'] = $this->post_model->get_tags();
 		$this->data['categories'] = $this->category_model->get_categories();
-		$this->data['suggested_posts_banner'] = $this->post_model->get_suggest_posts(5);
+		$this->data['suggested_posts_banner'] = $this->post_model->get_suggest_posts(4);
 		$this->data['post'] = $this->post_model->get_preview_post($this->data['user_id'], $post_id);
 
 		$tags_for_similar_posts = [];
@@ -175,7 +175,7 @@ class Post extends CI_Controller {
 		}
 		
 		$this->data['head_more'] = 
-		'<meta name="robots" content="noindex">'.
+		'<meta name="robots" content="noindex, nofollow">'.
 		'<link rel="stylesheet" type="text/css" href="/media/highlight/styles/atom-one-dark.css">'.
 		'<script type="text/javascript" src="/media/highlight/highlight.pack.js"></script>';
 
@@ -207,7 +207,7 @@ class Post extends CI_Controller {
 		$this->data['userPageBlock'] = "drafts";
 
 		$this->data['head_more'] =
-		'<meta name="robots" content="noindex">'.
+		'<meta name="robots" content="noindex, nofollow">'.
 		'<link rel="stylesheet" type="text/css" href="/media/post/new_post.css">'.
 		'<script type="text/javascript" src="/media/post/new_post.js"></script>'.
 		'<script type="text/javascript" src="/media/post/service.js"></script>'.
