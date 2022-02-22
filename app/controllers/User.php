@@ -29,6 +29,12 @@ class User extends CI_Controller {
 			show_404();
 		}
 
+		$csrf = array(
+			'name' => $this->security->get_csrf_token_name(),
+			'hash' => $this->security->get_csrf_hash()
+		);
+		$this->data['csrf'] = $csrf;
+
 		$this->load->helper('date_helper');
 
 		$this->data['userPageBlock'] = "profile";
@@ -177,5 +183,42 @@ class User extends CI_Controller {
 	public function logout(){
 		$this->ion_auth->logout();
 		redirect('/');
+	}
+
+	public function change_profile(){
+
+		// $data = array(
+		// 	'first_name' => 'Ben',
+		// 	'last_name' => 'Edmunds',
+		// 	'password' => '123456789',
+		// 	);
+
+		$msg = [];
+
+		$data = $this->input->post();
+		$data = $this->security->xss_clean($data);
+		$data = html_escape($data);
+
+		if ($data['old_password'] != '' && $data['old_password'] != '') {
+			$identity = $this->session->userdata('identity');
+			$change = $this->ion_auth->change_password($identity, $data['old_password'], $data['new_password']);
+		}
+
+		$new_data = array(
+			'first_name' => $data['first_name'],
+			'username' => $data['username'],
+			'email' => $data['email'],
+			);
+
+		if ($this->ion_auth->update($this->ion_auth->user()->row()->id, $new_data)) {
+			$this->session->set_flashdata('succes_mesage', $this->ion_auth->messages());
+			$msg['success'] = 1;
+		}else {
+			$this->session->set_flashdata('error_mesage', $this->ion_auth->errors());
+			$msg['error'] = 'Произошла ошибка';
+			$msg['success'] = 0;
+		}
+
+		echo json_encode($msg);
 	}
 }
