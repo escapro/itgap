@@ -24,4 +24,22 @@ class User_model extends CI_Model {
 		$data = $query->result_array();
 		return $data[0]['image_url'];
 	}
+
+	public function update_user_avatar ($user_id, $image_url) {
+		// $this->db->select("image_url");
+		// $this->db->from("user_avatars");
+		// $this->db->where("user_id", $user_id);
+		// $query = $this->db->get();
+		// $data = $query->result_array();
+		// return $data[0]['image_url'];
+
+		$data = array(
+			'image_url' => $image_url,
+		);
+		
+		$this->db->where('user_id', $user_id);
+		$this->db->update('user_avatars', $data);
+
+		
+	}
 }

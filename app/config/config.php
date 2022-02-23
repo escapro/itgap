@@ -461,6 +461,7 @@ $config['csrf_exclude_uris'] = array(
     'upload/article_image',
     'upload/book_cover',
     'upload/fetch_image',
+    'upload/update_avatar',
     'writing/fetchUrl',
     'post/fetch',
     'post/toDraft',
