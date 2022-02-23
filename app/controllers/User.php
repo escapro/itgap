@@ -182,7 +182,8 @@ class User extends CI_Controller {
 
 	public function logout(){
 		$this->ion_auth->logout();
-		redirect('/');
+		$url = $this->config->item('base_url');
+		redirect($url);
 	}
 
 	public function change_profile(){

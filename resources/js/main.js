@@ -75,10 +75,12 @@ $(document).ready(function () {
                 response = JSON.parse(response);
                 if(response.success == 1) {
                     window.location = '/user';
+                }else {
+                    alert("Неправильный email или пароль!")
                 }
             }
         });
-        
+         
     });
 
     $('.header-toggle_main_menu-block').on('click', function () {
